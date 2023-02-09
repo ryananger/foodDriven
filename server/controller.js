@@ -27,7 +27,9 @@ var parseUser = function(doc) {
     username:  doc.username,
 
     firstName: doc.firstName || null,
-    lastName:  doc.lastName  || null
+    lastName:  doc.lastName  || null,
+
+    admin:     doc.admin || false
   };
 
   return user;

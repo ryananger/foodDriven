@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 
 import '../styles/style.css';
 import st            from 'ryscott-st';
-import {ax, helpers} from 'util';
+import {ax, auth, helpers} from 'util';
 
 const Login = function() {
   const [signUp, setSignUp] = useState(false);

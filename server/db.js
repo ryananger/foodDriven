@@ -8,19 +8,57 @@ mongoose.connect(url, options, function(a) {
 });
 
 const userSchema = new mongoose.Schema({
-  uid:          String,
+  uid:          String, // from firebase auth
   username:     String,
   firstName:    String,
   lastName:     String,
-  pic:          String,
-
-  bio:         {type: String, maxLength: 140}
+  email:        String,
+  phone:        String,
+  admin:        Boolean
 });
 
-const User  = new mongoose.model('User', userSchema);
+const pantrySchema = new mongoose.Schema({
+  name:       String,
+  admins:    [String],
+  customers: [String],
+  inventory: [Object]
+});
 
-var schemas = {
-  User:  User
+const customerSchema = new mongoose.Schema({
+  uid:       String,
+  reg_id:    String,
+  firstName: String,
+  lastName:  String,
+
+  phone1:    String,
+  phone2:    String,
+  email:     String,
+
+  address:   String,
+  city:      String,
+  state:     String,
+  zip:       String,
+
+  ethnicity: String,
+  age:       Number,
+
+  familySize:   Number,
+  numberMale:   Number,
+  numberFemale: Number,
+  num_0to5:     Number,
+  num_6to17:    Number,
+  num_18to64:   Number,
+  num_65up:     Number
+});
+
+const User     = new mongoose.model('User', userSchema);
+const Pantry   = new mongoose.model('Pantry', pantrySchema);
+const Customer = new mongoose.model('Customer', customerSchema);
+
+var models = {
+  User:     User,
+  Pantry:   Pantry,
+  Customer: Customer
 };
 
-module.exports = schemas;
+module.exports = models;
