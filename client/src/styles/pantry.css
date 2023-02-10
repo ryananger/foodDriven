@@ -7,36 +7,20 @@
   background: var(--cardGrad);
 }
 
-.pantryForm {
-  max-width: 540px;
-  width: 60%;
+.customerList {
+  width: 100%;
   height: 100%;
-  padding: 1.5vh;
 }
 
-.pantryFormHead {
-  height: 200px;
-  padding: 1vh;
-}
-
-.pantryFormHead * {
-  padding: 1vh;
-}
-
-.pantryFormBody {
-  width: 80%;
-}
-
-.pantryInputs {
+.customerLabels {
   width: 100%;
+  height: 32px;
+  padding: 6px;
+  border: 1px solid var(--dirt);
+  border-radius: 0;
+  border-style: none none solid;
 }
 
-.locationInfo {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-input[name='city'], input[name='zip'] {
-  margin: 0;
+.customerLabel {
+  width: 10%;
 }
