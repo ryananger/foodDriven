@@ -6,6 +6,7 @@ import {ax, auth, helpers} from 'util';
 
 const Login = function() {
   const [signUp, setSignUp] = useState(false);
+  const [createType, setCreateType] = st.newState('createType', useState(''));
 
   var handleSubmit = function(e) {
     e.preventDefault();
@@ -25,6 +26,33 @@ const Login = function() {
     }
   };
 
+  var typeButton = function(type) {
+    var mod = createType === type ? 'selected' : '';
+    var dir = type === 'admin' ? 'left' : 'right';
+    var text = type === 'admin' ? 'Provider' : 'Customer';
+
+    var handleClick = function(e) {
+      e.preventDefault();
+
+      setCreateType(type);
+    };
+
+    return <button className={`createType ${dir} ${mod}`} onClick={handleClick}>{text}</button>;
+  };
+
+  var signUpDiv = function() {
+    return (
+      <>
+      <b style={{fontSize: '18px'}}>I am a...</b>
+      <div className='signUpButtons h'>
+        {typeButton('admin')}
+        {typeButton('customer')}
+      </div>
+      <input name='username' autoComplete='off' type='text' placeholder='Username?'/>
+      </>
+    )
+  };
+
   var renderForm = function() {
     return (
       <form id='loginForm' className='loginForm v' onSubmit={handleSubmit} autoComplete='off'>
@@ -36,7 +64,7 @@ const Login = function() {
 
         <div className='formBody v'>
           <div className='loginInputs v'>
-            {signUp && <input name='username' autoComplete='off' type='text' placeholder='Username?'/>}
+            {signUp && signUpDiv()}
 
             <input name='email' autoComplete='off' type='text'     placeholder='Email address!'/>
             <input name='pass'  autoComplete='off' type='password' placeholder='Password!'/>

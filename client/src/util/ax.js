@@ -6,6 +6,8 @@ var urlBase = process.env.URL;
 
 var ax = {
   createUser: function(user) {
+    user.admin = st.createType === 'admin';
+
     axios.post(urlBase + 'users', user)
       .then(function(response) {
         document.cookie = `user=${user.uid}`;

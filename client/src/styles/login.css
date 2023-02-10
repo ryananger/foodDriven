@@ -5,8 +5,8 @@
 }
 
 .loginForm {
-  width: 360px;
-  height: 480px;
+  width: 420px;
+  height: 540px;
   padding: 1.5vh;
   background: linear-gradient(to top, rgb(251 220 200) 10%, var(--trWhite) 90%);
   box-shadow: var(--cardShadow);
@@ -37,4 +37,41 @@
 
 .backButton:hover, .signUpText:hover {
   cursor: pointer;
+}
+
+.signUpHead {
+  border: 1px solid var(--dirt);
+}
+
+.signUpButtons {
+  width: 100%;
+}
+
+.signUpButtons * {
+  width: 100%;
+  height: 80px;
+  margin: 6px;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.signUpButtons *:active {
+  background-color: var(--leaf);
+}
+
+.right {
+  margin-right: 0;
+}
+
+.left {
+  margin-left: 0;
+}
+
+.selected {
+  background-color: var(--leaf);
+}
+
+.selected:hover {
+  color: var(--darkText);
+  background-color: var(--leaf);
 }
