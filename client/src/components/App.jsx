@@ -12,16 +12,24 @@ var cookie = helpers.cookieParse();
 
 const App = function() {
   const [user, setUser] = st.newState('user', useState(null));
-  const [view, setView] = st.newState('view', useState('admin'));
+  const [view, setView] = st.newState('view', useState('home'));
 
   const views = {
-    home: 'Home',
-    admin: <Admin />,
+    home:  <Admin/>,
+    admin: <Admin/>,
     login: <Login />
   };
 
+  var handleLogin = function() {
+    if (user) {
+      helpers.logOut();
+    } else {
+      setView('login');
+    }
+  };
+
   var userFromCookie = function() {
-    if (cookie.user) {
+    if (!user && cookie.user) {
       ax.getUser(cookie.user);
     }
   };
@@ -33,7 +41,7 @@ const App = function() {
       <Alert />
       <div className='header h'>
         <h2>foodDRIVEN</h2>
-        <button onClick={()=>{setView('login')}}>login</button>
+        <button onClick={handleLogin}>{user ? 'logout' : 'login'}</button>
       </div>
       <div className='main v'>
         {views[view]}

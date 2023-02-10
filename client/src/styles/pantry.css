@@ -8,6 +8,7 @@
 }
 
 .pantryForm {
+  max-width: 540px;
   width: 60%;
   height: 100%;
   padding: 1.5vh;
@@ -31,6 +32,7 @@
 }
 
 .locationInfo {
+  width: 100%;
   margin: 0;
   padding: 0;
 }

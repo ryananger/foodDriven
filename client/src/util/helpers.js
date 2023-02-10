@@ -1,5 +1,5 @@
 import st from 'ryscott-st';
-import ax from './ax.js';
+import {ax, auth} from 'util';
 
 var helpers = {
   rand: function(num) {
@@ -24,6 +24,12 @@ var helpers = {
     }
 
     return cookie;
+  },
+  logOut: function() {
+    document.cookie = 'user=;';
+    auth.logOut();
+    st.setUser(null);
+    st.setView('home')
   }
 };
 

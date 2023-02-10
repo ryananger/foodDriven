@@ -4,7 +4,7 @@ import '../styles/pantry.css';
 import st            from 'ryscott-st';
 import {ax, auth, helpers} from 'util';
 
-const Pantry = function({create}) {
+const Pantry = function() {
 
   var handleSubmit = function(e) {
     e.preventDefault();
@@ -39,13 +39,15 @@ const Pantry = function({create}) {
             <input type='submit' value='save'/>
           </div>
         </div>
+        <br/>
+        <div className='backButton' onClick={()=>{st.setCreate(false)}}>back</div>
       </form>
     )
   };
 
   return (
     <div className='pantry v'>
-      {create && renderForm()}
+      {st.create && renderForm()}
     </div>
   )
 };

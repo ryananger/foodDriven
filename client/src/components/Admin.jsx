@@ -8,14 +8,15 @@ import {ax, helpers} from 'util';
 import Pantry from './Pantry.jsx';
 
 const Admin = function() {
-  const [create, setCreate] = useState(true);
+  const [create, setCreate] = st.newState('create', useState(false));
+  const user = st.user;
 
   return (
     <div className='admin h'>
       <div className='pantryList v'>
         <div className='pantryListHead h'>
           <h3>PANTRIES</h3>
-          <Plus size={24}/>
+          {user && <Plus className='icon' size={24} onClick={()=>{setCreate(true)}}/>}
         </div>
         <div className='pantryListBody v'>
 
@@ -25,7 +26,7 @@ const Admin = function() {
         <div className='pantryNav h'>
           <h3>{create ? 'Create a new pantry!' : 'pantryName'}</h3>
         </div>
-        <Pantry create={create}/>
+        <Pantry />
       </div>
     </div>
   )
