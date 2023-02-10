@@ -9,6 +9,10 @@
   border-radius: 8px;
 }
 
+.admin h3 {
+  margin-top: 6px;
+}
+
 .pantryList {
   border: 1px solid var(--brown);
   width: 20vw;
@@ -16,6 +20,13 @@
   justify-content: flex-start;
   background-color: var(--lightBrown);
   box-shadow: var(--cardShadow);
+}
+
+.pantryListBody {
+  width: 100%;
+  height: 100%;
+  justify-content: flex-start;
+  background: var(--cardGrad);
 }
 
 .pantryListHead, .pantryNav {
@@ -36,9 +47,4 @@
   border: 1px solid var(--brown);
   background-color: var(--lightBrown);
   box-shadow: var(--cardShadow);
-}
-
-.pantryMain {
-  width: 100%;
-  height: 100%;
 }

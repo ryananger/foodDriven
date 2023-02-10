@@ -1,0 +1,40 @@
+.pantry {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  overflow: hidden;
+
+  background: var(--cardGrad);
+}
+
+.pantryForm {
+  width: 60%;
+  height: 100%;
+  padding: 1.5vh;
+}
+
+.pantryFormHead {
+  height: 200px;
+  padding: 1vh;
+}
+
+.pantryFormHead * {
+  padding: 1vh;
+}
+
+.pantryFormBody {
+  width: 80%;
+}
+
+.pantryInputs {
+  width: 100%;
+}
+
+.locationInfo {
+  margin: 0;
+  padding: 0;
+}
+
+input[name='city'], input[name='zip'] {
+  margin: 0;
+}
