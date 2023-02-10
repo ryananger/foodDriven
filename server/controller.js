@@ -1,5 +1,5 @@
 const axios    = require('axios');
-const { User, Pantry } = require('./db.js');
+const { User, Pantry, Customer } = require('./db.js');
 
 var controller = {
   createUser: function(req, res) {
@@ -18,7 +18,16 @@ var controller = {
       .then(function(response) {
         var user = parseUser(response);
 
-        getPantriesForUser(user, res);
+        if (!user.admin) {
+          Customer.findOne({uid: uid})
+            .then(function(customer) {
+              user.customerInfo = customer || null;
+
+              getPantriesForUser(user, res);
+            })
+        } else {
+          getPantriesForUser(user, res);
+        }
       })
   },
   createPantry: function(req, res) {
@@ -46,6 +55,7 @@ var getPantriesForUser = function(user, res) {
       .then(function(response) {
         var pantries = response.map(entry => transform(entry._doc));
 
+        console.log(user);
         user.pantries = pantries;
         res.json(user);
       })
@@ -54,6 +64,7 @@ var getPantriesForUser = function(user, res) {
       .then(function(response) {
         var pantries = response.map(entry => transform(entry._doc));
 
+        console.log(user);
         user.pantries = pantries;
         res.json(user);
       })

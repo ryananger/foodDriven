@@ -13,7 +13,7 @@ var ax = {
         document.cookie = `user=${user.uid}`;
 
         st.setUser(response.data);
-        st.setView('home');
+        user.admin ? st.setView('admin') : st.setView('customerForm');
 
         helpers.alert('Welcome to foodDRIVEN!');
         console.log('Created user in database.', response.data);
@@ -22,16 +22,17 @@ var ax = {
   getUser: function(uid, alt) {
     axios.get(urlBase + 'users/' + uid)
       .then(function(response) {
+        var user = response.data;
+
+        st.setUser(user);
         document.cookie = `user=${uid}`;
 
-        st.setUser(response.data);
-
         if (!alt) {
-          st.setView('home');
+          user.admin ? st.setView('admin') : st.setView('home');
         }
 
         helpers.alert('Welcome to foodDRIVEN!');
-        console.log('Retrieved user from database.', response.data);
+        console.log('Retrieved user from database.', user);
       })
   },
   createPantry: function(pantry) {

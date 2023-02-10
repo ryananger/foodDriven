@@ -1,0 +1,54 @@
+.customerCreate {
+  border-radius: 8px;
+  max-width: 800px;
+  width: 60%;
+  height: 100%;
+  background-color: var(--lightBrown);
+}
+
+.customerForm {
+  width: 100%;
+  height: 100%;
+}
+
+.customerFormHead {
+  width: 80%;
+  min-height: 200px;
+  text-align: center;
+  padding: 1vh;
+  justify-content: space-between;
+}
+
+.customerFormHead * {
+  padding: 1vh;
+}
+
+.customerFormBody {
+  width: 80%;
+}
+
+.customerInputs {
+  width: 100%;
+}
+
+.customerLocation {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.customerDemo {
+  width: 100%;
+}
+
+.customerDemo * {
+  margin: 2px;
+  margin-left: 0;
+}
+
+input[name='city'],
+input[name='zip'],
+input[name='numberFemale'],
+input[name='num_65up'] {
+  margin: 0;
+}

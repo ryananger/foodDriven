@@ -4,9 +4,11 @@ import '../styles/style.css';
 import st            from 'ryscott-st';
 import {ax, helpers} from 'util';
 
-import Alert   from './Alert.jsx';
-import Admin   from './Admin.jsx';
-import Login   from './Login.jsx';
+import Home         from './Home.jsx';
+import Alert        from './Alert.jsx';
+import Admin        from './Admin.jsx';
+import Login        from './Login.jsx';
+import CustomerForm from './CustomerForm.jsx';
 
 const App = function() {
   const [user, setUser] = st.newState('user', useState(null));
@@ -15,9 +17,11 @@ const App = function() {
   const cookie = helpers.cookieParse();
 
   const views = {
-    home:  <Admin/>,
+    home:  <Home/>,
     admin: <Admin/>,
-    login: <Login />
+    login: <Login />,
+
+    customerForm: <CustomerForm />
   };
 
   var handleLogin = function() {
@@ -35,6 +39,12 @@ const App = function() {
   };
 
   useEffect(userFromCookie);
+
+  useEffect(function() {
+    if (user && !user.admin && !user.customerInfo) {
+      setView('customerForm');
+    }
+  }, [user]);
 
   return (
     <div id='app' className='app v'>
