@@ -1,0 +1,44 @@
+.admin {
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.admin * {
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.pantryList {
+  border: 1px solid var(--brown);
+  width: 20vw;
+  height: 100%;
+  justify-content: flex-start;
+  background-color: var(--lightBrown);
+  box-shadow: var(--cardShadow);
+}
+
+.pantryListHead, .pantryNav {
+  width: 100%;
+  height: 36px;
+  padding: 6px;
+  border: 1px solid var(--brown);
+  border-radius: 0;
+  border-style: none none solid none;
+
+  background: linear-gradient(to top, var(--trWhite) 90%, transparent 90%);
+}
+
+.pantryView {
+  flex: auto;
+  height: 100%;
+  margin-left: 2vh;
+  border: 1px solid var(--brown);
+  background-color: var(--lightBrown);
+  box-shadow: var(--cardShadow);
+}
+
+.pantryMain {
+  width: 100%;
+  height: 100%;
+}

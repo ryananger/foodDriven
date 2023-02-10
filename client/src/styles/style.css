@@ -1,10 +1,11 @@
 :root {
-  --bg: #e0cac2;
+  --bg: #dabeb4;
+  --lightBrown: #e0cac2;
   --brown: #86716a;
   --gold: #ffbc90;
   --salmon: #ff9d90;
   --darkSalmon: #a0483c;
-  --leaf: #d1e275;
+  --leaf: #c6d960;
   --sky: #41aadd;
   --coffee: #44231b;
   --cream: rgb(255, 239, 229);
@@ -13,7 +14,9 @@
   --darkText: #3d1a15;
 
   --trWhite: #ffffff3b;
-  --shadow: #39161063;
+  --shadow: #39161042;
+
+  --cardShadow: 0 2px 4px var(--shadow);
 }
 
 html, body, #root, .app {
@@ -26,9 +29,9 @@ html, body, #root, .app {
   margin: 0;
   height: 100%;
   width: 100%;
-  font-family: Jost;
+  font-family: Roboto;
 
-  background-color: var(--bg);
+  background: linear-gradient(to top, #d7ad90, var(--bg));
   color: var(--darkText);
 }
 
@@ -56,6 +59,35 @@ h1, h2, h3 {
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
+}
+
+input {
+  border: 1px solid var(--brown);
+  box-sizing: border-box;
+  outline: none;
+  padding: 1vh;
+  margin: 0.25vh;
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+}
+
+input[type='submit'], button {
+  background: linear-gradient(to top, var(--leaf), var(--cream));
+  border: 1px solid var(--brown);
+  min-height: 24px;
+  min-width: 100px;
+  border-radius: 8px;
+  outline: none;
+
+  padding: 0;
+  font-size: 2vh;
+}
+
+input[type='submit']:hover, button:hover {
+  cursor: pointer;
+  background: var(--brown);
+  color: var(--cream);
 }
 
 /* HEADER */
