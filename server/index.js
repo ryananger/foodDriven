@@ -27,6 +27,10 @@ app.get('/pantries/:uid', function(req, res) {
   controller.getPantries(req.params.uid, res);
 });
 
+app.post('/customers', function(req, res) {
+  controller.createCustomer(req, res);
+});
+
 const PORT = 4001;
 
 app.listen(PORT);

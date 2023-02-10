@@ -89,7 +89,6 @@ input, select {
 
 select {
   padding: 0.5vh;
-  color: gray;
 }
 
 input[type='submit'], button {

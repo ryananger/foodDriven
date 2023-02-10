@@ -21,7 +21,7 @@ var controller = {
         if (!user.admin) {
           Customer.findOne({uid: uid})
             .then(function(customer) {
-              user.customerInfo = customer || null;
+              user.customerInfo = customer ? transform(customer._doc) : null;
 
               getPantriesForUser(user, res);
             })
@@ -45,6 +45,24 @@ var controller = {
         var pantries = response.map(entry => transform(entry._doc));
 
         res.json(pantries);
+      })
+  },
+  createCustomer: function(req, res) {
+    Customer.find()
+      .then(function(response) {
+        var count = '' + response.length;
+        var year  = new Date().getFullYear();
+        var str   = `${year}-${count.padStart(6, '0')}`;
+
+        req.body.regId = str;
+
+        Customer.create(req.body)
+          .then(function(response) {
+            var customer = transform(response._doc);
+
+            res.status(201);
+            res.json(customer);
+          })
       })
   }
 };
@@ -75,6 +93,7 @@ var parseUser = function(doc) {
   var user = {
     uid:       doc.uid,
     username:  doc.username,
+    email:     doc.email,
 
     firstName: doc.firstName || null,
     lastName:  doc.lastName  || null,

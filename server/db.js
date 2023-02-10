@@ -45,8 +45,7 @@ const customerSchema = new mongoose.Schema({
   firstName: String,
   lastName:  String,
 
-  phone1:    String,
-  phone2:    String,
+  phone:     String,
   email:     String,
 
   address:   String,
@@ -57,13 +56,13 @@ const customerSchema = new mongoose.Schema({
   ethnicity: String,
   age:       Number,
 
-  familySize:   Number,
-  numberMale:   Number,
-  numberFemale: Number,
-  num_0to5:     Number,
-  num_6to17:    Number,
-  num_18to64:   Number,
-  num_65up:     Number
+  familySize:   {type: Number, default: 0},
+  numberMale:   {type: Number, default: 0},
+  numberFemale: {type: Number, default: 0},
+  num_0to5:     {type: Number, default: 0},
+  num_6to17:    {type: Number, default: 0},
+  num_18to64:   {type: Number, default: 0},
+  num_65up:     {type: Number, default: 0}
 });
 
 const User     = new mongoose.model('User', userSchema);

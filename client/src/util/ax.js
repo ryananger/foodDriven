@@ -57,6 +57,17 @@ var ax = {
 
         st.setUser({...st.user, pantries: pantries});
       })
+  },
+  createCustomer: function(customer) {
+    axios.post(urlBase + 'customers/', customer)
+      .then(function(response) {
+        st.setUser({...st.user, customerInfo: response.data});
+
+        st.setView('home');
+
+        helpers.alert('Information saved!');
+        console.log('Created customer in database.', response.data);
+      })
   }
 };
 
