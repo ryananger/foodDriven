@@ -11,7 +11,25 @@ const Pantry = function() {
 
     var form = e.target;
 
-    console.log(form);
+    var pantry = {
+      ownerId: st.user.uid,
+      name:    form.name.value,
+
+      phone:   form.phone.value,
+      email:   form.email.value,
+
+      address: form.address.value,
+      city:    form.city.value,
+      state:   form.state.value,
+      zip:     form.zip.value,
+
+      info:      {},
+      admins:    [st.user.uid],
+      customers: [],
+      inventory: []
+    };
+
+    ax.createPantry(pantry);
   };
 
   var renderForm = function() {
@@ -25,15 +43,15 @@ const Pantry = function() {
         </div>
         <div className='pantryFormBody v'>
           <div className='pantryInputs v'>
-            <input name='name'  type='text'     placeholder='Pantry name.'/>
-            <input name='email' type='text'     placeholder='Email address.'/>
-            <input name='phone' type='text'     placeholder='Phone number.'/>
+            <input name='name'  type='text' placeholder='Pantry name.'/>
+            <input name='email' type='text' placeholder='Email address.'/>
+            <input name='phone' type='text' placeholder='Phone number.'/>
             <br/>
-            <input name='address' type='text'     placeholder='Pantry address.'/>
+            <input name='address' type='text' placeholder='Pantry address.'/>
             <div className='locationInfo h'>
-              <input name='city' type='text'     placeholder='City.'/>
-              <input name='state' type='text'     placeholder='State.'/>
-              <input name='zip' type='text'     placeholder='Zip.'/>
+              <input name='city'  type='text' placeholder='City.'/>
+              <input name='state' type='text' placeholder='State.'/>
+              <input name='zip'   type='text' placeholder='Zip.'/>
             </div>
             <br/>
             <input type='submit' value='save'/>

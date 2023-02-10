@@ -14,7 +14,7 @@
 }
 
 .pantryList {
-  border: 1px solid var(--brown);
+  border: 1px solid var(--dirt);
   width: 20vw;
   height: 100%;
   justify-content: flex-start;
@@ -33,7 +33,7 @@
   width: 100%;
   height: 36px;
   padding: 6px;
-  border: 1px solid var(--brown);
+  border: 1px solid var(--dirt);
   border-radius: 0;
   border-style: none none solid none;
 
@@ -44,7 +44,7 @@
   flex: auto;
   height: 100%;
   margin-left: 2vh;
-  border: 1px solid var(--brown);
+  border: 1px solid var(--dirt);
   background-color: var(--lightBrown);
   box-shadow: var(--cardShadow);
 }

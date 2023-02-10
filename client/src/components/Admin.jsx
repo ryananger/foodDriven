@@ -24,7 +24,7 @@ const Admin = function() {
       </div>
       <div className='pantryView v'>
         <div className='pantryNav h'>
-          <h3>{create ? 'Create a new pantry!' : 'pantryName'}</h3>
+          <h3>{create ? 'Create a new pantry!' : (user ? `Hello, ${user.username}!` : 'Welcome!')}</h3>
         </div>
         <Pantry />
       </div>

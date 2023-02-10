@@ -19,6 +19,14 @@ app.get('/users/:uid', function(req, res) {
   controller.getUser(req.params.uid, res);
 });
 
+app.post('/pantries', function(req, res) {
+  controller.createPantry(req, res);
+});
+
+app.get('/pantries/:uid', function(req, res) {
+  controller.getPantries(req.params.uid, res);
+});
+
 const PORT = 4001;
 
 app.listen(PORT);

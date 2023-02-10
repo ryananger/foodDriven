@@ -5,10 +5,6 @@ var helpers = {
   rand: function(num) {
     return Math.floor(Math.random() * num);
   },
-  alert: function(text) {
-    st.setAlerts(st.alerts + 1);
-    st.setAlert(text);
-  },
   cookieParse: function() {
     var split = document.cookie.replaceAll(' ', '').split(';');
     var cookie = {};
@@ -24,6 +20,10 @@ var helpers = {
     }
 
     return cookie;
+  },
+  alert: function(text) {
+    st.setAlerts(st.alerts + 1);
+    st.setAlert(text);
   },
   logOut: function() {
     document.cookie = 'user=;';

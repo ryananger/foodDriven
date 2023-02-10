@@ -1,10 +1,10 @@
 :root {
   --bg: #dabeb4;
   --lightBrown: #e0cac2;
-  --brown: #86716a;
+  --dirt: #86716a;
   --gold: #ffbc90;
   --salmon: #ff9d90;
-  --darkSalmon: #a0483c;
+  --rosewood: #a0483c;
   --leaf: #c6d960;
   --sky: #41aadd;
   --coffee: #44231b;
@@ -68,7 +68,7 @@ h1, h2, h3 {
 }
 
 input {
-  border: 1px solid var(--brown);
+  border: 1px solid var(--dirt);
   box-sizing: border-box;
   outline: none;
   padding: 1vh;
@@ -80,7 +80,7 @@ input {
 
 input[type='submit'], button {
   background-color: var(--leaf);
-  border: 1px solid var(--brown);
+  border: 1px solid var(--dirt);
   min-height: 30px;
   min-width: 100px;
   border-radius: 8px;
@@ -93,7 +93,7 @@ input[type='submit'], button {
 
 input[type='submit']:hover, button:hover {
   cursor: pointer;
-  background-color: var(--brown);
+  background-color: var(--dirt);
   color: var(--cream);
 
   transition: background-color 0.2s, color 0.5s;
@@ -128,7 +128,7 @@ input[type='submit']:active, button:active {
   width: max-content;
   padding: 1vh;
   border-radius: 25px;
-  border: 2px solid var(--brown);
+  border: 2px solid var(--dirt);
   box-shadow: 0 2px 3px var(--shadow);
   background-color: var(--cream);
 }

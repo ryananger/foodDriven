@@ -21,6 +21,7 @@ const userSchema = new mongoose.Schema({
 });
 
 const pantrySchema = new mongoose.Schema({
+  ownerId:    String,
   name:       String,
 
   phone:      String,

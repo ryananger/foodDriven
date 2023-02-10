@@ -11,7 +11,7 @@
   background: linear-gradient(to top, rgb(251 220 200) 10%, var(--trWhite) 90%);
   box-shadow: var(--cardShadow);
   border-radius: 25px;
-  border: 1px solid var(--brown);
+  border: 1px solid var(--dirt);
   justify-content: space-between;
 }
 

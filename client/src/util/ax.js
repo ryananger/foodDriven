@@ -31,6 +31,29 @@ var ax = {
         helpers.alert('Welcome to foodDRIVEN!');
         console.log('Retrieved user from database.', response.data);
       })
+  },
+  createPantry: function(pantry) {
+    axios.post(urlBase + 'pantries/', pantry)
+      .then(function(response) {
+        var pantries = st.user.pantries ? [...st.user.pantries] : [];
+
+        pantries.push(response.data);
+
+        st.setUser({...st.user, pantries: pantries});
+
+        helpers.alert('Created pantry!');
+        console.log('Created pantry in database.', response.data);
+      })
+  },
+  getPantries: function(uid) {
+    axios.get(urlBase + 'pantries/' + uid)
+      .then(function(response) {
+        var pantries = response.data;
+
+        console.log(response.data);
+
+        st.setUser({...st.user, pantries: pantries});
+      })
   }
 };
 
