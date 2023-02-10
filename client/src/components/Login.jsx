@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-import '../styles/style.css';
+import '../styles/login.css';
 import st            from 'ryscott-st';
 import {ax, auth, helpers} from 'util';
 
@@ -30,7 +30,7 @@ const Login = function() {
       <form id='loginForm' className='loginForm v' onSubmit={handleSubmit} autoComplete='off'>
         <div className='formHead v'>
           <h2>
-            Welcome to artBoard!
+            Welcome to foodDriven!
           </h2>
         </div>
 
@@ -40,9 +40,6 @@ const Login = function() {
 
             <input className='loginInput' name='email' autoComplete='off' type='text'     placeholder='Email address!'/>
             <input className='loginInput' name='pass'  autoComplete='off' type='password' placeholder='Password!'/>
-          </div>
-
-          <div className='loginButtons h'>
             <input className='loginButton' type='submit' value={!signUp ? 'sign in' : 'sign up'}/>
           </div>
 

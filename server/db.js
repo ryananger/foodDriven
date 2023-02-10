@@ -8,17 +8,31 @@ mongoose.connect(url, options, function(a) {
 });
 
 const userSchema = new mongoose.Schema({
-  uid:          String, // from firebase auth
-  username:     String,
-  firstName:    String,
-  lastName:     String,
-  email:        String,
-  phone:        String,
-  admin:        Boolean
+  uid:       String, // from firebase auth
+  username:  String,
+  firstName: String,
+  lastName:  String,
+
+  createdOn: {type: Date, default: Date.now},
+
+  email:     String,
+  phone:     String,
+  admin:     {type: Boolean, default: false}
 });
 
 const pantrySchema = new mongoose.Schema({
   name:       String,
+
+  phone:      String,
+  email:      String,
+
+  address:    String,
+  city:       String,
+  state:      String,
+  zip:        String,
+
+  info:       Object,
+
   admins:    [String],
   customers: [String],
   inventory: [Object]
@@ -26,7 +40,7 @@ const pantrySchema = new mongoose.Schema({
 
 const customerSchema = new mongoose.Schema({
   uid:       String,
-  reg_id:    String,
+  regId:     String,
   firstName: String,
   lastName:  String,
 

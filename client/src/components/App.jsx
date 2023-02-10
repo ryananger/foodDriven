@@ -13,14 +13,20 @@ const App = function() {
   const [user, setUser] = st.newState('user', useState(null));
   const [view, setView] = st.newState('view', useState('home'));
 
+  const views = {
+    home: 'Home',
+    login: <Login />
+  };
+
   return (
     <div id='app' className='app v'>
       <Alert />
-      <h1>
-        App
-      </h1>
-      <div className='v'>
-        <Login />
+      <div className='header h'>
+        <h2>foodDriven</h2>
+        <button onClick={()=>{setView('login')}}>login</button>
+      </div>
+      <div className='main v'>
+        {views[view]}
       </div>
     </div>
   )
