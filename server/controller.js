@@ -7,6 +7,8 @@ var controller = {
       .then(function(response) {
         var user = parseUser(response);
 
+        user.pantries = [];
+
         res.status(201);
         res.json(user);
       })
@@ -16,17 +18,7 @@ var controller = {
       .then(function(response) {
         var user = parseUser(response);
 
-        if (user.admin) {
-          Pantry.find({ownerId: uid})
-            .then(function(response) {
-              var pantries = response.map(entry => transform(entry._doc));
-
-              user.pantries = pantries;
-              res.json(user);
-            })
-        } else {
-          res.json(user);
-        }
+        getPantriesForUser(user, res);
       })
   },
   createPantry: function(req, res) {
@@ -39,11 +31,31 @@ var controller = {
       })
   },
   getPantries: function(uid, res) {
-    Pantry.find({ownerId: uid})
+    Pantry.find({})
       .then(function(response) {
         var pantries = response.map(entry => transform(entry._doc));
 
         res.json(pantries);
+      })
+  }
+};
+
+var getPantriesForUser = function(user, res) {
+  if (user.admin) {
+    Pantry.find({ownerId: user.uid})
+      .then(function(response) {
+        var pantries = response.map(entry => transform(entry._doc));
+
+        user.pantries = pantries;
+        res.json(user);
+      })
+  } else {
+    Pantry.find({customers: user.uid})
+      .then(function(response) {
+        var pantries = response.map(entry => transform(entry._doc));
+
+        user.pantries = pantries;
+        res.json(user);
       })
   }
 };
