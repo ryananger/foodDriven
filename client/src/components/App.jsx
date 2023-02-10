@@ -8,11 +8,11 @@ import Alert   from './Alert.jsx';
 import Admin   from './Admin.jsx';
 import Login   from './Login.jsx';
 
-var cookie = helpers.cookieParse();
-
 const App = function() {
   const [user, setUser] = st.newState('user', useState(null));
   const [view, setView] = st.newState('view', useState('home'));
+
+  const cookie = helpers.cookieParse();
 
   const views = {
     home:  <Admin/>,

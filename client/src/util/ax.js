@@ -1,5 +1,6 @@
 import axios from 'axios';
 import st    from 'ryscott-st';
+import {helpers} from 'util';
 
 var urlBase = process.env.URL;
 
@@ -12,6 +13,7 @@ var ax = {
         st.setUser(response.data);
         st.setView('home');
 
+        helpers.alert('Welcome to foodDRIVEN!');
         console.log('Created user in database.', response.data);
       })
   },
@@ -26,6 +28,7 @@ var ax = {
           st.setView('home');
         }
 
+        helpers.alert('Welcome to foodDRIVEN!');
         console.log('Retrieved user from database.', response.data);
       })
   }

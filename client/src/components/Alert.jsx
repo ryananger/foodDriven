@@ -22,7 +22,7 @@ const Alert = () => {
       setVis('hidden');
 
       to2 = setTimeout(()=>{setAlert(false)}, 1000);
-    }, 1500);
+    }, 2500);
   }, [alerts]);
 
   return (

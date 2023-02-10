@@ -28,8 +28,9 @@ var helpers = {
   logOut: function() {
     document.cookie = 'user=;';
     auth.logOut();
+    helpers.alert('Logout successful!');
     st.setUser(null);
-    st.setView('home')
+    st.setView('home');
   }
 };
 
