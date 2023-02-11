@@ -10,6 +10,7 @@ import PantryCreate from './PantryCreate.jsx';
 
 const Admin = function() {
   const [create, setCreate] = st.newState('create', useState(false));
+  const [pantry, setPantry] = useState(null);
 
   const user = st.user;
 
@@ -17,8 +18,13 @@ const Admin = function() {
     var pantries = [];
 
     user.pantries.map(function(pantry, i) {
-      var mod = i % 2 === 0 ? '' : 'light'
-      pantries.push(<div key={i} className={`pantryEntry ${mod}`}><b>{pantry.name}</b></div>)
+      var mod = i % 2 === 0 ? '' : 'light';
+
+      pantries.push(
+        <div key={i} index={i} className={`pantryEntry ${mod}`} onClick={()=>{setPantry(pantry)}}>
+          <b>{pantry.name}</b>
+        </div>
+      )
     });
 
     return pantries;
@@ -37,9 +43,9 @@ const Admin = function() {
       </div>
       <div className='pantryView v'>
         <div className='topBar h'>
-          <h3>{create ? 'Create a new pantry!' : (user ? `Hello, ${user.username}!` : 'Welcome!')}</h3>
+          <h3>{create ? 'Create a new pantry!' : `Hello, ${user.username}!`}</h3>
         </div>
-        {create ? <PantryCreate /> : <Pantry />}
+        {create ? <PantryCreate /> : <Pantry pantry={pantry}/>}
       </div>
     </div>
   )

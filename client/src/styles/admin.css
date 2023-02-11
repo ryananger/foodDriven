@@ -14,6 +14,7 @@
 }
 
 .pantryList {
+  flex: none;
   border: 1px solid var(--dirt);
   width: 20vw;
   height: 100%;
@@ -30,13 +31,14 @@
   border-radius: 0;
 }
 
+.pantryEntry * {
+  pointer-events: none;
+  user-select: none;
+}
+
 .pantryEntry:hover {
   cursor: pointer;
   background-color: var(--sky);
-}
-
-.light {
-  background-color: var(--trWhite);
 }
 
 .pantryListBody {

@@ -48,6 +48,12 @@ var ax = {
         console.log('Created pantry in database.', response.data);
       })
   },
+  getCustomersForPantry: function(pantry, setData) {
+    axios.get(urlBase + 'pantries/' + pantry.email)
+      .then(function(response) {
+        setData(response.data);
+      })
+  },
   getPantries: function() {
     axios.get(urlBase + 'pantries/')
       .then(function(response) {

@@ -24,3 +24,20 @@
 .customerLabel {
   width: 10%;
 }
+
+.customerData {
+  width: 100%;
+  height: 100%;
+}
+
+.customerEntry {
+  width: 100%;
+  height: 36px;
+  padding: 6px;
+  padding-top: 12px;
+  border-radius: 0;
+}
+
+.customerInfo {
+  width: 10%;
+}

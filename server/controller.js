@@ -49,12 +49,39 @@ var controller = {
         res.json(pantries);
       })
   },
-  addCustomerToPantry: function(uid, email, res) {
+  getPantry: function(email, res) {
+    Pantry.findOne({email: email})
+      .then(function(pantry) {
+        controller.getCustomersForPantry(pantry, res);
+      })
+  },
+  getCustomersForPantry: function(pantry, res) {
+    var ids = pantry.customers;
+    var promises  = [];
+    var customers = [];
 
+    ids.map(function(id) {
+      var promise = new Promise(function(resolve) {
+        Customer.findOne({uid: id})
+          .then(function(result) {
+            customers.push(transform(result._doc));
+
+            resolve();
+          })
+      });
+
+      promises.push(promise);
+    })
+
+    Promise.all(promises)
+      .then(function() {
+        res.json(customers);
+      })
+  },
+  addCustomerToPantry: function(uid, email, res) {
     Pantry.findOne({email: email})
       .then(function(pantry) {
 
-        console.log(pantry, uid, email);
         if (pantry.customers.indexOf(uid) === -1) {
           Pantry.updateOne(pantry, {'$push': {customers: uid}})
             .then(function(response) {
