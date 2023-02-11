@@ -53,6 +53,9 @@ const App = function() {
     if (user.admin) {
       setIsAdmin('admin');
     }
+
+    console.log(user);
+
   }, [user]);
 
   return (

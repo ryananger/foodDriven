@@ -9,14 +9,29 @@ const Home = function() {
   const user     = st.user;
   const pantries = st.pantries;
 
-  var pantryClick = function(e) {
+  var register = function(e) {
     if (!user) {return};
 
     var pantry = pantries[e.target.getAttribute('index')];
 
-    console.log(pantry);
-
     ax.addCustomerToPantry(user.uid, pantry.email);
+  };
+
+  var registerButton = function(email, i) {
+    var registered = false;
+
+    st.user.pantries.map(function(pantry) {
+      if (pantry.email === email) {
+        registered = true;
+      }
+    })
+
+    var buttons = {
+      register:   <button index={i} className='register' onClick={register}>register</button>,
+      registered: <div className='registered v'>registered</div>
+    };
+
+    return registered ? buttons.registered : buttons.register;
   };
 
   var renderPantries = function() {
@@ -24,8 +39,13 @@ const Home = function() {
 
     pantries.map(function(pantry, i) {
       rendered.push(
-        <div key={i} index={i} className='pantryCard h' onClick={pantryClick}>
-          {pantry.name}
+        <div key={i} className='pantryCard h'>
+          <div className='pantryCardLeft v'>
+            <b>{pantry.name}</b>
+          </div>
+          <div className='pantryCardRight v'>
+            {registerButton(pantry.email, i)}
+          </div>
         </div>
       )
     })

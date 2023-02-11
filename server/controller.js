@@ -50,12 +50,19 @@ var controller = {
       })
   },
   addCustomerToPantry: function(uid, email, res) {
-    console.log(uid, email);
 
     Pantry.findOne({email: email})
       .then(function(pantry) {
-        res.json(pantry);
 
+        console.log(pantry, uid, email);
+        if (pantry.customers.indexOf(uid) === -1) {
+          Pantry.updateOne(pantry, {'$push': {customers: uid}})
+            .then(function(response) {
+              console.log(response);
+
+              res.json(response);
+            })
+        }
       })
   },
   createCustomer: function(req, res) {
@@ -79,24 +86,19 @@ var controller = {
 };
 
 var getPantriesForUser = function(user, res) {
+  var handleResponse = function(response) {
+    var pantries = response.map(entry => transform(entry._doc));
+
+    user.pantries = pantries;
+    res.json(user);
+  };
+
   if (user.admin) {
     Pantry.find({ownerId: user.uid})
-      .then(function(response) {
-        var pantries = response.map(entry => transform(entry._doc));
-
-        console.log(user);
-        user.pantries = pantries;
-        res.json(user);
-      })
+      .then(handleResponse);
   } else {
     Pantry.find({customers: user.uid})
-      .then(function(response) {
-        var pantries = response.map(entry => transform(entry._doc));
-
-        console.log(user);
-        user.pantries = pantries;
-        res.json(user);
-      })
+      .then(handleResponse)
   }
 };
 

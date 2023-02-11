@@ -14,19 +14,18 @@ window.addEventListener('mousemove', function(e) {
 
   var element = document.elementFromPoint(mouse.x, mouse.y);
 
-  if (element) {
-    mouse.over = element;
-  } else {
-    mouse.over = null;
-  }
+  mouse.over = element ? element : null;
 }, {passive: true});
 
 window.addEventListener('keypress', function(e) {
-  if (e.target.type === 'text') {return;}
+  if (e.target.type === 'text') {return};
 
   switch (e.key) {
     case 'f':
       helpers.alert('Someone pressed F.');
+      break;
+    case 'm':
+      console.log(mouse);
       break;
   }
 });

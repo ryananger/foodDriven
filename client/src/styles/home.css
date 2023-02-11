@@ -36,3 +36,32 @@
   background-color: var(--trWhite);
   box-shadow: var(--cardShadow);
 }
+
+.register, .registered {
+  width: 120px;
+}
+
+.registered {
+  background-color: var(--dirt);
+  border: 1px solid var(--dirt);
+  min-height: 30px;
+  border-radius: 8px;
+  outline: none;
+  padding: 0;
+  padding-top: 2px;
+  font-size: 2vh;
+  color: var(--cream);
+  user-select: none;
+}
+
+.pantryCardLeft, .pantryCardRight {
+  height: 100%;
+}
+
+.pantryCardLeft {
+  justify-content: flex-start;
+}
+
+.pantryCardRight {
+  justify-content: flex-end;
+}
