@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {BsPlusCircleFill as Plus} from 'react-icons/bs';
+import {IoMdMail as Mail} from 'react-icons/io';
+import {AiFillPhone as Phone} from 'react-icons/ai';
 
 import '../styles/home.css';
 import st            from 'ryscott-st';
@@ -38,13 +39,22 @@ const PantryCard = function({pantry, index}) {
   return (
     <div className='pantryCard h'>
       <div className='pantryCardLeft v'>
-        <b>{pantry.name}</b>
+        <div><h3>{pantry.name}</h3></div>
+        <div><div>{pantry.email}</div></div>
+        <div><div>{renderPhone(pantry.phone)}</div></div>
+        <br/>
+        <div>{pantry.address}</div>
+        <div>{pantry.city}, {helpers.abbrState(pantry.state, 'abbr')} {pantry.zip}</div>
       </div>
       <div className='pantryCardRight v'>
-        {user && registerButton()}
+        {user && user.customerInfo && registerButton()}
       </div>
     </div>
   )
+};
+
+var renderPhone = function(num) {
+  return num.slice(0, 3) + '-' + num.slice(3, 6) + '-' + num.slice(6);
 };
 
 export default PantryCard;

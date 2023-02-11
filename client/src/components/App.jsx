@@ -59,6 +59,7 @@ const App = function() {
   return (
     <div id='app' className='app v'>
       <Alert />
+      <img className='bgImg' src='http://localhost:4001/public/bg.png'/>
       <div className='header h'>
         <div className='headerText h'>
           <div className='headButton v'>

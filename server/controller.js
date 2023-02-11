@@ -21,11 +21,18 @@ var controller = {
         if (!user.admin) {
           Customer.findOne({uid: uid})
             .then(function(customer) {
-              user.firstName = customer.firstName;
-              user.lastName = customer.lastName;
-              user.customerInfo = customer ? transform(customer._doc) : null;
+              if (customer) {
+                user.firstName = customer.firstName;
+                user.lastName  = customer.lastName;
 
-              getPantriesForUser(user, res);
+                user.customerInfo = transform(customer._doc);
+
+                getPantriesForUser(user, res);
+              } else {
+                user.customerInfo = null;
+                user.pantries = [];
+                res.json(user);
+              }
             })
         } else {
           getPantriesForUser(user, res);

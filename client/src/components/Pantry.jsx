@@ -24,9 +24,9 @@ const Pantry = function({pantry}) {
           <div className='customerInfo'>{entry.regId}</div>
           <div className='customerInfo'>{`${entry.firstName} ${entry.lastName}`}</div>
           <div className='customerInfo'>{entry.phone}</div>
-          <div className='customerInfo'>{entry.email}</div>
-          <div className='customerInfo'>{entry.zip}</div>
-          <div className='customerInfo'>{entry.age}</div>
+          <div className='customerInfo lCol'><small>{entry.email}</small></div>
+          <div className='customerInfo sCol'>{entry.zip}</div>
+          <div className='customerInfo sCol'>{entry.age}</div>
           <div className='customerInfo'>{entry.ethnicity}</div>
           <div className='customerInfo'>{entry.familySize}</div>
         </div>
@@ -45,9 +45,9 @@ const Pantry = function({pantry}) {
           <div className='customerLabel'>#</div>
           <div className='customerLabel'>name</div>
           <div className='customerLabel'>phone</div>
-          <div className='customerLabel'>email</div>
-          <div className='customerLabel'>zip</div>
-          <div className='customerLabel'>age</div>
+          <div className='customerLabel lCol'>email</div>
+          <div className='customerLabel sCol'>zip</div>
+          <div className='customerLabel sCol'>age</div>
           <div className='customerLabel'>ethnicity</div>
           <div className='customerLabel'>family size</div>
         </div>

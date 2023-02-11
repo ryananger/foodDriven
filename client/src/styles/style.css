@@ -13,7 +13,8 @@
   --lightText: rgb(255, 232, 217);
   --darkText: #3d1a15;
 
-  --trWhite: #ffffff3b;
+  --trWhite: #ffffff56;
+  --trLeaf: #c7d96075;
   --shadow: #39161042;
 
   --cardShadow: 0 2px 4px var(--shadow);
@@ -34,6 +35,19 @@ html, body, #root, .app {
 
   background: linear-gradient(to top, #d7a490, var(--bg));
   color: var(--darkText);
+}
+
+.app * {
+  z-index: 1;
+}
+
+.bgImg {
+  position: absolute;
+  bottom: 0;
+  z-index: 0 !important;
+  opacity: 80%;
+  width: 100%;
+  aspect-ratio: 16/9 auto;
 }
 
 .main {
@@ -80,6 +94,7 @@ h1, h2, h3 {
 }
 
 .card {
+  flex: auto;
   border: 1px solid var(--dirt);
   border-radius: 8px;
   background: var(--cardGrad);
@@ -139,6 +154,22 @@ input[type='submit']:active, button:active {
   transition: none;
 }
 
+::-webkit-scrollbar {
+  background: none;
+  border-style: none;
+  width: 0.7vw;
+  min-width: 6px;
+
+  height: 98%;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 1px solid var(--dirt);
+  border-right-color: transparent;
+  background-color: var(--trLeaf);
+  border-radius: 20px 0 0 20px;
+}
+
 /* HEADER */
 
 .header {
@@ -147,7 +178,7 @@ input[type='submit']:active, button:active {
   height: 48px;
   padding-left: 2vh;
   padding-right: 2vh;
-  background-color: var(--trWhite);
+  background-color: rgba(255, 255, 255, 0.4);
   border: 1px solid var(--darkText);
   border-style: none none solid none;
 }

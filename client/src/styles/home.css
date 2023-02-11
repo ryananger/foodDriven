@@ -6,11 +6,25 @@
 .homeBody {
   width: 100%;
   height: 100%;
+}
+
+.homeContainer {
+  background-color: #e0cac2a6;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+.homeContainer > * {
+  width: 100%;
+}
+
+.mid {
   margin-left: 1.5vh;
   margin-right: 1.5vh;
 }
 
-.homeLeft, .homeRight {
+.left, .right {
   width: 40%;
   height: 100%;
 }
@@ -64,24 +78,19 @@
 
 .pantryCardLeft {
   justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.pantryCardLeft div {
+  margin-bottom: 4px;
 }
 
 .pantryCardRight {
   justify-content: flex-end;
+  align-items: flex-end;
 }
 
-::-webkit-scrollbar {
-  background: none;
-  border-style: none;
-  width: 0.7vw;
-  min-width: 6px;
-
-  height: 98%;
-}
-
-::-webkit-scrollbar-thumb {
-  border: 1px solid var(--dirt);
-  border-right-color: transparent;
-  background-color: var(--trWhite);
-  border-radius: 20px 0 0 20px;
+.pantryCardInfo {
+  position: relative;
+  align-items: flex-end;
 }

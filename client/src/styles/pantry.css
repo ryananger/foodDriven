@@ -1,8 +1,14 @@
+
+.pantryView * {
+  border-radius: 0;
+}
+
 .pantry {
   width: 100%;
   height: 100%;
   justify-content: center;
   overflow: hidden;
+  border-radius: 8px;
 
   background: var(--cardGrad);
 }
@@ -21,13 +27,22 @@
   border-style: none none solid;
 }
 
-.customerLabel {
+.customerLabel, .customerInfo {
   width: 10%;
+
+  background: linear-gradient(to right, black 90%, transparent);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  white-space: nowrap;
 }
 
 .customerData {
   width: 100%;
-  height: 100%;
+  height: 95%;
+  padding-left: 2px;
+  overflow: overlay;
 }
 
 .customerEntry {
@@ -39,5 +54,13 @@
 }
 
 .customerInfo {
-  width: 10%;
+  font-size: 15px;
+}
+
+.sCol {
+  width: 5%;
+}
+
+.lCol {
+  width: 16%;
 }

@@ -25,19 +25,27 @@ const Home = function() {
 
   return (
     <div className='home h'>
-      <div className='homeLeft card noPad v'>
-        <div className='topBar h'/>
-      </div>
-      <div className='homeBody card noPad v'>
-        <div className='topBar h'>
-          {st.pantries.length}
-        </div>
-        <div className='cardContainer v'>
-          {renderPantries()}
+      <div className='homeContainer left v'>
+        <div className='card noPad v'>
+          <div className='topBar h'/>
+
         </div>
       </div>
-      <div className='homeRight card noPad v'>
-        <div className='topBar h'/>
+
+      <div className='homeContainer mid v'>
+        <div className='homeBody card noPad v'>
+          <div className='topBar h'/>
+          <div className='cardContainer v'>
+            {renderPantries()}
+          </div>
+        </div>
+      </div>
+
+      <div className='homeContainer right v'>
+        <div className='card noPad v'>
+          <div className='topBar h'/>
+
+        </div>
       </div>
     </div>
   )
