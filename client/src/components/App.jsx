@@ -40,8 +40,8 @@ const App = function() {
     }
   };
 
-  useEffect(userFromCookie);
-  useEffect(ax.getPantries);
+  useEffect(userFromCookie, []);
+  useEffect(ax.getPantries, []);
 
   useEffect(function() {
     if (!user) {return;}
@@ -53,8 +53,6 @@ const App = function() {
     if (user.admin) {
       setIsAdmin('admin');
     }
-
-    console.log(user);
 
   }, [user]);
 

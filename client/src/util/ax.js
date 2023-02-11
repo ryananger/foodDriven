@@ -31,7 +31,6 @@ var ax = {
           user.admin ? st.setView('admin') : st.setView('home');
         }
 
-        helpers.alert('Welcome to foodDRIVEN!');
         console.log('Retrieved user from database.', user);
       })
   },
