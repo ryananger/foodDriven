@@ -11,8 +11,10 @@ import Login        from './Login.jsx';
 import CustomerForm from './CustomerForm.jsx';
 
 const App = function() {
-  const [user, setUser] = st.newState('user', useState(null));
-  const [view, setView] = st.newState('view', useState('home'));
+  const [user, setUser]         = st.newState('user', useState(null));
+  const [view, setView]         = st.newState('view', useState('home'));
+  const [pantries, setPantries] = st.newState('pantries', useState([]));
+  const [isAdmin, setIsAdmin]   = useState('');
 
   const cookie = helpers.cookieParse();
 
@@ -39,10 +41,17 @@ const App = function() {
   };
 
   useEffect(userFromCookie);
+  useEffect(ax.getPantries);
 
   useEffect(function() {
-    if (user && !user.admin && !user.customerInfo) {
+    if (!user) {return;}
+
+    if (!user.admin && !user.customerInfo) {
       setView('customerForm');
+    }
+
+    if (user.admin) {
+      setIsAdmin('admin');
     }
   }, [user]);
 
@@ -50,7 +59,10 @@ const App = function() {
     <div id='app' className='app v'>
       <Alert />
       <div className='header h'>
-        <h2>foodDRIVEN</h2>
+        <div className='headerText h'>
+          <h2 onClick={()=>{setView('home')}}>foodDRIVEN</h2>
+          <b  onClick={()=>{setView('admin')}}>{isAdmin}</b>
+        </div>
         <button onClick={handleLogin}>{user ? 'logout' : 'login'}</button>
       </div>
       <div className='main v'>

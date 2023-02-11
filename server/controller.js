@@ -21,6 +21,8 @@ var controller = {
         if (!user.admin) {
           Customer.findOne({uid: uid})
             .then(function(customer) {
+              user.firstName = customer.firstName;
+              user.lastName = customer.lastName;
               user.customerInfo = customer ? transform(customer._doc) : null;
 
               getPantriesForUser(user, res);
@@ -39,7 +41,7 @@ var controller = {
         res.json(pantry);
       })
   },
-  getPantries: function(uid, res) {
+  getPantries: function(res) {
     Pantry.find({})
       .then(function(response) {
         var pantries = response.map(entry => transform(entry._doc));

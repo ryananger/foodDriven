@@ -43,26 +43,24 @@ var ax = {
         pantries.push(response.data);
 
         st.setUser({...st.user, pantries: pantries});
+        st.setCreate(false);
 
         helpers.alert('Created pantry!');
         console.log('Created pantry in database.', response.data);
       })
   },
-  getPantries: function(uid) {
-    axios.get(urlBase + 'pantries/' + uid)
+  getPantries: function() {
+    axios.get(urlBase + 'pantries/')
       .then(function(response) {
         var pantries = response.data;
 
-        console.log(response.data);
-
-        st.setUser({...st.user, pantries: pantries});
+        st.setPantries(pantries);
       })
   },
   createCustomer: function(customer) {
     axios.post(urlBase + 'customers/', customer)
       .then(function(response) {
-        st.setUser({...st.user, customerInfo: response.data});
-
+        ax.getUser(st.user.uid);
         st.setView('home');
 
         helpers.alert('Information saved!');

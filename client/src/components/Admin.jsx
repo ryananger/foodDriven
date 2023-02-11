@@ -27,7 +27,7 @@ const Admin = function() {
   return (
     <div className='admin h'>
       <div className='pantryList v'>
-        <div className='pantryListHead h'>
+        <div className='topBar h'>
           <h3>PANTRIES</h3>
           {user && <Plus className='icon' size={24} onClick={()=>{setCreate(true)}}/>}
         </div>
@@ -36,7 +36,7 @@ const Admin = function() {
         </div>
       </div>
       <div className='pantryView v'>
-        <div className='pantryNav h'>
+        <div className='topBar h'>
           <h3>{create ? 'Create a new pantry!' : (user ? `Hello, ${user.username}!` : 'Welcome!')}</h3>
         </div>
         {create ? <PantryCreate /> : <Pantry />}

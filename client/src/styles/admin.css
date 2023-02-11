@@ -46,17 +46,6 @@
   background: var(--cardGrad);
 }
 
-.pantryListHead, .pantryNav {
-  width: 100%;
-  height: 36px;
-  padding: 6px;
-  border: 1px solid var(--dirt);
-  border-radius: 0;
-  border-style: none none solid none;
-
-  background: linear-gradient(to top, var(--trWhite) 90%, transparent 90%);
-}
-
 .pantryView {
   flex: auto;
   height: 100%;

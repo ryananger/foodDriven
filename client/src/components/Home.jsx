@@ -9,8 +9,18 @@ const Home = function() {
   const user = st.user;
 
   return (
-    <div className='home v'>
-        Hi!
+    <div className='home h'>
+      <div className='homeLeft card noPad v'>
+        <div className='topBar h'/>
+      </div>
+      <div className='homeBody card noPad v'>
+        <div className='topBar h'>
+          {st.pantries.length}
+        </div>
+      </div>
+      <div className='homeRight card noPad v'>
+        <div className='topBar h'/>
+      </div>
     </div>
   )
 };
