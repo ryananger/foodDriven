@@ -148,12 +148,20 @@ input[type='submit']:active, button:active {
 }
 
 .headerText {
-  align-items: baseline;
-  margin-top: 10px;
+  height: 100%;
+  align-items: self-end;
 }
 
-.headerText * {
-  margin-right: 4px;
+.headButton {
+  padding: 4px;
+  box-sizing: border-box;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.headButton:hover {
+  cursor: pointer;
+  background: linear-gradient(to top, var(--leaf), transparent);
 }
 
 /* --- */

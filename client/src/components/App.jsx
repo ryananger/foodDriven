@@ -14,7 +14,7 @@ const App = function() {
   const [user, setUser]         = st.newState('user', useState(null));
   const [view, setView]         = st.newState('view', useState('home'));
   const [pantries, setPantries] = st.newState('pantries', useState([]));
-  const [isAdmin, setIsAdmin]   = useState('');
+  const [isAdmin, setIsAdmin]   = st.newState('isAdmin', useState(''));
 
   const cookie = helpers.cookieParse();
 
@@ -60,8 +60,12 @@ const App = function() {
       <Alert />
       <div className='header h'>
         <div className='headerText h'>
-          <h2 onClick={()=>{setView('home')}}>foodDRIVEN</h2>
-          <b  onClick={()=>{setView('admin')}}>{isAdmin}</b>
+          <div className='headButton v'>
+            <h2 onClick={()=>{setView('home')}}>foodDRIVEN</h2>
+          </div>
+          <div className='headButton v'>
+            <b  onClick={()=>{setView('admin')}}>{isAdmin}</b>
+          </div>
         </div>
         <button onClick={handleLogin}>{user ? 'logout' : 'login'}</button>
       </div>

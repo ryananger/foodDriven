@@ -30,6 +30,7 @@ var helpers = {
     auth.logOut();
     helpers.alert('Logout successful!');
     st.setUser(null);
+    st.setIsAdmin('');
     st.setView('home');
   }
 };
