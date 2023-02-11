@@ -23,6 +23,10 @@ app.post('/pantries', function(req, res) {
   controller.createPantry(req, res);
 });
 
+app.post('/pantries/customer/:uid', function(req, res) {
+  controller.addCustomerToPantry(req.params.uid, req.body.email, res);
+})
+
 app.get('/pantries', function(req, res) {
   controller.getPantries(res);
 });

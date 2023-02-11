@@ -49,6 +49,15 @@ var controller = {
         res.json(pantries);
       })
   },
+  addCustomerToPantry: function(uid, email, res) {
+    console.log(uid, email);
+
+    Pantry.findOne({email: email})
+      .then(function(pantry) {
+        res.json(pantry);
+
+      })
+  },
   createCustomer: function(req, res) {
     Customer.find()
       .then(function(response) {
