@@ -6,6 +6,7 @@
   --salmon: #ff9d90;
   --rosewood: #a0483c;
   --leaf: #c6d960;
+  --carrot: #ffb365;
   --sky: #41aadd;
   --coffee: #44231b;
   --cream: rgb(255, 239, 229);
@@ -15,7 +16,8 @@
 
   --trWhite: #ffffff56;
   --trLeaf: #c7d96075;
-  --shadow: #39161042;
+  --trCarrot: #ffb36575;
+  --shadow: #461b5659;
 
   --cardShadow: 0 2px 4px var(--shadow);
   --cardGrad: linear-gradient(to top, var(--lightBrown) 1%, rgb(251 220 200) 1%, var(--trWhite) 60%, transparent 95%);
@@ -33,7 +35,8 @@ html, body, #root, .app {
   width: 100%;
   font-family: Roboto;
 
-  background: linear-gradient(to top, #d7a490, var(--bg));
+  /* background: linear-gradient(to top, #d7a490, var(--bg)); */
+  background-color: var(--bg);
   color: var(--darkText);
 }
 
@@ -128,7 +131,7 @@ select {
 }
 
 input[type='submit'], button {
-  background-color: var(--leaf);
+  background-color: var(--carrot);
   border: 1px solid var(--dirt);
   min-height: 30px;
   min-width: 100px;
@@ -166,7 +169,7 @@ input[type='submit']:active, button:active {
 ::-webkit-scrollbar-thumb {
   border: 1px solid var(--dirt);
   border-right-color: transparent;
-  background-color: var(--trLeaf);
+  background-color: var(--trCarrot);
   border-radius: 20px 0 0 20px;
 }
 
@@ -197,7 +200,7 @@ input[type='submit']:active, button:active {
 
 .headButton:hover {
   cursor: pointer;
-  background: linear-gradient(to top, var(--leaf), transparent);
+  background: linear-gradient(to top, var(--carrot), transparent);
 }
 
 /* --- */

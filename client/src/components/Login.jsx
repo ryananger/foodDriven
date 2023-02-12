@@ -27,8 +27,8 @@ const Login = function() {
   };
 
   var typeButton = function(type) {
-    var mod = createType === type ? 'selected' : '';
-    var dir = type === 'admin' ? 'left' : 'right';
+    var mod  = createType === type ? 'selected' : '';
+    var dir  = type === 'admin' ? 'left' : 'right';
     var text = type === 'admin' ? 'Provider' : 'Customer';
 
     var handleClick = function(e) {
@@ -50,7 +50,7 @@ const Login = function() {
       </div>
       <input name='username' autoComplete='off' type='text' placeholder='Username?'/>
       </>
-    )
+    );
   };
 
   var renderForm = function() {

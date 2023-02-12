@@ -43,6 +43,7 @@ var ax = {
 
         st.setUser({...st.user, pantries: pantries});
         st.setCreate(false);
+        ax.getPantries();
 
         helpers.alert('Created pantry!');
         console.log('Created pantry in database.', response.data);

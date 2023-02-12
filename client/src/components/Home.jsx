@@ -25,12 +25,12 @@ const Home = function() {
 
   return (
     <div className='home h'>
-      <div className='homeContainer left v'>
+      {/* <div className='homeContainer left v'>
         <div className='card noPad v'>
           <div className='topBar h'/>
 
         </div>
-      </div>
+      </div> */}
 
       <div className='homeContainer mid v'>
         <div className='homeBody card noPad v'>
@@ -41,12 +41,12 @@ const Home = function() {
         </div>
       </div>
 
-      <div className='homeContainer right v'>
+      {/* <div className='homeContainer right v'>
         <div className='card noPad v'>
           <div className='topBar h'/>
 
         </div>
-      </div>
+      </div> */}
     </div>
   )
 };

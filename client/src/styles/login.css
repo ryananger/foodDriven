@@ -8,7 +8,7 @@
   width: 420px;
   height: 540px;
   padding: 1.5vh;
-  background: linear-gradient(to top, rgb(251 220 200) 10%, var(--trWhite) 90%);
+  background: linear-gradient(to top, rgb(251 220 200) 20%, var(--trWhite) 99%, var(--carrot) 98%);
   box-shadow: var(--cardShadow);
   border-radius: 25px;
   border: 1px solid var(--dirt);
@@ -56,7 +56,7 @@
 }
 
 .signUpButtons *:active {
-  background-color: var(--leaf);
+  background-color: var(--carrot);
 }
 
 .right {
@@ -68,10 +68,10 @@
 }
 
 .selected {
-  background-color: var(--leaf);
+  background-color: var(--carrot);
 }
 
 .selected:hover {
   color: var(--darkText);
-  background-color: var(--leaf);
+  background-color: var(--carrot);
 }

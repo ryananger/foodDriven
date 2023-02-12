@@ -40,8 +40,8 @@ const PantryCard = function({pantry, index}) {
     <div className='pantryCard h'>
       <div className='pantryCardLeft v'>
         <div><h3>{pantry.name}</h3></div>
-        <div><div>{pantry.email}</div></div>
-        <div><div>{renderPhone(pantry.phone)}</div></div>
+        <div>{pantry.email}</div>
+        <div>{helpers.renderPhone(pantry.phone)}</div>
         <br/>
         <div>{pantry.address}</div>
         <div>{pantry.city}, {helpers.abbrState(pantry.state, 'abbr')} {pantry.zip}</div>
@@ -51,10 +51,6 @@ const PantryCard = function({pantry, index}) {
       </div>
     </div>
   )
-};
-
-var renderPhone = function(num) {
-  return num.slice(0, 3) + '-' + num.slice(3, 6) + '-' + num.slice(6);
 };
 
 export default PantryCard;

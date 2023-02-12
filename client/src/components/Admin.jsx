@@ -14,7 +14,7 @@ const Admin = function() {
 
   const user = st.user;
 
-  var renderPantries = function() {
+  var renderPantryList = function() {
     var pantries = [];
 
     user.pantries.map(function(pantry, i) {
@@ -35,10 +35,10 @@ const Admin = function() {
       <div className='pantryList v'>
         <div className='topBar h'>
           <h3>PANTRIES</h3>
-          {user && <Plus className='icon' size={24} onClick={()=>{setCreate(true)}}/>}
+          <Plus className='icon' size={24} onClick={()=>{setCreate(true)}}/>
         </div>
         <div className='pantryListBody v'>
-          {user && renderPantries()}
+          {renderPantryList()}
         </div>
       </div>
       <div className='pantryView v'>

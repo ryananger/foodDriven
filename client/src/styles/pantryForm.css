@@ -31,6 +31,10 @@
   width: 100%;
 }
 
+.pantryInputs * {
+  border-radius: 8px;
+}
+
 .locationInfo {
   width: 100%;
   margin: 0;

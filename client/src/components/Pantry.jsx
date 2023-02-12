@@ -23,7 +23,7 @@ const Pantry = function({pantry}) {
         <div key={i} className={`customerEntry ${mod} h`}>
           <div className='customerInfo'>{entry.regId}</div>
           <div className='customerInfo'>{`${entry.firstName} ${entry.lastName}`}</div>
-          <div className='customerInfo'>{entry.phone}</div>
+          <div className='customerInfo'>{helpers.renderPhone(entry.phone)}</div>
           <div className='customerInfo lCol'><small>{entry.email}</small></div>
           <div className='customerInfo sCol'>{entry.zip}</div>
           <div className='customerInfo sCol'>{entry.age}</div>
@@ -56,7 +56,7 @@ const Pantry = function({pantry}) {
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default Pantry;

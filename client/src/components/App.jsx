@@ -42,7 +42,6 @@ const App = function() {
 
   useEffect(userFromCookie, []);
   useEffect(ax.getPantries, []);
-
   useEffect(function() {
     if (!user) {return;}
 
@@ -59,14 +58,14 @@ const App = function() {
   return (
     <div id='app' className='app v'>
       <Alert />
-      <img className='bgImg' src='http://localhost:4001/public/bg.png'/>
+      <img className='bgImg' src={process.env.URL + 'public/bg.png'}/>
       <div className='header h'>
         <div className='headerText h'>
           <div className='headButton v'>
             <h2 onClick={()=>{setView('home')}}>foodDRIVEN</h2>
           </div>
           <div className='headButton v'>
-            <b  onClick={()=>{setView('admin')}}>{isAdmin}</b>
+            <b onClick={()=>{setView('admin')}}>{isAdmin}</b>
           </div>
         </div>
         <button onClick={handleLogin}>{user ? 'logout' : 'login'}</button>

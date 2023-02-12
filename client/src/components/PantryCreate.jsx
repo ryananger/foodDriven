@@ -65,7 +65,7 @@ const PantryCreate = function() {
 
   return (
     <div className='pantry v'>
-      {st.create && renderForm()}
+      {renderForm()}
     </div>
   )
 };
