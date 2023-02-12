@@ -1,12 +1,15 @@
 import React, {useEffect, useState} from 'react';
+import {BsPlusCircleFill as Plus} from 'react-icons/bs';
 
 import '../styles/pantry.css';
 import st            from 'ryscott-st';
 import {ax, helpers} from 'util';
 
 import CustomerEntry from './CustomerEntry.jsx';
+import CustomerAdd from './CustomerAdd.jsx';
 
 const Pantry = function() {
+  const [adding, setAdding] = useState(false);
   const [data, setData] = st.newState('data', useState([]));
   const pantry = st.pantry;
 
@@ -14,8 +17,23 @@ const Pantry = function() {
     pantry && ax.getCustomersForPantry();
   };
 
+  var addCustomer = function() {
+    var list = document.getElementById('customerData');
+
+    list.scrollTop = 0;
+    setAdding(true);
+  };
+
   var renderData = function() {
-    var rendered = data.map((entry, i)=>{return <CustomerEntry key={i} i={i} customer={entry}/>});
+    var rendered = [];
+
+    if (adding) {
+      rendered.push(<CustomerAdd key='add' setAdding={setAdding}/>);
+    }
+
+    data.map(function(entry, i) {
+      rendered.push(<CustomerEntry key={i} i={i} customer={entry}/>);
+    });
 
     return rendered;
   };
@@ -24,6 +42,9 @@ const Pantry = function() {
 
   return (
     <div className='pantry v'>
+      <div className='pantryHead h'>
+        <Plus className='icon' size={24} onClick={addCustomer}/>
+      </div>
       <div className='customerList v'>
         <div className='customerLabels h'>
           <div className='customerLabel'>#</div>
@@ -41,7 +62,7 @@ const Pantry = function() {
           <div className='customerLabel sCol'>18-64</div>
           <div className='customerLabel sCol'>65+</div>
         </div>
-        <div className='customerData v'>
+        <div id='customerData' className='customerData v'>
           {renderData()}
         </div>
       </div>

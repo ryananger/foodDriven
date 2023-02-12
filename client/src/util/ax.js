@@ -88,6 +88,7 @@ var ax = {
   editCustomer: function(regId, update, setView) {
     axios.put(urlBase + 'customers/' + regId, update)
       .then(function(response) {
+        helpers.alert('Customer information updated!');
         ax.getCustomersForPantry(setView);
       })
   }

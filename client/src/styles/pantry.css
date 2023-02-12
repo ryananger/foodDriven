@@ -13,9 +13,17 @@
   background: var(--cardGrad);
 }
 
+.pantryHead {
+  width: 100%;
+  justify-content: flex-end;
+  padding: 6px;
+  border: 1px solid var(--dirt);
+  border-style: none none solid;
+}
+
 .customerList {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 32px);
 }
 
 .customerLabels {
@@ -26,6 +34,7 @@
   border: 1px solid var(--dirt);
   border-radius: 0;
   border-style: none none solid;
+  background-color: var(--trLeaf);
 }
 
 .customerLabel, .customerInfo {
@@ -93,7 +102,8 @@
   height: 26px;
   padding: 6px;
   padding-bottom: 4px;
-  background-color: #d4463f;
+  padding-right: 18px;
+  background-color: #d4463fbd;
   font-size: 18px;
   color: white;
 }

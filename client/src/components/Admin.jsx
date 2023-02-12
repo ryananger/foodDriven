@@ -21,7 +21,7 @@ const Admin = function() {
       var mod = i % 2 === 0 ? '' : 'light';
 
       pantries.push(
-        <div key={i} index={i} className={`pantryEntry ${mod}`} onClick={()=>{setPantry(pantry)}}>
+        <div key={i} index={i} className={`pantryListEntry ${mod}`} onClick={()=>{setPantry(pantry)}}>
           <b>{pantry.name}</b>
         </div>
       )
@@ -51,7 +51,7 @@ const Admin = function() {
         <div className='topBar h'>
           <h3>{create ? 'Create a new pantry!' : `${pantry ? pantry.name : ''}`}</h3>
         </div>
-        {create ? <PantryCreate /> : <Pantry pantry={pantry}/>}
+        {create ? <PantryCreate /> : <Pantry />}
       </div>
     </div>
   )
