@@ -12,7 +12,7 @@
 }
 
 .homeContainer {
-  background-color: #e0cac2a6;
+  background-color: var(--trBrown);
   width: 70%;
   min-width: 320px;
   height: 100%;

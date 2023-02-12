@@ -1,5 +1,5 @@
 :root {
-  --bg: #dabeb4;
+  --bg: #e8cfc8;
   --lightBrown: #e0cac2;
   --dirt: #86716a;
   --gold: #ffbc90;
@@ -17,10 +17,11 @@
   --trWhite: #ffffff56;
   --trLeaf: #c7d96075;
   --trCarrot: #ffb36575;
+  --trBrown: #e0cac2bd;
   --shadow: #461b5659;
 
   --cardShadow: 0 2px 4px var(--shadow);
-  --cardGrad: linear-gradient(to top, var(--lightBrown) 1%, rgb(251 220 200) 1%, var(--trWhite) 60%, transparent 95%);
+  --cardGrad: linear-gradient(to top, var(--lightBrown) 1%, rgb(251 220 200) 1%, var(--trWhite) 80%, transparent 95%);
 }
 
 html, body, #root, .app {
@@ -48,8 +49,7 @@ html, body, #root, .app {
   position: absolute;
   bottom: 0;
   z-index: 0 !important;
-  opacity: 80%;
-  width: 100%;
+  opacity: 90%;
   aspect-ratio: 16/9 auto;
 }
 
@@ -61,6 +61,8 @@ html, body, #root, .app {
 
 h1, h2, h3 {
   margin: 0;
+  background-color: var(--trWhite);
+  box-shadow: 0 0 20px 10px var(--trWhite);
 }
 
 .v {
@@ -184,6 +186,8 @@ input[type='submit']:active, button:active {
   background-color: rgba(255, 255, 255, 0.4);
   border: 1px solid var(--darkText);
   border-style: none none solid none;
+
+  overflow: hidden;
 }
 
 .headerText {

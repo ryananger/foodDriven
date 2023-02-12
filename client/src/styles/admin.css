@@ -19,7 +19,7 @@
   width: 20vw;
   height: 100%;
   justify-content: flex-start;
-  background-color: #e0cac2a6;
+  background-color: var(--trBrown);
   box-shadow: var(--cardShadow);
 }
 
@@ -53,6 +53,6 @@
   height: 100%;
   margin-left: 2vh;
   border: 1px solid var(--dirt);
-  background-color: #e0cac2a6;
+  background-color: var(--trBrown);
   box-shadow: var(--cardShadow);
 }
