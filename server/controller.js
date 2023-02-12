@@ -92,8 +92,6 @@ var controller = {
         if (pantry.customers.indexOf(uid) === -1) {
           Pantry.updateOne(pantry, {'$push': {customers: uid}})
             .then(function(response) {
-              console.log(response);
-
               res.json(response);
             })
         }
@@ -115,6 +113,13 @@ var controller = {
             res.status(201);
             res.json(customer);
           })
+      })
+  },
+  editCustomer: function(regId, update, res) {
+    Customer.findOneAndUpdate({regId: regId}, update)
+      .then(function(response) {
+        res.status(201);
+        res.send('Edit success.');
       })
   }
 };

@@ -39,6 +39,10 @@ app.post('/customers', function(req, res) {
   controller.createCustomer(req, res);
 });
 
+app.put('/customers/:regId', function(req, res) {
+  controller.editCustomer(req.params.regId, req.body, res);
+})
+
 const PORT = 4001;
 
 app.listen(PORT);

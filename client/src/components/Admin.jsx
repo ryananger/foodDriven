@@ -10,7 +10,7 @@ import PantryCreate from './PantryCreate.jsx';
 
 const Admin = function() {
   const [create, setCreate] = st.newState('create', useState(false));
-  const [pantry, setPantry] = useState(null);
+  const [pantry, setPantry] = st.newState('pantry', useState(null));
 
   const user = st.user;
 

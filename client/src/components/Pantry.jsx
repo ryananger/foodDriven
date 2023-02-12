@@ -6,11 +6,12 @@ import {ax, helpers} from 'util';
 
 import CustomerEntry from './CustomerEntry.jsx';
 
-const Pantry = function({pantry}) {
-  const [data, setData] = useState([]);
+const Pantry = function() {
+  const [data, setData] = st.newState('data', useState([]));
+  const pantry = st.pantry;
 
   var getCustomerData = function() {
-    pantry && ax.getCustomersForPantry(pantry, setData);
+    pantry && ax.getCustomersForPantry();
   };
 
   var renderData = function() {

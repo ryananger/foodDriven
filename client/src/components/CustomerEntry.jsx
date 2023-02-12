@@ -40,6 +40,8 @@ const CustomerEntry = function({i, customer}) {
     )
   };
 
+  useEffect(()=>{setView('div')}, [customer]);
+
   return entry[view];
 };
 

@@ -127,3 +127,12 @@
 .lCol {
   width: 16%;
 }
+
+/* Change Autocomplete styles in Chrome*/
+
+.customerEdit:-webkit-autofill,
+.customerEdit:-webkit-autofill:hover,
+.customerEdit:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #ffaba1 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}

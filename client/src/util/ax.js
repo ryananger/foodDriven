@@ -49,10 +49,16 @@ var ax = {
         console.log('Created pantry in database.', response.data);
       })
   },
-  getCustomersForPantry: function(pantry, setData) {
+  getCustomersForPantry: function(setView) {
+    const pantry = st.pantry;
+
     axios.get(urlBase + 'pantries/' + pantry.email)
       .then(function(response) {
-        setData(response.data);
+        st.setData(response.data);
+
+        if (setView) {
+          setView('div');
+        }
       })
   },
   getPantries: function() {
@@ -77,6 +83,12 @@ var ax = {
     axios.post(urlBase + 'pantries/customer/' + uid, {email: email})
       .then(function(response) {
         ax.getUser(uid);
+      })
+  },
+  editCustomer: function(regId, update, setView) {
+    axios.put(urlBase + 'customers/' + regId, update)
+      .then(function(response) {
+        ax.getCustomersForPantry(setView);
       })
   }
 };
