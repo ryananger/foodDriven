@@ -2,36 +2,19 @@ import React, {useEffect, useState} from 'react';
 
 import '../styles/pantry.css';
 import st            from 'ryscott-st';
-import {ax, auth, helpers} from 'util';
+import {ax, helpers} from 'util';
+
+import CustomerEntry from './CustomerEntry.jsx';
 
 const Pantry = function({pantry}) {
   const [data, setData] = useState([]);
 
-  var getCustomerData = function(e) {
-    if (!pantry) {return};
-
-    ax.getCustomersForPantry(pantry, setData);
+  var getCustomerData = function() {
+    pantry && ax.getCustomersForPantry(pantry, setData);
   };
 
   var renderData = function() {
-    var rendered = [];
-
-    data.map(function(entry, i) {
-      var mod = i % 2 === 0 ? '' : 'light';
-
-      rendered.push(
-        <div key={i} className={`customerEntry ${mod} h`}>
-          <div className='customerInfo'>{entry.regId}</div>
-          <div className='customerInfo'>{`${entry.firstName} ${entry.lastName}`}</div>
-          <div className='customerInfo'>{helpers.renderPhone(entry.phone)}</div>
-          <div className='customerInfo lCol'><small>{entry.email}</small></div>
-          <div className='customerInfo sCol'>{entry.zip}</div>
-          <div className='customerInfo sCol'>{entry.age}</div>
-          <div className='customerInfo'>{entry.ethnicity}</div>
-          <div className='customerInfo'>{entry.familySize}</div>
-        </div>
-      )
-    })
+    var rendered = data.map((entry, i)=>{return <CustomerEntry key={i} i={i} customer={entry}/>});
 
     return rendered;
   };
@@ -49,7 +32,13 @@ const Pantry = function({pantry}) {
           <div className='customerLabel sCol'>zip</div>
           <div className='customerLabel sCol'>age</div>
           <div className='customerLabel'>ethnicity</div>
-          <div className='customerLabel'>family size</div>
+          <div className='customerLabel sCol'>size</div>
+          <div className='customerLabel sCol'>M</div>
+          <div className='customerLabel sCol'>F</div>
+          <div className='customerLabel sCol'>0-6</div>
+          <div className='customerLabel sCol'>6-17</div>
+          <div className='customerLabel sCol'>18-64</div>
+          <div className='customerLabel sCol'>65+</div>
         </div>
         <div className='customerData v'>
           {renderData()}

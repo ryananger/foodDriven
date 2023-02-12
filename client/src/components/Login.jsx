@@ -58,7 +58,7 @@ const Login = function() {
       <form id='loginForm' className='loginForm v' onSubmit={handleSubmit} autoComplete='off'>
         <div className='formHead v'>
           <h2>
-            Welcome to foodDriven!
+            Welcome to foodDRIVEN!
           </h2>
         </div>
 

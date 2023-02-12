@@ -8,7 +8,7 @@
   width: 420px;
   height: 540px;
   padding: 1.5vh;
-  background: linear-gradient(to top, rgb(251 220 200) 20%, var(--trWhite) 99%, var(--carrot) 98%);
+  background: linear-gradient(to top, rgb(251 220 200) 20%, #ffffff9e 99%, var(--carrot) 98%);
   box-shadow: var(--cardShadow);
   border-radius: 25px;
   border: 1px solid var(--dirt);

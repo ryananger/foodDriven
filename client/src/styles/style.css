@@ -6,7 +6,7 @@
   --salmon: #ff9d90;
   --rosewood: #a0483c;
   --leaf: #c6d960;
-  --carrot: #ffb365;
+  --carrot: #ffb87e;
   --sky: #41aadd;
   --coffee: #44231b;
   --cream: rgb(255, 239, 229);
@@ -16,12 +16,13 @@
 
   --trWhite: #ffffff56;
   --trLeaf: #c7d96075;
+  --trSky: #41aadda1;
   --trCarrot: #ffb36575;
   --trBrown: #e0cac2bd;
-  --shadow: #461b5659;
+  --shadow: #2e062e6e;
 
   --cardShadow: 0 2px 4px var(--shadow);
-  --cardGrad: linear-gradient(to top, var(--lightBrown) 1%, rgb(251 220 200) 1%, var(--trWhite) 80%, transparent 95%);
+  --cardGrad: linear-gradient(to top, var(--lightBrown) 1%, rgb(251 220 200) 1%, var(--trWhite) 60%, transparent 95%);
 }
 
 html, body, #root, .app {
@@ -61,8 +62,6 @@ html, body, #root, .app {
 
 h1, h2, h3 {
   margin: 0;
-  background-color: var(--trWhite);
-  box-shadow: 0 0 20px 10px var(--trWhite);
 }
 
 .v {
@@ -95,7 +94,9 @@ h1, h2, h3 {
   border-radius: 0 !important;
   border-style: none none solid none;
 
-  background: linear-gradient(to top, var(--trWhite) 90%, transparent 90%);
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.4) 90%, transparent 90%);
+
+  overflow: hidden;
 }
 
 .card {
@@ -178,15 +179,14 @@ input[type='submit']:active, button:active {
 /* HEADER */
 
 .header {
-  flex: none;
+    flex: none;
   width: 100%;
   height: 48px;
   padding-left: 2vh;
   padding-right: 2vh;
-  background-color: rgba(255, 255, 255, 0.4);
+  background: linear-gradient(45deg, #ffffffb3, rgba(255, 255, 255, 0.4));
   border: 1px solid var(--darkText);
   border-style: none none solid none;
-
   overflow: hidden;
 }
 

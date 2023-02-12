@@ -19,6 +19,7 @@
 }
 
 .customerLabels {
+  justify-content: flex-start;
   width: 100%;
   height: 32px;
   padding: 6px;
@@ -41,20 +42,82 @@
 .customerData {
   width: 100%;
   height: 95%;
-  padding-left: 2px;
   overflow: overlay;
 }
 
 .customerEntry {
+  justify-content: flex-start;
   width: 100%;
   height: 36px;
   padding: 6px;
+  padding-left: 8px;
   padding-top: 12px;
   border-radius: 0;
 }
 
+.customerEntry:hover {
+  background-color: var(--trSky);
+  cursor: text;
+}
+
 .customerInfo {
   font-size: 15px;
+}
+
+.customerEditForm {
+  justify-content: flex-start;
+  width: 100%;
+  height: 36px;
+  padding: 6px;
+  padding-bottom: 2px;
+  padding-left: 8px;
+  border-radius: 0;
+  border: 1px solid #bb5050;
+  border-style: solid none;
+  background-color: #ff9d92b0;
+  flex: none;
+}
+
+.customerEdit {
+  width: 10%;
+  margin: 0;
+  height: 100%;
+  padding: 4px;
+  padding: 0;
+  border: 0;
+  font-size: 15px;
+  background: transparent;
+}
+
+.editHead {
+  height: 26px;
+  padding: 6px;
+  padding-bottom: 4px;
+  background-color: #d4463f;
+  font-size: 18px;
+  color: white;
+}
+
+.editButton {
+  width: 50px;
+  justify-content: flex-end;
+}
+
+.editButton:hover {
+  cursor: pointer;
+}
+
+.editSelect {
+  background-color: var(--trWhite);
+  margin: -1px;
+  margin-left: -8px;
+  padding: 0;
+  height: 100%;
+  width: 90%;
+}
+
+.customerEdit::placeholder {
+  color: black;
 }
 
 .sCol {

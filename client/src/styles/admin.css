@@ -16,7 +16,8 @@
 .pantryList {
   flex: none;
   border: 1px solid var(--dirt);
-  width: 20vw;
+  min-width: 240px;
+  width: 15vw;
   height: 100%;
   justify-content: flex-start;
   background-color: var(--trBrown);
@@ -29,6 +30,8 @@
   padding: 6px;
   padding-top: 12px;
   border-radius: 0;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .pantryEntry * {
@@ -38,7 +41,7 @@
 
 .pantryEntry:hover {
   cursor: pointer;
-  background-color: var(--sky);
+  background-color: var(--trSky);
 }
 
 .pantryListBody {

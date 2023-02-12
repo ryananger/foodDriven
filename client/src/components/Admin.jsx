@@ -30,6 +30,12 @@ const Admin = function() {
     return pantries;
   };
 
+  useEffect(()=>{
+    if (!pantry) {
+      setPantry(user.pantries[0]);
+    }
+  }, [user]);
+
   return (
     <div className='admin h'>
       <div className='pantryList v'>
@@ -43,7 +49,7 @@ const Admin = function() {
       </div>
       <div className='pantryView v'>
         <div className='topBar h'>
-          <h3>{create ? 'Create a new pantry!' : `Hello, ${user.username}!`}</h3>
+          <h3>{create ? 'Create a new pantry!' : `${pantry ? pantry.name : ''}`}</h3>
         </div>
         {create ? <PantryCreate /> : <Pantry pantry={pantry}/>}
       </div>

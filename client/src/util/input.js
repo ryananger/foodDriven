@@ -29,3 +29,5 @@ window.addEventListener('keypress', function(e) {
       break;
   }
 });
+
+export default mouse;
