@@ -99,10 +99,8 @@ var controller = {
   },
   createCustomer: function(req, res) {
     Customer.find()
-      .then(function(response) {
-        var count = '' + response.length;
-        var year  = new Date().getFullYear();
-        var str   = `${year}-${count.padStart(6, '0')}`;
+      .then(function(num) {
+        var str = getRegId(num);
 
         req.body.regId = str;
 
@@ -117,10 +115,8 @@ var controller = {
   },
   addCustomerAdmin: function(email, customer, res) {
     Customer.find()
-      .then(function(response) {
-        var count = '' + response.length;
-        var year  = new Date().getFullYear();
-        var str   = `${year}-${count.padStart(6, '0')}`;
+      .then(function(num) {
+        var str = getRegId(num);
 
         customer.uid = 'temp' + str;
         customer.regId = str;
@@ -163,6 +159,14 @@ var controller = {
         res.send('Success!');
       })
   }
+};
+
+var getRegId = function(num) {
+  var count = '' + num.length + 1;
+  var year  = new Date().getFullYear();
+  var str   = `${year}-${count.padStart(6, '0')}`;
+
+  return str;
 };
 
 var getPantriesForUser = function(user, res) {

@@ -9,17 +9,20 @@ import CustomerEntry from './CustomerEntry.jsx';
 import CustomerAdd from './CustomerAdd.jsx';
 
 const Pantry = function() {
-  const [sort, setSort] = useState('regId');
-  const [dir, setDir] = useState('asc');
-  const [adding, setAdding] = useState(false);
+  const [search, setSearch] = useState('');
+  const [sort, setSort]     = useState('regId');
+  const [dir, setDir]       = useState('asc');
+
+  const [adding, setAdding]   = useState(false);
   const [editing, setEditing] = st.newState('editing', useState(null));
-  const [data, setData] = st.newState('data', useState([]));
+  const [data, setData]       = st.newState('data', useState([]));
+
   const pantry = st.pantry;
 
-  var getCustomerData = function() {
-    let sortStr = `/${sort}-${dir}`;
+  st.sortStr = `/${sort}-${dir}`;
 
-    pantry && ax.getCustomersForPantry(null, sortStr);
+  var getCustomerData = function() {
+    pantry && ax.getCustomersForPantry();
   };
 
   var addCustomer = function() {
@@ -44,8 +47,6 @@ const Pantry = function() {
     };
 
     ax.getCustomersForPantry(null, sortStr);
-
-    console.log(sortStr);
   };
 
   var renderData = function() {
@@ -56,7 +57,23 @@ const Pantry = function() {
     }
 
     data.map(function(entry, i) {
-      rendered.push(<CustomerEntry key={i} i={i} customer={entry}/>);
+      if (search && Number(search)) {
+        if (!entry.regId.slice(5).includes(search)) {
+          return;
+        }
+      }
+
+      if (search && !Number(search)) {
+        let s = search.toLowerCase();
+        let first = entry.firstName.toLowerCase();
+        let last = entry.lastName.toLowerCase();
+
+        if (!first.includes(s) && !last.includes(s)) {
+          return;
+        }
+      }
+
+      rendered.push(<CustomerEntry key={i} i={rendered.length} customer={entry}/>);
     });
 
     return rendered;
@@ -69,7 +86,7 @@ const Pantry = function() {
       <div className='pantryHead h'>
         <form className='searchInterface h'>
           search:
-          <input id='customerSearch' placeholder='Search by id # or name.'/>
+          <input id='customerSearch' placeholder='Search by id # or name.' onChange={(e)=>{setSearch(e.target.value)}}/>
           sort:
           <select id='searchSelect' value={sort} onChange={changeSort}>
             <option value='regId'>ID number.</option>
