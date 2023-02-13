@@ -1,14 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {BsPlusCircleFill as Plus} from 'react-icons/bs';
 
-import '../../styles/pantry.css';
 import st            from 'ryscott-st';
 import {ax, helpers} from 'util';
 
 import CustomerEntry from './CustomerEntry.jsx';
 import CustomerAdd from './CustomerAdd.jsx';
 
-const PantryHead = function() {
+const PantryHead = function({setAdding}) {
   const [sort, setSort]     = useState('regId');
   const [dir, setDir]       = useState('asc');
 
@@ -16,7 +15,7 @@ const PantryHead = function() {
 
   var addCustomer = function() {
     setScrollTop();
-    st.setAdding(true);
+    setAdding(true);
   };
 
   var changeSort = function(e) {

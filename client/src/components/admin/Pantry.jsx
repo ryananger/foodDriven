@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {BsPlusCircleFill as Plus} from 'react-icons/bs';
 
-import '../../styles/pantry.css';
 import st            from 'ryscott-st';
 import {ax, helpers} from 'util';
 
@@ -14,7 +13,7 @@ const Pantry = function() {
   const [editing, setEditing] = st.newState('editing', useState(null));
   const [data, setData]       = st.newState('data', useState([]));
   const [search, setSearch]   = st.newState('search', useState(''));
-  const [adding, setAdding]   = st.newState('adding', useState(false));
+  const [adding, setAdding]   = useState(false);
   const [viewLength, setViewLength] = useState(100);
 
   const pantry = st.pantry;
@@ -70,7 +69,7 @@ const Pantry = function() {
 
   return (
     <div className='pantry v'>
-      <PantryHead />
+      <PantryHead setAdding={setAdding}/>
       <div className='customerList v'>
         <CustomerLabels />
         <div id='customerData' className='customerData v' onScroll={handleScroll}>

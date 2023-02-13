@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 
-import '../styles/login.css';
 import st            from 'ryscott-st';
 import {ax, auth, helpers} from 'util';
 

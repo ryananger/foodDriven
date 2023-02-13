@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-import '../styles/style.css';
+import 'styles';
 import st            from 'ryscott-st';
 import {ax, helpers} from 'util';
 

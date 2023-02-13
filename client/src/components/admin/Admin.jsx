@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {BsPlusCircleFill as Plus} from 'react-icons/bs';
 
-import '../../styles/admin.css';
 import st            from 'ryscott-st';
 import {ax, helpers} from 'util';
 

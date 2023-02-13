@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 
-import '../../styles/pantry.css';
 import st from 'ryscott-st';
 import {ax, mouse, helpers} from 'util';
 
