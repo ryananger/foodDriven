@@ -9,13 +9,17 @@ import CustomerEntry from './CustomerEntry.jsx';
 import CustomerAdd from './CustomerAdd.jsx';
 
 const Pantry = function() {
+  const [sort, setSort] = useState('regId');
+  const [dir, setDir] = useState('asc');
   const [adding, setAdding] = useState(false);
   const [editing, setEditing] = st.newState('editing', useState(null));
   const [data, setData] = st.newState('data', useState([]));
   const pantry = st.pantry;
 
   var getCustomerData = function() {
-    pantry && ax.getCustomersForPantry();
+    let sortStr = `/${sort}-${dir}`;
+
+    pantry && ax.getCustomersForPantry(null, sortStr);
   };
 
   var addCustomer = function() {
@@ -23,6 +27,25 @@ const Pantry = function() {
 
     list.scrollTop = 0;
     setAdding(true);
+  };
+
+  var changeSort = function(e) {
+    let sortStr = '/';
+
+    switch(e.target.id) {
+      case 'searchSelect':
+        setSort(e.target.value);
+        sortStr += e.target.value + '-' + dir;
+        break;
+      case 'searchDir':
+        setDir(e.target.value);
+        sortStr += sort + '-' + e.target.value;
+        break;
+    };
+
+    ax.getCustomersForPantry(null, sortStr);
+
+    console.log(sortStr);
   };
 
   var renderData = function() {
@@ -44,6 +67,24 @@ const Pantry = function() {
   return (
     <div className='pantry v'>
       <div className='pantryHead h'>
+        <form className='searchInterface h'>
+          search:
+          <input id='customerSearch' placeholder='Search by id # or name.'/>
+          sort:
+          <select id='searchSelect' value={sort} onChange={changeSort}>
+            <option value='regId'>ID number.</option>
+            <option value='lastName'>Last name.</option>
+            <option value='phone'>Phone.</option>
+            <option value='zip'>Zip.</option>
+            <option value='age'>Age.</option>
+            <option value='ethnicity'>Ethnicity.</option>
+            <option value='familySize'>Family size.</option>
+          </select>
+          <select id='searchDir' value={dir} onChange={changeSort}>
+            <option value='asc'>Lowest first.</option>
+            <option value='des'>Highest first.</option>
+          </select>
+        </form>
         <Plus className='icon' size={24} onClick={addCustomer}/>
       </div>
       <div className='customerList v'>

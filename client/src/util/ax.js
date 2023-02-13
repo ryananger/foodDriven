@@ -49,10 +49,11 @@ var ax = {
         console.log('Created pantry in database.', response.data);
       })
   },
-  getCustomersForPantry: function(setView) {
+  getCustomersForPantry: function(setView, sort) {
     const pantry = st.pantry;
+    var sort = sort || '';
 
-    axios.get(urlBase + 'pantries/' + pantry.email)
+    axios.get(urlBase + 'pantries/' + pantry.email + sort)
       .then(function(response) {
         st.setData(response.data);
 

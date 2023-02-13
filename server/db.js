@@ -62,7 +62,9 @@ const customerSchema = new mongoose.Schema({
   num_0to5:     {type: Number, default: 0},
   num_6to17:    {type: Number, default: 0},
   num_18to64:   {type: Number, default: 0},
-  num_65up:     {type: Number, default: 0}
+  num_65up:     {type: Number, default: 0},
+
+  pantries: [String]
 });
 
 const User     = new mongoose.model('User', userSchema);

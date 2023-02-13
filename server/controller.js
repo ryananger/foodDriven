@@ -56,32 +56,32 @@ var controller = {
         res.json(pantries);
       })
   },
-  getPantry: function(email, res) {
+  getPantry: function(email, str, res) {
+    var sort = {};
+
+    if (str) {
+      var split = str.split('-');
+
+      if (split[1] === 'asc') {
+        sort[split[0]] = 1;
+      } else if (split[1] === 'des') {
+        sort[split[0]] = -1;
+      }
+    } else {
+      sort = {regId: 1};
+    }
+
     Pantry.findOne({email: email})
       .then(function(pantry) {
-        controller.getCustomersForPantry(pantry, res);
+        controller.getCustomersForPantry(pantry, sort, res);
       })
   },
-  getCustomersForPantry: function(pantry, res) {
-    var ids = pantry.customers;
-    var promises  = [];
-    var customers = [];
+  getCustomersForPantry: function(pantry, sort, res) {
+    Customer.find({pantries: pantry.email})
+      .sort(sort)
+      .then(function(results) {
+        var customers = results.map((customer)=>{return transform(customer._doc)});
 
-    ids.map(function(id) {
-      var promise = new Promise(function(resolve) {
-        Customer.findOne({uid: id})
-          .then(function(result) {
-            customers.push(transform(result._doc));
-
-            resolve();
-          })
-      });
-
-      promises.push(promise);
-    })
-
-    Promise.all(promises)
-      .then(function() {
         res.json(customers);
       })
   },
@@ -138,6 +138,29 @@ var controller = {
       .then(function(response) {
         res.status(201);
         res.send('Edit success.');
+      })
+  },
+
+  connect: function(res) {
+    Pantry.find()
+      .then(function(pantries) {
+        pantries.map(function(pantry, i) {
+          pantry.customers.map(function(uid, j) {
+            Customer.findOne({uid: uid})
+              .then(function(customer) {
+                if (customer.pantries.indexOf(pantry.email) === -1) {
+                  Customer.updateOne({uid: uid}, {'$push': {pantries: pantry.email}})
+                    .then(function() {
+                      console.log(`Updated customer ${j} in pantry ${i}.`);
+                    })
+                } else {
+                  console.log('Already in list.');
+                }
+              })
+          })
+        })
+
+        res.send('Success!');
       })
   }
 };

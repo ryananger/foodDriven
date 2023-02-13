@@ -24,7 +24,11 @@ app.post('/pantries', function(req, res) {
 });
 
 app.get('/pantries/:email', function(req, res) {
-  controller.getPantry(req.params.email, res);
+  controller.getPantry(req.params.email, null, res);
+});
+
+app.get('/pantries/:email/:sort', function(req, res) {
+  controller.getPantry(req.params.email, req.params.sort, res);
 });
 
 app.post('/pantries/customer/:uid', function(req, res) {
@@ -46,6 +50,10 @@ app.post('/customers/:email', function(req, res) {
 app.put('/customers/:regId', function(req, res) {
   controller.editCustomer(req.params.regId, req.body, res);
 });
+
+app.get('/connect', function(req, res) {
+  controller.connect(res);
+})
 
 const PORT = 4001;
 
