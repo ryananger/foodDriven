@@ -26,7 +26,7 @@
   align-items: flex-end;
 }
 
-.searchInterface select, input {
+.searchInterface select, .searchInterface input {
   width: 200px;
   height: 24px;
   margin: 0;

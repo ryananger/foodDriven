@@ -146,7 +146,7 @@ var peopleGen = function() {
   ]; //21
 
   var gen = function(i) {
-    var uid   = 'fakeUser_' + (i + 2000).toString().padStart(6, '0');
+    var uid   = 'fakeUser_' + (i + 4000).toString().padStart(6, '0');
     var first = firstNames[helpers.rand(21)];
     var last  = lastNames[helpers.rand(13)];
     var phone = helpers.rand(9000000000) + 1000000000;
@@ -163,16 +163,18 @@ var peopleGen = function() {
       phone,
       zip,
       age,
-      familySize: size
+      familySize: size,
+      pantries: ['test@test.com']
     };
 
-    if (i > 100) {return};
+    if (i > 900) {return};
 
     axios.post(urlBase + 'customers/', user)
       .then(function(response) {
         axios.post(urlBase + 'pantries/customer/' + user.uid, {email: 'test@test.com'})
           .then(function(response) {
             gen(i + 1);
+            console.log(user);
             helpers.alert('Information saved!');
           })
       })

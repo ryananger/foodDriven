@@ -17,6 +17,8 @@ const Pantry = function() {
   const [editing, setEditing] = st.newState('editing', useState(null));
   const [data, setData]       = st.newState('data', useState([]));
 
+  const [viewLength, setViewLength] = useState(100);
+
   const pantry = st.pantry;
 
   st.sortStr = `/${sort}-${dir}`;
@@ -66,9 +68,10 @@ const Pantry = function() {
       if (search && !Number(search)) {
         let s = search.toLowerCase();
         let first = entry.firstName.toLowerCase();
-        let last = entry.lastName.toLowerCase();
+        let last  = entry.lastName.toLowerCase();
+        let full  = first + ' ' + last;
 
-        if (!first.includes(s) && !last.includes(s)) {
+        if (!full.includes(s)) {
           return;
         }
       }
@@ -76,7 +79,18 @@ const Pantry = function() {
       rendered.push(<CustomerEntry key={i} i={rendered.length} customer={entry}/>);
     });
 
-    return rendered;
+
+    return search ? rendered : rendered.slice(0, viewLength);
+  };
+
+  var handleScroll = function(e) {
+    if (data.length <= viewLength || search) {return};
+
+    var list = e.target;
+
+    if (list.scrollTop > list.scrollHeight * 0.7) {
+      setViewLength(viewLength + 100);
+    }
   };
 
   useEffect(getCustomerData, [pantry]);
@@ -121,7 +135,7 @@ const Pantry = function() {
           <div className='customerLabel sCol'>18-64</div>
           <div className='customerLabel sCol'>65+</div>
         </div>
-        <div id='customerData' className='customerData v'>
+        <div id='customerData' className='customerData v' onScroll={handleScroll}>
           {renderData()}
         </div>
       </div>
