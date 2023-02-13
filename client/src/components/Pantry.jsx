@@ -10,6 +10,7 @@ import CustomerAdd from './CustomerAdd.jsx';
 
 const Pantry = function() {
   const [adding, setAdding] = useState(false);
+  const [editing, setEditing] = st.newState('editing', useState(null));
   const [data, setData] = st.newState('data', useState([]));
   const pantry = st.pantry;
 

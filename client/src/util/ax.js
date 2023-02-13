@@ -91,6 +91,15 @@ var ax = {
         helpers.alert('Customer information updated!');
         ax.getCustomersForPantry(setView);
       })
+  },
+  addCustomerAdmin: function(customer) {
+    const email = st.pantry.email;
+
+    axios.post(urlBase + 'customers/' + email, customer)
+      .then(function(response) {
+        helpers.alert(`Customer added to ${st.pantry.name}!`);
+        ax.getCustomersForPantry();
+      });
   }
 };
 

@@ -13,7 +13,11 @@ const CustomerEntry = function({i, customer}) {
   const mod  = i % 2 === 0 ? '' : 'light';
 
   var handleClick = function() {
-    setView('edit');
+    st.setEditing(i);
+
+    setTimeout(function() {
+      setView('edit');
+    }, 0);
   };
 
   const entry = {
@@ -36,7 +40,7 @@ const CustomerEntry = function({i, customer}) {
       </div>
     ),
     edit: (
-      <CustomerEdit customer={customer} setView={setView}/>
+      <CustomerEdit i={i} customer={customer} setView={setView}/>
     )
   };
 

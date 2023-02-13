@@ -92,7 +92,7 @@ var controller = {
         if (pantry.customers.indexOf(uid) === -1) {
           Pantry.updateOne(pantry, {'$push': {customers: uid}})
             .then(function(response) {
-              res.json(response);
+              res.send();
             })
         }
       })
@@ -112,6 +112,24 @@ var controller = {
 
             res.status(201);
             res.json(customer);
+          })
+      })
+  },
+  addCustomerAdmin: function(email, customer, res) {
+    Customer.find()
+      .then(function(response) {
+        var count = '' + response.length;
+        var year  = new Date().getFullYear();
+        var str   = `${year}-${count.padStart(6, '0')}`;
+
+        customer.uid = 'temp' + str;
+        customer.regId = str;
+
+        Customer.create(customer)
+          .then(function(response) {
+            var customer = transform(response._doc);
+
+            controller.addCustomerToPantry(customer.uid, email, res);
           })
       })
   },

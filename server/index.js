@@ -25,11 +25,11 @@ app.post('/pantries', function(req, res) {
 
 app.get('/pantries/:email', function(req, res) {
   controller.getPantry(req.params.email, res);
-})
+});
 
 app.post('/pantries/customer/:uid', function(req, res) {
   controller.addCustomerToPantry(req.params.uid, req.body.email, res);
-})
+});
 
 app.get('/pantries', function(req, res) {
   controller.getPantries(res);
@@ -39,9 +39,13 @@ app.post('/customers', function(req, res) {
   controller.createCustomer(req, res);
 });
 
+app.post('/customers/:email', function(req, res) {
+  controller.addCustomerAdmin(req.params.email, req.body, res);
+});
+
 app.put('/customers/:regId', function(req, res) {
   controller.editCustomer(req.params.regId, req.body, res);
-})
+});
 
 const PORT = 4001;
 

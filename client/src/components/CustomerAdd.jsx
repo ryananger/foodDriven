@@ -11,7 +11,6 @@ const CustomerAdd = function({setAdding}) {
     e.preventDefault();
 
     var form = document.getElementById('addForm');
-    var regId  = form.regId.value;
     var inputs = form.elements;
     var customer = {};
 
@@ -49,9 +48,8 @@ const CustomerAdd = function({setAdding}) {
       }
     }
 
-    console.log(customer);
     setAdding(false);
-    //ax.editCustomer(regId, customer, setView);
+    ax.addCustomerAdmin(customer);
   };
 
   return (
@@ -59,7 +57,7 @@ const CustomerAdd = function({setAdding}) {
       <form id='addForm' className={`customerEditForm h`}>
         <input name='regId' className='customerEdit' value='' readOnly/>
         <input name='_name'  className='customerEdit' placeholder='Jack Johnson'/>
-        <input name='phone' className='customerEdit' placeholder='555-345-1234'/>
+        <input name='phone' className='customerEdit' placeholder='5553451234'/>
         <input name='email' className='customerEdit lCol' placeholder='jjeats@gmail.com'/>
         <input name='zip'   className='customerEdit sCol' placeholder='90210'/>
         <input name='age'   className='customerEdit sCol' placeholder='24'/>
