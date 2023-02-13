@@ -24,13 +24,12 @@ const Pantry = function() {
   st.sortStr = `/${sort}-${dir}`;
 
   var getCustomerData = function() {
+    setViewLength(100);
     pantry && ax.getCustomersForPantry();
   };
 
   var addCustomer = function() {
-    var list = document.getElementById('customerData');
-
-    list.scrollTop = 0;
+    setScrollTop();
     setAdding(true);
   };
 
@@ -48,6 +47,7 @@ const Pantry = function() {
         break;
     };
 
+    setScrollTop();
     ax.getCustomersForPantry(null, sortStr);
   };
 
@@ -93,6 +93,12 @@ const Pantry = function() {
     }
   };
 
+  var setScrollTop = function() {
+    var list = document.getElementById('customerData');
+
+    list.scrollTop = 0;
+  };
+
   useEffect(getCustomerData, [pantry]);
 
   return (
@@ -112,8 +118,8 @@ const Pantry = function() {
             <option value='familySize'>Family size.</option>
           </select>
           <select id='searchDir' value={dir} onChange={changeSort}>
-            <option value='asc'>Lowest first.</option>
-            <option value='des'>Highest first.</option>
+            <option value='asc'>Ascending.</option>
+            <option value='des'>Descending.</option>
           </select>
         </form>
         <Plus className='icon' size={24} onClick={addCustomer}/>
