@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {IoMdMail as Mail} from 'react-icons/io';
 import {AiFillPhone as Phone} from 'react-icons/ai';
 
-import '../styles/home.css';
+import '../../styles/home.css';
 import st            from 'ryscott-st';
 import {ax, helpers} from 'util';
 

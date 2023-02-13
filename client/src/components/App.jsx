@@ -4,11 +4,11 @@ import '../styles/style.css';
 import st            from 'ryscott-st';
 import {ax, helpers} from 'util';
 
-import Home         from './Home.jsx';
+import Home         from './home/Home.jsx';
 import Alert        from './Alert.jsx';
-import Admin        from './Admin.jsx';
+import Admin        from './admin/Admin.jsx';
 import Login        from './Login.jsx';
-import CustomerForm from './CustomerForm.jsx';
+import CustomerForm from './customer/CustomerForm.jsx';
 
 const App = function() {
   const [user, setUser]         = st.newState('user', useState(null));

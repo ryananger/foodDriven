@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-import '../styles/pantry.css';
+import '../../styles/pantry.css';
 import st from 'ryscott-st';
 import {ax, mouse, helpers} from 'util';
 
@@ -53,7 +53,6 @@ const CustomerEdit = function({i, customer, setView}) {
 
     ax.editCustomer(regId, update, setView);
   };
-
 
   useEffect(function() {
     if (i !== st.editing) {

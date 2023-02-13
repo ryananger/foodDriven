@@ -92,9 +92,16 @@ var controller = {
         if (pantry.customers.indexOf(uid) === -1) {
           Pantry.updateOne(pantry, {'$push': {customers: uid}})
             .then(function(response) {
-              res.send();
+              console.log(response);
+            })
+
+          Customer.updateOne({uid: uid}, {'$push': {pantries: email}})
+            .then(function(response) {
+              console.log(response);
             })
         }
+
+        res.send();
       })
   },
   createCustomer: function(req, res) {
@@ -103,6 +110,7 @@ var controller = {
         var str = getRegId(customers.length);
 
         req.body.regId = str;
+        req.body.pantries = [];
 
         Customer.create(req.body)
           .then(function(response) {

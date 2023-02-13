@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-import '../styles/pantryForm.css';
+import '../../styles/pantryForm.css';
 import st            from 'ryscott-st';
 import {ax, auth, helpers} from 'util';
 
