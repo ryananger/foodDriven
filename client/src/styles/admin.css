@@ -60,3 +60,55 @@
   background-color: var(--trBrown);
   box-shadow: var(--cardShadow);
 }
+
+.configButton {
+  cursor: pointer;
+}
+
+.pantryConfig {
+  width: 100%;
+  height: 100%;
+  padding: 2vh;
+  box-sizing: border-box;
+  border: none;
+  background: var(--cardGrad);
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.pantryConfig, .pantryConfig * {
+  border-radius: 8px !important;
+}
+
+.pantryConfig b {
+  margin-right: 8px;
+  min-width: 100px;
+  text-align: right;
+}
+
+.configForm {
+  height: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.configLabel {
+  justify-content: flex-start;
+}
+
+.configInput, .configTextArea {
+  height: 30px;
+  width: 240px;
+  margin-right: 6px;
+  background-color: var(--trWhite);
+}
+
+.configHours {
+  width: 160px;
+}
+
+.configTextArea {
+  height: 90px;
+  min-width: 240px;
+  max-width: 240px;
+}

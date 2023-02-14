@@ -62,7 +62,9 @@ const PantryHead = function({setAdding}) {
           <option value='des'>Descending.</option>
         </select>
       </form>
-      <Plus className='icon' size={24} onClick={addCustomer}/>
+      <div>
+        <Plus className='icon' size={24} onClick={addCustomer}/>
+      </div>
     </div>
   );
 };

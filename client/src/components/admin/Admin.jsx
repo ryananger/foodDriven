@@ -1,17 +1,26 @@
 import React, {useEffect, useState} from 'react';
 import {BsPlusCircleFill as Plus} from 'react-icons/bs';
+import {MdSettings as Config} from 'react-icons/md';
 
 import st            from 'ryscott-st';
 import {ax, helpers} from 'util';
 
 import Pantry from './Pantry.jsx';
 import PantryCreate from './PantryCreate.jsx';
+import PantryConfig from './PantryConfig.jsx';
 
 const Admin = function() {
   const [create, setCreate] = st.newState('create', useState(false));
   const [pantry, setPantry] = st.newState('pantry', useState(null));
+  const [config, setConfig] = useState(false);
 
   const user = st.user;
+
+  var handlePantryClick = function(pantry) {
+    setConfig(false);
+    setCreate(false);
+    setPantry(pantry);
+  };
 
   var renderPantryList = function() {
     var pantries = [];
@@ -20,7 +29,7 @@ const Admin = function() {
       var mod = i % 2 === 0 ? '' : 'light';
 
       pantries.push(
-        <div key={i} index={i} className={`pantryListEntry ${mod}`} onClick={()=>{setPantry(pantry)}}>
+        <div key={i} index={i} className={`pantryListEntry ${mod}`} onClick={()=>{handlePantryClick(pantry)}}>
           <b>{pantry.name}</b>
         </div>
       )
@@ -49,8 +58,10 @@ const Admin = function() {
       <div className='pantryView v'>
         <div className='topBar h'>
           <h3>{create ? 'Create a new pantry!' : `${pantry ? pantry.name : ''}`}</h3>
+
+          <div className='configButton' onClick={()=>{setConfig(!config)}}>{config ? 'list' : 'config'}</div>
         </div>
-        {create ? <PantryCreate /> : <Pantry />}
+        {create ? <PantryCreate /> : (config ? <PantryConfig /> : <Pantry />)}
       </div>
     </div>
   )
