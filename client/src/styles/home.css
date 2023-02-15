@@ -42,6 +42,12 @@
   overflow-x: hidden;
 }
 
+.pantryThumb {
+  height: 100%;
+  border-radius: 8px;
+  aspect-ratio: 1/1 auto;
+}
+
 .pantryCard {
   flex: none;
   width: 95%;

@@ -67,14 +67,20 @@ const customerSchema = new mongoose.Schema({
   pantries: [String]
 });
 
+const dbInfoSchema = new mongoose.Schema({
+  nextId: Number
+});
+
 const User     = new mongoose.model('User', userSchema);
 const Pantry   = new mongoose.model('Pantry', pantrySchema);
 const Customer = new mongoose.model('Customer', customerSchema);
+const DbInfo   = new mongoose.model('DbInfo', dbInfoSchema);
 
 var models = {
   User:     User,
   Pantry:   Pantry,
-  Customer: Customer
+  Customer: Customer,
+  DbInfo:   DbInfo
 };
 
 module.exports = models;

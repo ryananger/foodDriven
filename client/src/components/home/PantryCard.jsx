@@ -37,13 +37,16 @@ const PantryCard = function({pantry, index}) {
 
   return (
     <div className='pantryCard h'>
-      <div className='pantryCardLeft v'>
-        <div><h3>{pantry.name}</h3></div>
-        <div>{pantry.email}</div>
-        <div>{helpers.renderPhone(pantry.phone)}</div>
-        <br/>
-        <div>{pantry.address}</div>
-        <div>{pantry.city}, {helpers.abbrState(pantry.state, 'abbr')} {pantry.zip}</div>
+      <div className='pantryCardLeft h'>
+        <img className='pantryImage pantryThumb' src={process.env.URL + 'public/thumb.jpg'}/>
+        <div className='v' style={{alignItems: 'flex-start'}}>
+          <div><h3>{pantry.name}</h3></div>
+          <div>{pantry.email}</div>
+          <div>{helpers.renderPhone(pantry.phone)}</div>
+          <br/>
+          <div>{pantry.address}</div>
+          <div>{pantry.city}, {helpers.abbrState(pantry.state, 'abbr')} {pantry.zip}</div>
+        </div>
       </div>
       <div className='pantryCardRight v'>
         {user && user.customerInfo && registerButton()}

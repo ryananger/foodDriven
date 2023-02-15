@@ -16,8 +16,7 @@
 .pantryList {
   flex: none;
   border: 1px solid var(--dirt);
-  min-width: 240px;
-  width: 15vw;
+  width: 240px;
   height: 100%;
   justify-content: flex-start;
   background-color: var(--trBrown);

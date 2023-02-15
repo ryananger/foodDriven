@@ -1,5 +1,5 @@
 const axios    = require('axios');
-const { User, Pantry, Customer } = require('./db.js');
+const { User, Pantry, Customer, DbInfo } = require('./db.js');
 
 var controller = {
   createUser: function(req, res) {
@@ -90,24 +90,17 @@ var controller = {
       .then(function(pantry) {
 
         if (pantry.customers.indexOf(uid) === -1) {
-          Pantry.updateOne(pantry, {'$push': {customers: uid}})
-            .then(function(response) {
-              console.log(response);
-            })
-
-          Customer.updateOne({uid: uid}, {'$push': {pantries: email}})
-            .then(function(response) {
-              console.log(response);
-            })
+          Pantry.updateOne(pantry, {'$push': {customers: uid}});
+          Customer.updateOne({uid: uid}, {'$push': {pantries: email}});
         }
 
         res.send();
       })
   },
   createCustomer: function(req, res) {
-    Customer.find()
-      .then(function(customers) {
-        var str = getRegId(customers.length);
+    DbInfo.findOneAndUpdate()
+      .then(function(info) {
+        var str = getRegId(info.nextId);
 
         req.body.regId = str;
         req.body.pantries = [];
@@ -119,12 +112,14 @@ var controller = {
             res.status(201);
             res.json(customer);
           })
+
+        DbInfo.findOneAndUpdate(info, {nextId: info.nextId + 1});
       })
   },
   addCustomerAdmin: function(email, customer, res) {
-    Customer.find()
-      .then(function(customers) {
-        var str = getRegId(customers.length);
+    DbInfo.findOneAndUpdate()
+      .then(function(info) {
+        var str = getRegId(info.nextId);
 
         customer.uid = 'temp' + str;
         customer.regId = str;
@@ -136,6 +131,8 @@ var controller = {
 
             controller.addCustomerToPantry(customer.uid, email, res);
           })
+
+        DbInfo.findOneAndUpdate(info, {nextId: info.nextId + 1});
       })
   },
   editCustomer: function(regId, update, res) {
