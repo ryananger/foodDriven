@@ -90,8 +90,15 @@ var controller = {
       .then(function(pantry) {
 
         if (pantry.customers.indexOf(uid) === -1) {
-          Pantry.updateOne(pantry, {'$push': {customers: uid}});
-          Customer.updateOne({uid: uid}, {'$push': {pantries: email}});
+          Pantry.updateOne(pantry, {'$push': {customers: uid}})
+            .then(function(response) {
+
+            })
+
+          Customer.updateOne({uid: uid}, {'$push': {pantries: email}})
+            .then(function(response) {
+
+            })
         }
 
         res.send();

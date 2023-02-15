@@ -83,6 +83,7 @@ var ax = {
   addCustomerToPantry: function(uid, email) {
     axios.post(urlBase + 'pantries/customer/' + uid, {email: email})
       .then(function(response) {
+        console.log(response);
         ax.getUser(uid);
       })
   },

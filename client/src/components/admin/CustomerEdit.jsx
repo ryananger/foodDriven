@@ -16,6 +16,16 @@ const CustomerEdit = function({i, customer, setView}) {
     var inputs = form.elements;
     var update = {};
 
+    var strToObj = function(str) {
+      if (!str) {
+        return {m: 0, f: 0};
+      }
+
+      var split = str.replaceAll(' ', '').split(',');
+
+      return {m: Number(split[0]) || 0, f: Number(split[1]) || 0};
+    };
+
     for (var i = 1; i < inputs.length; i++) {
       var input = inputs[i];
 
@@ -30,11 +40,16 @@ const CustomerEdit = function({i, customer, setView}) {
           case 'familySize':
           case 'numberMale':
           case 'numberFemale':
+          case 'veterans':
+            value = Number(value);
+
+            update[input.name] = value;
+            break;
           case 'num_0to5':
           case 'num_6to17':
           case 'num_18to64':
           case 'num_65up':
-            value = Number(value);
+            value = strToObj(value);
 
             update[input.name] = value;
             break;
@@ -82,10 +97,11 @@ const CustomerEdit = function({i, customer, setView}) {
         <input name='familySize'   className='customerEdit sCol' defaultValue={customer.familySize}/>
         <input name='numberMale'   className='customerEdit sCol' defaultValue={customer.numberMale}/>
         <input name='numberFemale' className='customerEdit sCol' defaultValue={customer.numberFemale}/>
-        <input name='num_0to5'     className='customerEdit sCol' defaultValue={customer.num_0to5}/>
-        <input name='num_6to17'    className='customerEdit sCol' defaultValue={customer.num_6to17}/>
-        <input name='num_18to64'   className='customerEdit sCol' defaultValue={customer.num_18to64}/>
-        <input name='num_65up'     className='customerEdit sCol' defaultValue={customer.num_65up}/>
+        <input name='num_0to5'     className='customerEdit sCol' defaultValue={customer.num_0to5.m + ', ' + customer.num_0to5.f}/>
+        <input name='num_6to17'    className='customerEdit sCol' defaultValue={customer.num_6to17.m + ', ' + customer.num_6to17.f}/>
+        <input name='num_18to64'   className='customerEdit sCol' defaultValue={customer.num_18to64.m + ', ' + customer.num_18to64.f}/>
+        <input name='num_65up'     className='customerEdit sCol' defaultValue={customer.num_65up.m + ', ' + customer.num_65up.f}/>
+        <input name='veterans'     className='customerEdit sCol' defaultValue={customer.veterans}/>
       </form>
 
       <div className='editHead h'>

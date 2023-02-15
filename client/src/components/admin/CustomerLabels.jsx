@@ -17,6 +17,7 @@ const CustomerLabels = function() {
       <div className='customerLabel sCol'>6-17</div>
       <div className='customerLabel sCol'>18-64</div>
       <div className='customerLabel sCol'>65+</div>
+      <div className='customerLabel sCol'>vets</div>
     </div>
   );
 };

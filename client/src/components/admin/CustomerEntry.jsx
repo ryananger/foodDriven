@@ -32,10 +32,11 @@ const CustomerEntry = function({i, customer}) {
         <div className='customerInfo sCol'>{customer.familySize}</div>
         <div className='customerInfo sCol'>{customer.numberMale}</div>
         <div className='customerInfo sCol'>{customer.numberFemale}</div>
-        <div className='customerInfo sCol'>{customer.num_0to5}</div>
-        <div className='customerInfo sCol'>{customer.num_6to17}</div>
-        <div className='customerInfo sCol'>{customer.num_18to64}</div>
-        <div className='customerInfo sCol'>{customer.num_65up}</div>
+        <div className='customerInfo sCol'>{customer.num_0to5.m + customer.num_0to5.f}</div>
+        <div className='customerInfo sCol'>{customer.num_6to17.m + customer.num_6to17.f}</div>
+        <div className='customerInfo sCol'>{customer.num_18to64.m + customer.num_18to64.f}</div>
+        <div className='customerInfo sCol'>{customer.num_65up.m + customer.num_65up.f}</div>
+        <div className='customerInfo sCol'>{customer.veterans}</div>
       </div>
     ),
     edit: (
