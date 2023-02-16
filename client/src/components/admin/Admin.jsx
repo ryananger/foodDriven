@@ -12,14 +12,16 @@ import PantryConfig from './PantryConfig.jsx';
 const Admin = function() {
   const [create, setCreate] = st.newState('create', useState(false));
   const [pantry, setPantry] = st.newState('pantry', useState(null));
+  const [index, setIndex]   = useState(0);
   const [config, setConfig] = useState(false);
 
   const user = st.user;
 
-  var handlePantryClick = function(pantry) {
+  var handlePantryClick = function(pantry, index) {
     setConfig(false);
     setCreate(false);
-    setPantry(pantry);
+    setPantry(user.pantries[index]);
+    setIndex(index);
   };
 
   var renderPantryList = function() {
@@ -27,9 +29,10 @@ const Admin = function() {
 
     user.pantries.map(function(pantry, i) {
       var mod = i % 2 === 0 ? '' : 'light';
+      var index = i;
 
       pantries.push(
-        <div key={i} index={i} className={`pantryListEntry ${mod}`} onClick={()=>{handlePantryClick(pantry)}}>
+        <div key={i} index={i} className={`pantryListEntry ${mod}`} onClick={()=>{handlePantryClick(pantry, index)}}>
           <b>{pantry.name}</b>
         </div>
       )
@@ -39,9 +42,7 @@ const Admin = function() {
   };
 
   useEffect(()=>{
-    if (!pantry) {
-      setPantry(user.pantries[0]);
-    }
+    setPantry(user.pantries[index]);
   }, [user]);
 
   return (
@@ -61,7 +62,7 @@ const Admin = function() {
 
           <div className='configButton' onClick={()=>{setConfig(!config)}}>{config ? 'list' : 'config'}</div>
         </div>
-        {create ? <PantryCreate /> : (config ? <PantryConfig /> : <Pantry />)}
+        {create ? <PantryCreate /> : (config ? <PantryConfig setConfig={setConfig}/> : <Pantry />)}
       </div>
     </div>
   )

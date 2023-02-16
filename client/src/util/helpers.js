@@ -106,6 +106,15 @@ var helpers = {
   },
   renderPhone: function(num) {
     return num && num.slice(0, 3) + '-' + num.slice(3, 6) + '-' + num.slice(6);
+  },
+  strToObj: function(str) {
+    if (!str) {
+      return {m: 0, f: 0};
+    }
+
+    var split = str.replaceAll(' ', '').split(',');
+
+    return {m: Number(split[0]) || 0, f: Number(split[1]) || 0};
   }
 };
 

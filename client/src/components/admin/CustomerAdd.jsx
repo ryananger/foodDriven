@@ -27,11 +27,17 @@ const CustomerAdd = function({setAdding}) {
           case 'familySize':
           case 'numberMale':
           case 'numberFemale':
+          case 'veterans':
+            value = Number(value);
+
+            customer[input.name] = value;
+            break;
+
           case 'num_0to5':
           case 'num_6to17':
           case 'num_18to64':
           case 'num_65up':
-            value = Number(value);
+            value = helpers.strToObj(value);
 
             customer[input.name] = value;
             break;
@@ -74,10 +80,11 @@ const CustomerAdd = function({setAdding}) {
         <input name='familySize'   className='customerEdit sCol' placeholder={0}/>
         <input name='numberMale'   className='customerEdit sCol' placeholder={0}/>
         <input name='numberFemale' className='customerEdit sCol' placeholder={0}/>
-        <input name='num_0to5'     className='customerEdit sCol' placeholder={0}/>
-        <input name='num_6to17'    className='customerEdit sCol' placeholder={0}/>
-        <input name='num_18to64'   className='customerEdit sCol' placeholder={0}/>
-        <input name='num_65up'     className='customerEdit sCol' placeholder={0}/>
+        <input name='num_0to5'     className='customerEdit sCol' placeholder={'0, 0'}/>
+        <input name='num_6to17'    className='customerEdit sCol' placeholder={'0, 0'}/>
+        <input name='num_18to64'   className='customerEdit sCol' placeholder={'0, 0'}/>
+        <input name='num_65up'     className='customerEdit sCol' placeholder={'0, 0'}/>
+        <input name='veterans'     className='customerEdit sCol' placeholder={0}/>
       </form>
 
       <div className='editHead h'>

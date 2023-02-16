@@ -77,7 +77,7 @@ var controller = {
       })
   },
   getCustomersForPantry: function(pantry, sort, res) {
-    Customer.find({pantries: pantry.email})
+    Customer.find({pantries: pantry._id})
       .sort(sort)
       .then(function(results) {
         var customers = results.map((customer)=>{return transform(customer._doc)});
@@ -95,13 +95,20 @@ var controller = {
 
             })
 
-          Customer.updateOne({uid: uid}, {'$push': {pantries: email}})
+          Customer.updateOne({uid: uid}, {'$push': {pantries: pantry._id}})
             .then(function(response) {
 
             })
         }
 
         res.send();
+      })
+  },
+  editPantry: function(email, update, res) {
+    Pantry.findOneAndUpdate({email: email}, update)
+      .then(function(response) {
+        res.status(201);
+        res.send('Edit success.');
       })
   },
   createCustomer: function(req, res) {

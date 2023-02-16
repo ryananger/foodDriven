@@ -70,6 +70,16 @@ var ax = {
         st.setPantries(pantries);
       })
   },
+  editPantry: function(update) {
+    const email = st.pantry.email;
+
+    axios.put(urlBase + 'pantries/' + email, update)
+      .then(function(response) {
+        helpers.alert('Pantry information saved!');
+        ax.getUser(st.user.uid);
+        ax.getPantries();
+      })
+  },
   createCustomer: function(customer) {
     axios.post(urlBase + 'customers/', customer)
       .then(function(response) {
@@ -83,7 +93,6 @@ var ax = {
   addCustomerToPantry: function(uid, email) {
     axios.post(urlBase + 'pantries/customer/' + uid, {email: email})
       .then(function(response) {
-        console.log(response);
         ax.getUser(uid);
       })
   },

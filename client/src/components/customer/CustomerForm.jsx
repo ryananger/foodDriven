@@ -12,16 +12,6 @@ const CustomerForm = function() {
 
     var form = e.target;
 
-    var strToObj = function(str) {
-      if (!str) {
-        return {m: 0, f: 0};
-      }
-
-      var split = str.replaceAll(' ', '').split(',');
-
-      return {m: Number(split[0]) || 0, f: Number(split[1]) || 0};
-    };
-
     var customer = {
       uid:          st.user.uid,
       firstName:    form.firstName.value,
@@ -41,13 +31,11 @@ const CustomerForm = function() {
       familySize:   form.familySize.value,
       numberMale:   form.numberMale.value || 0,
       numberFemale: form.numberFemale.value || 0,
-      num_0to5:     strToObj(form.num_0to5.value),
-      num_6to17:    strToObj(form.num_6to17.value),
-      num_18to64:   strToObj(form.num_18to64.value),
-      num_65up:     strToObj(form.num_65up.value),
+      num_0to5:     helpers.strToObj(form.num_0to5.value),
+      num_6to17:    helpers.strToObj(form.num_6to17.value),
+      num_18to64:   helpers.strToObj(form.num_18to64.value),
+      num_65up:     helpers.strToObj(form.num_65up.value),
     };
-
-    console.log(customer);
 
     ax.createCustomer(customer);
   };

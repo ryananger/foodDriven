@@ -39,6 +39,10 @@ app.get('/pantries', function(req, res) {
   controller.getPantries(res);
 });
 
+app.put('/pantries/:email', function(req, res) {
+  controller.editPantry(req.params.email, req.body, res);
+});
+
 app.post('/customers', function(req, res) {
   controller.createCustomer(req, res);
 });

@@ -16,16 +16,6 @@ const CustomerEdit = function({i, customer, setView}) {
     var inputs = form.elements;
     var update = {};
 
-    var strToObj = function(str) {
-      if (!str) {
-        return {m: 0, f: 0};
-      }
-
-      var split = str.replaceAll(' ', '').split(',');
-
-      return {m: Number(split[0]) || 0, f: Number(split[1]) || 0};
-    };
-
     for (var i = 1; i < inputs.length; i++) {
       var input = inputs[i];
 
@@ -49,7 +39,7 @@ const CustomerEdit = function({i, customer, setView}) {
           case 'num_6to17':
           case 'num_18to64':
           case 'num_65up':
-            value = strToObj(value);
+            value = helpers.strToObj(value);
 
             update[input.name] = value;
             break;
