@@ -12,14 +12,14 @@ import PantryConfig from './PantryConfig.jsx';
 const Admin = function() {
   const [create, setCreate] = st.newState('create', useState(false));
   const [pantry, setPantry] = st.newState('pantry', useState(null));
+  const [config, setConfig] = st.newState('config', useState(false));
   const [index, setIndex]   = useState(0);
-  const [config, setConfig] = useState(false);
 
   const user = st.user;
 
   var handlePantryClick = function(pantry, index) {
-    setConfig(false);
     setCreate(false);
+    setConfig(false);
     setPantry(user.pantries[index]);
     setIndex(index);
   };
@@ -62,7 +62,7 @@ const Admin = function() {
 
           <div className='configButton' onClick={()=>{setConfig(!config)}}>{config ? 'list' : 'config'}</div>
         </div>
-        {create ? <PantryCreate /> : (config ? <PantryConfig setConfig={setConfig}/> : <Pantry />)}
+        {create ? <PantryCreate /> : (config ? <PantryConfig /> : <Pantry />)}
       </div>
     </div>
   )

@@ -3,39 +3,20 @@ import React, {useEffect, useState} from 'react';
 import st            from 'ryscott-st';
 import {ax, helpers} from 'util';
 
-const PantryConfig = function({setConfig}) {
+const PantryConfig = function() {
   const pantry = st.pantry;
-  const info = {
-    url: pantry.url || null,
-    bio: pantry.bio || null,
-    appointment: pantry.appointment || null,
-    register: pantry.register || null,
-    hours: pantry.hours || {
-      m: null,
-      t: null,
-      w: null,
-      th: null,
-      f: null,
-      s: null,
-      sun: null
-    },
-    slots: pantry.slots || {
-      num: null,
-      timeframe: null
-    },
-    open: pantry.open || {
-      frequency: null,
-      frequencyDay: null
-    },
-    other: pantry.other || null
-  };
+  const info = pantry.info;
 
   var handleSubmit = function(e) {
     var form = document.getElementById('configForm');
 
     var inputs = form.elements;
     var update = {
-      info: {hours: {}}
+      info: {
+        hours: {},
+        slots: {num: null, timeframe: null},
+        open:  {frequency: null, frequencyDay: null}
+      },
     };
 
     for (var i = 0; i < inputs.length; i++) {
@@ -125,7 +106,7 @@ const PantryConfig = function({setConfig}) {
         <hr/>
         <div className='configBody v'>
           <div className='configLabel h'>
-              <b>url: </b><input name='url' className='configInput' placeholder={`Custom url.`} defaultValue={info.url}/>
+              <b>url: </b><input name='url' className='configInput' placeholder='Custom url...' defaultValue={info.url}/>
             </div>
             <div className='configLabel h'>
               <b>bio: </b><textarea name='bio' className='configTextArea' placeholder={`Short bio (140 character limit.)`} defaultValue={info.bio}/>

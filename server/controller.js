@@ -178,6 +178,14 @@ var controller = {
 
         res.send('Success!');
       })
+  },
+  fix: function(res) {
+    Pantry.updateMany({}, {info: defaultInfo})
+      .then(function(result){
+        console.log(result);
+        res.send('success');
+      })
+
   }
 };
 
@@ -231,6 +239,31 @@ var transform = function(doc) {
   }
 
   return newDoc;
+};
+
+const defaultInfo = {
+  url: null,
+  bio: null,
+  appointment: null,
+  register: null,
+  hours: {
+    m: null,
+    t: null,
+    w: null,
+    th: null,
+    f: null,
+    s: null,
+    sun: null
+  },
+  slots: {
+    num: null,
+    timeframe: null
+  },
+  open: {
+    frequency: null,
+    frequencyDay: null
+  },
+  other: null
 };
 
 module.exports = controller;

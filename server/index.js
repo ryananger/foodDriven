@@ -59,6 +59,10 @@ app.get('/connect', function(req, res) {
   controller.connect(res);
 })
 
+app.get('/fix', function(req, res) {
+  controller.fix(res);
+})
+
 const PORT = 4001;
 
 app.listen(PORT);

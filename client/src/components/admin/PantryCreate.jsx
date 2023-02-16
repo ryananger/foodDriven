@@ -4,6 +4,30 @@ import st            from 'ryscott-st';
 import {ax, auth, helpers} from 'util';
 
 const PantryCreate = function() {
+  const info = {
+    url: null,
+    bio: null,
+    appointment: null,
+    register: null,
+    hours: {
+      m: null,
+      t: null,
+      w: null,
+      th: null,
+      f: null,
+      s: null,
+      sun: null
+    },
+    slots: {
+      num: null,
+      timeframe: null
+    },
+    open: {
+      frequency: null,
+      frequencyDay: null
+    },
+    other: null
+  };
 
   var handleSubmit = function(e) {
     e.preventDefault();
@@ -22,7 +46,7 @@ const PantryCreate = function() {
       state:   form.state.value,
       zip:     form.zip.value,
 
-      info:      {},
+      info:      info,
       admins:    [st.user.uid],
       customers: [],
       inventory: []
