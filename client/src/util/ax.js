@@ -43,7 +43,9 @@ var ax = {
 
         st.setUser({...st.user, pantries: pantries});
         st.setCreate(false);
-        ax.getPantries(true);
+        st.setConfig(true);
+        st.setPantry(response.data);
+        ax.getPantries();
 
         helpers.alert('Created pantry!');
         console.log('Created pantry in database.', response.data);
@@ -62,7 +64,7 @@ var ax = {
         }
       })
   },
-  getPantries: function(created) {
+  getPantries: function() {
     axios.get(urlBase + 'pantries/')
       .then(function(response) {
         var pantries = response.data;

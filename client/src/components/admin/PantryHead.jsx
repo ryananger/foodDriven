@@ -8,8 +8,8 @@ import CustomerEntry from './CustomerEntry.jsx';
 import CustomerAdd from './CustomerAdd.jsx';
 
 const PantryHead = function({setAdding}) {
-  const [sort, setSort]     = useState('regId');
-  const [dir, setDir]       = useState('asc');
+  const [sort, setSort] = useState('regId');
+  const [dir, setDir]   = useState('asc');
 
   st.sortStr = `/${sort}-${dir}`;
 

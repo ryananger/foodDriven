@@ -7,8 +7,8 @@ const PantryCreate = function() {
   const info = {
     url: null,
     bio: null,
-    appointment: null,
-    register: null,
+    appointment: 'no',
+    register: 'yes',
     hours: {
       m: null,
       t: null,

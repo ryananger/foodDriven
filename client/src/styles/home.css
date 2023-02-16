@@ -43,15 +43,15 @@
 }
 
 .pantryThumb {
-  height: 100%;
+  width: 240px;
   border-radius: 8px;
-  aspect-ratio: 1/1 auto;
+  aspect-ratio: 1;
 }
 
 .pantryCard {
   flex: none;
   width: 95%;
-  height: 240px;
+  /* height: 280px; */
   padding: 1vh;
   margin-bottom: 2vh;
   margin-top: 1vh;
@@ -83,7 +83,7 @@
   background-color: var(--dirt);
 }
 
-.pantryCardLeft, .pantryCardRight {
+.pantryCardLeft, .pantryCardRight, .pantryCardBody {
   height: 100%;
 }
 
@@ -94,6 +94,17 @@
 
 .pantryCardLeft div {
   margin-bottom: 4px;
+}
+
+.pantryCardBody {
+  margin-left: 1vh;
+  width: 240px;
+}
+
+.pantryHours {
+  width: 180px;
+  font-size: 14px;
+  justify-content: space-between;
 }
 
 .pantryCardRight {

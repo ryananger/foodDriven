@@ -5,7 +5,6 @@ import {ax, helpers} from 'util';
 
 const PantryConfig = function() {
   const pantry = st.pantry;
-  const info = pantry.info;
 
   var handleSubmit = function(e) {
     var form = document.getElementById('configForm');
@@ -86,19 +85,24 @@ const PantryConfig = function() {
           <img className='pantryImage' src={process.env.URL + 'public/thumb.jpg'}/>
           <div className='v'>
             <div className='configLabel h'>
-              <b>name: </b><input name='pantryName' className='configInput' defaultValue={pantry.name}/>
+              <b>name: </b>
+              <input name='pantryName' className='configInput' defaultValue={pantry.name}/>
             </div>
             <div className='configLabel h'>
-              <b>email: </b><input name='email' className='configInput' defaultValue={pantry.email}/>
+              <b>email: </b>
+              <input name='email' className='configInput' defaultValue={pantry.email}/>
             </div>
             <div className='configLabel h'>
-              <b>phone: </b><input name='phone' className='configInput' defaultValue={pantry.phone}/>
+              <b>phone: </b>
+              <input name='phone' className='configInput' defaultValue={pantry.phone}/>
             </div>
             <div className='configLabel h'>
-              <b>address: </b><input name='address' className='configInput' defaultValue={pantry.address}/>
+              <b>address: </b>
+              <input name='address' className='configInput' defaultValue={pantry.address}/>
             </div>
             <div className='configLabel h'>
-              <b>city, state zip: </b><input name='address2' className='configInput' defaultValue={`${pantry.city}, ${pantry.state} ${pantry.zip}`}/>
+              <b>city, state zip: </b>
+              <input name='address2' className='configInput' defaultValue={`${pantry.city}, ${pantry.state} ${pantry.zip}`}/>
             </div>
           </div>
         </div>
@@ -106,13 +110,16 @@ const PantryConfig = function() {
         <hr/>
         <div className='configBody v'>
           <div className='configLabel h'>
-              <b>url: </b><input name='url' className='configInput' placeholder='Custom url...' defaultValue={info.url}/>
+              <b>url: </b>
+              <input name='url' className='configInput' placeholder='Custom url...' defaultValue={pantry.info.url}/>
             </div>
             <div className='configLabel h'>
-              <b>bio: </b><textarea name='bio' className='configTextArea' placeholder={`Short bio (140 character limit.)`} defaultValue={info.bio}/>
+              <b>bio: </b>
+              <textarea name='bio' className='configTextArea' placeholder={`Short bio (140 character limit.)`} defaultValue={pantry.info.bio}/>
             </div>
             <div className='configLabel h'>
-              <b>appointment: </b><select name='appointment' className='configInput' defaultValue='yes' defaultValue={info.appointment}>
+              <b>appointment: </b>
+              <select name='appointment' className='configInput' defaultValue={pantry.info.appointment}>
                 <option value='yes'>
                   Yes.
                 </option>
@@ -123,8 +130,9 @@ const PantryConfig = function() {
               <small>Appointment only?</small>
             </div>
             <div className='configLabel h'>
-              <b>slots: </b><input name='slots' className='configInput iSmall' placeholder='Number...' defaultValue={info.slots.num}/> per
-              <select name='timeframe' className='configInput iSmall' defaultValue='15' defaultValue={info.slots.timeframe}>
+              <b>slots: </b>
+              <input name='slots' className='configInput iSmall' placeholder='Number...' defaultValue={pantry.info.slots.num}/> per
+              <select name='timeframe' className='configInput iSmall' defaultValue='15' defaultValue={pantry.info.slots.timeframe}>
                 <option value='15'>
                   15 minutes.
                 </option>
@@ -141,7 +149,8 @@ const PantryConfig = function() {
             </div>
             <br/>
             <div className='configLabel h'>
-              <b>register: </b><select name='register' className='configInput' defaultValue={info.register}>
+              <b>register: </b>
+              <select name='register' className='configInput' defaultValue={pantry.info.register}>
                 <option value='yes'>
                   Yes.
                 </option>
@@ -156,20 +165,20 @@ const PantryConfig = function() {
             <div className='configLabel v'>
               <b>hours: </b>
             </div>
-            <div className='configLabel h'><b>m: </b>  <input name='m'   className='configInput iMedium' placeholder='Format: 11am - 1pm' defaultValue={info.hours.m}/></div>
-            <div className='configLabel h'><b>t: </b>  <input name='t'   className='configInput iMedium' defaultValue={info.hours.t}/></div>
-            <div className='configLabel h'><b>w: </b>  <input name='w'   className='configInput iMedium' defaultValue={info.hours.w}/></div>
-            <div className='configLabel h'><b>th: </b> <input name='th'  className='configInput iMedium' defaultValue={info.hours.th}/></div>
-            <div className='configLabel h'><b>f: </b>  <input name='f'   className='configInput iMedium' defaultValue={info.hours.f}/></div>
-            <div className='configLabel h'><b>s: </b>  <input name='s'   className='configInput iMedium' defaultValue={info.hours.s}/></div>
-            <div className='configLabel h'><b>sun: </b><input name='sun' className='configInput iMedium' defaultValue={info.hours.sun}/></div>
+            <div className='configLabel h'><b>m: </b>  <input name='m'   className='configInput iMedium' placeholder='Format: 11am - 1pm' defaultValue={pantry.info.hours.m}/></div>
+            <div className='configLabel h'><b>t: </b>  <input name='t'   className='configInput iMedium' defaultValue={pantry.info.hours.t}/></div>
+            <div className='configLabel h'><b>w: </b>  <input name='w'   className='configInput iMedium' defaultValue={pantry.info.hours.w}/></div>
+            <div className='configLabel h'><b>th: </b> <input name='th'  className='configInput iMedium' defaultValue={pantry.info.hours.th}/></div>
+            <div className='configLabel h'><b>f: </b>  <input name='f'   className='configInput iMedium' defaultValue={pantry.info.hours.f}/></div>
+            <div className='configLabel h'><b>s: </b>  <input name='s'   className='configInput iMedium' defaultValue={pantry.info.hours.s}/></div>
+            <div className='configLabel h'><b>sun: </b><input name='sun' className='configInput iMedium' defaultValue={pantry.info.hours.sun}/></div>
             <br/>
             <div className='configLabel v'>
               <b>days open: </b>
             </div>
             <div className='configLabel h'>
               <b>frequency: </b>
-              <select name='frequency' className='configInput iMedium' defaultValue={info.open.frequency}>
+              <select name='frequency' className='configInput iMedium' defaultValue={pantry.info.open.frequency}>
                 <option value='every'>Every</option>
                 <option value='1'>1st</option>
                 <option value='2'>2nd</option>
@@ -181,12 +190,12 @@ const PantryConfig = function() {
             </div>
             <div className='configLabel h'>
               <b>day: </b>
-              <input name='frequencyDay' className='configInput' placeholder='Eg: Monday, weekend; weekday;' defaultValue={info.open.frequencyDay}/>
+              <input name='frequencyDay' className='configInput' placeholder='Eg: Monday, weekend; weekday;' defaultValue={pantry.info.open.day}/>
               <small>Day name (Monday, etc.), 'weekend', or 'weekday', separated by comma.</small>
             </div>
             <div className='configLabel h'>
               <b>other info: </b>
-              <input name='other' className='configInput' placeholder='Eg: Hot senior meal every first sunday.' defaultValue={info.other}/>
+              <input name='other' className='configInput' placeholder='Eg: Hot senior meal every first sunday.' defaultValue={pantry.info.other}/>
             </div>
         </div>
 

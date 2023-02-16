@@ -13,7 +13,6 @@ const Admin = function() {
   const [create, setCreate] = st.newState('create', useState(false));
   const [pantry, setPantry] = st.newState('pantry', useState(null));
   const [config, setConfig] = st.newState('config', useState(false));
-  const [index, setIndex]   = useState(0);
 
   const user = st.user;
 
@@ -21,7 +20,6 @@ const Admin = function() {
     setCreate(false);
     setConfig(false);
     setPantry(user.pantries[index]);
-    setIndex(index);
   };
 
   var renderPantryList = function() {
@@ -42,7 +40,9 @@ const Admin = function() {
   };
 
   useEffect(()=>{
-    setPantry(user.pantries[index]);
+    if (!pantry) {
+      setPantry(user.pantries[0]);
+    }
   }, [user]);
 
   return (

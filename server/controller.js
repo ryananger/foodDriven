@@ -180,11 +180,6 @@ var controller = {
       })
   },
   fix: function(res) {
-    Pantry.updateMany({}, {info: defaultInfo})
-      .then(function(result){
-        console.log(result);
-        res.send('success');
-      })
 
   }
 };
