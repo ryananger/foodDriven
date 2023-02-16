@@ -88,20 +88,15 @@ var controller = {
   addCustomerToPantry: function(uid, email, res) {
     Pantry.findOne({email: email})
       .then(function(pantry) {
-
         if (pantry.customers.indexOf(uid) === -1) {
-          Pantry.updateOne(pantry, {'$push': {customers: uid}})
-            .then(function(response) {
-
-            })
-
-          Customer.updateOne({uid: uid}, {'$push': {pantries: pantry._id}})
-            .then(function(response) {
-
+          Pantry.updateOne({email: email}, {'$push': {customers: uid}})
+            .then(function() {
+              Customer.updateOne({uid: uid}, {'$push': {pantries: pantry._id}})
+                .then(function() {
+                  res.send();
+                })
             })
         }
-
-        res.send();
       })
   },
   editPantry: function(email, update, res) {
@@ -180,7 +175,24 @@ var controller = {
       })
   },
   fix: function(res) {
+    Pantry.updateMany({}, {customers: []})
+      .then(function() {
+        Customer.find()
+          .then(function(customers) {
+            customers.map(function(customer) {
+              if (customer.uid.slice(0, 4) === 'fake') {
+                return;
+              }
 
+              Customer.updateOne(customer, {pantries: []})
+                .then(function() {
+                  console.log(customer.uid);
+                })
+            })
+          })
+
+        res.send('success');
+      })
   }
 };
 

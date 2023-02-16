@@ -11,9 +11,11 @@ const PantryCard = function({pantry, index}) {
   const user     = st.user;
   const pantries = st.pantries;
 
-  var register = function() {
+  var register = function(e) {
     setRegistered(true);
     ax.addCustomerToPantry(user.uid, pantry.email);
+
+    e.stopPropagation();
   };
 
   var registerButton = function() {
@@ -88,10 +90,10 @@ const PantryCard = function({pantry, index}) {
   }, []);
 
   return (
-    <div className='pantryCard h'>
+    <div className='pantryCard h' onClick={/* route to pantry page */}>
       <div className='pantryCardLeft h'>
         <img className='pantryImage pantryThumb' src={process.env.URL + 'public/thumb.jpg'}/>
-        <div className='pantryCardBody v' style={{alignItems: 'flex-start'}}>
+        <div className='pantryCardBody v'>
           <div><h3>{pantry.name}</h3></div>
           <div>{pantry.email}</div>
           <div>{helpers.renderPhone(pantry.phone)}</div>
@@ -102,7 +104,7 @@ const PantryCard = function({pantry, index}) {
           <div><small>{pantry.info.appointment === 'yes' ? 'Appointment only.' : ''}</small></div>
           <div><small>{pantry.info.register === 'yes' ? 'Registration required.' : ''}</small></div>
         </div>
-        <div className='pantryCardBody v' style={{alignItems: 'flex-start'}}>
+        <div className='pantryCardMain v'>
           {renderOpen()}
           {renderHours()}
           <div>{pantry.info.other}</div>

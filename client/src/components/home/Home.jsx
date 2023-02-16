@@ -23,30 +23,16 @@ const Home = function() {
   };
 
   return (
-    <div className='home h'>
-      {/* <div className='homeContainer left v'>
-        <div className='card noPad v'>
-          <div className='topBar h'/>
 
-        </div>
-      </div> */}
-
-      <div className='homeContainer mid v'>
+      <div className='homeContainer v'>
         <div className='homeBody card noPad v'>
           <div className='topBar h'/>
-          <div className='cardContainer v'>
+          <div id='cardContainer' className='cardContainer v'>
             {renderPantries()}
           </div>
         </div>
       </div>
 
-      {/* <div className='homeContainer right v'>
-        <div className='card noPad v'>
-          <div className='topBar h'/>
-
-        </div>
-      </div> */}
-    </div>
   )
 };
 
