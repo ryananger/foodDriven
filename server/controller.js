@@ -76,6 +76,14 @@ var controller = {
         controller.getCustomersForPantry(pantry, sort, res);
       })
   },
+  getPantryByURL: function(url, res) {
+    Pantry.findOne({'info.url': url})
+      .then(function(pantry) {
+
+        res.json(pantry);
+      })
+
+  },
   getCustomersForPantry: function(pantry, sort, res) {
     Customer.find({pantries: pantry._id})
       .sort(sort)
@@ -274,4 +282,3 @@ const defaultInfo = {
 };
 
 module.exports = controller;
-

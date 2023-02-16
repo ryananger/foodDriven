@@ -79,6 +79,10 @@ const PantryCard = function({pantry, index}) {
     return rendered;
   };
 
+  var route = function() {
+    /* route to pantry page */
+  };
+
   useEffect(()=>{
     if (!user) {return};
 
@@ -90,7 +94,7 @@ const PantryCard = function({pantry, index}) {
   }, []);
 
   return (
-    <div className='pantryCard h' onClick={/* route to pantry page */}>
+    <div className='pantryCard h' onClick={route}>
       <div className='pantryCardLeft h'>
         <img className='pantryImage pantryThumb' src={process.env.URL + 'public/thumb.jpg'}/>
         <div className='pantryCardBody v'>

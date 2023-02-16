@@ -8,7 +8,7 @@ var ax = {
   createUser: function(user) {
     user.admin = st.createType === 'admin';
 
-    axios.post(urlBase + 'users', user)
+    axios.post(urlBase + 'api/users', user)
       .then(function(response) {
         document.cookie = `user=${user.uid}`;
 
@@ -20,7 +20,7 @@ var ax = {
       })
   },
   getUser: function(uid, alt) {
-    axios.get(urlBase + 'users/' + uid)
+    axios.get(urlBase + 'api/users/' + uid)
       .then(function(response) {
         var user = response.data;
 
@@ -35,7 +35,7 @@ var ax = {
       })
   },
   createPantry: function(pantry) {
-    axios.post(urlBase + 'pantries/', pantry)
+    axios.post(urlBase + 'api/pantries/', pantry)
       .then(function(response) {
         var pantries = st.user.pantries ? [...st.user.pantries] : [];
 
@@ -55,7 +55,7 @@ var ax = {
     const pantry = st.pantry;
     var sort = sort || st.sortStr;
 
-    axios.get(urlBase + 'pantries/' + pantry.email + sort)
+    axios.get(urlBase + 'api/pantries/email' + pantry.email + sort)
       .then(function(response) {
         st.setData(response.data);
 
@@ -65,17 +65,23 @@ var ax = {
       })
   },
   getPantries: function() {
-    axios.get(urlBase + 'pantries/')
+    axios.get(urlBase + 'api/pantries/')
       .then(function(response) {
         var pantries = response.data;
 
         st.setPantries(pantries);
       })
   },
+  getPantryByURL: function(url, set) {
+    axios.get(urlBase + 'api/pantries/url' + url)
+      .then(function(response) {
+        set(response.data);
+      })
+  },
   editPantry: function(update) {
     const email = st.pantry.email;
 
-    axios.put(urlBase + 'pantries/' + email, update)
+    axios.put(urlBase + 'api/pantries/' + email, update)
       .then(function(response) {
         helpers.alert('Pantry information saved!');
         ax.getUser(st.user.uid);
@@ -83,7 +89,7 @@ var ax = {
       })
   },
   createCustomer: function(customer) {
-    axios.post(urlBase + 'customers/', customer)
+    axios.post(urlBase + 'api/customers/', customer)
       .then(function(response) {
         ax.getUser(st.user.uid);
         st.setView('home');
@@ -93,14 +99,14 @@ var ax = {
       })
   },
   addCustomerToPantry: function(uid, email) {
-    axios.post(urlBase + 'pantries/customer/' + uid, {email: email})
+    axios.post(urlBase + 'api/pantries/customer/' + uid, {email: email})
       .then(function(response) {
         console.log(response);
         ax.getUser(uid);
       })
   },
   editCustomer: function(regId, update, setView) {
-    axios.put(urlBase + 'customers/' + regId, update)
+    axios.put(urlBase + 'api/customers/' + regId, update)
       .then(function(response) {
         helpers.alert('Customer information updated!');
         ax.getCustomersForPantry(setView);
@@ -109,7 +115,7 @@ var ax = {
   addCustomerAdmin: function(customer) {
     const email = st.pantry.email;
 
-    axios.post(urlBase + 'customers/' + email, customer)
+    axios.post(urlBase + 'api/customers/' + email, customer)
       .then(function(response) {
         helpers.alert(`Customer added to ${st.pantry.name}!`);
         ax.getCustomersForPantry();
@@ -182,9 +188,9 @@ var peopleGen = function() {
 
     if (i > 900) {return};
 
-    axios.post(urlBase + 'customers/', user)
+    axios.post(urlBase + 'api/customers/', user)
       .then(function(response) {
-        axios.post(urlBase + 'pantries/customer/' + user.uid, {email: 'test@test.com'})
+        axios.post(urlBase + 'api/pantries/customer/' + user.uid, {email: 'test@test.com'})
           .then(function(response) {
             gen(i + 1);
             console.log(user);
