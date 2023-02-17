@@ -36,7 +36,7 @@ const Login = function() {
       setCreateType(type);
     };
 
-    return <button className={`createType ${dir} ${mod}`} onClick={handleClick}>{text}</button>;
+    return <button className={`button createType ${dir} ${mod}`} onClick={handleClick}>{text}</button>;
   };
 
   var signUpDiv = function() {

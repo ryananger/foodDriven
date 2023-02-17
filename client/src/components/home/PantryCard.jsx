@@ -20,7 +20,7 @@ const PantryCard = function({pantry, index, setPantryView}) {
 
   var registerButton = function() {
     var buttons = {
-      register:   <button className='register' onClick={register}>register</button>,
+      register:   <button className='button register' onClick={register}>register</button>,
       registered: <div className='registered v'>registered</div>
     };
 
@@ -59,7 +59,7 @@ const PantryCard = function({pantry, index, setPantryView}) {
 
     openStr += ' ' + pantry.info.open.day + '.';
 
-    return (<div><div>{openStr}</div><br/></div>);
+    return (<div><b>{openStr}</b></div>);
   };
 
   var renderHours = function() {

@@ -1,0 +1,64 @@
+.react-calendar {
+  background: var(--cream) !important;
+  border: 1px solid var(--dirt) !important;
+  border-radius: 8px;
+  box-shadow: var(--cardShadow);
+  flex: none;
+}
+
+.react-calendar__navigation {
+  display: flex;
+  height: 44px;
+  margin-bottom: 1em;
+}
+
+.react-calendar__navigation button {
+  min-width: 44px;
+  background: none;
+}
+
+.react-calendar button {
+  margin: 0;
+  border: 0;
+  outline: none;
+}
+
+.react-calendar__tile--now {
+  background: var(--trLeaf) !important;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: var(--rosewood) !important;
+}
+
+.valid {
+  background: var(--trSky) !important;
+}
+
+.react-calendar__tile--active {
+  background: var(--carrot) !important;
+  color: black !important;
+}
+
+.scheduler {
+  padding: 1vh;
+  margin-left: 1vh;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.scheduleInterface {
+  width: 100%;
+}
+
+.scheduleSelect {
+  flex: auto;
+  width: 160px;
+  height: 30px;
+  margin: 0;
+}
+
+.scheduleButton {
+  box-shadow: none;
+  margin-left: 12px;
+}

@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {BsPlusCircleFill as Plus} from 'react-icons/bs';
 
 import st            from 'ryscott-st';
 import {ax, helpers} from 'util';
 
-import Appointments from './Appointments.jsx';
+import OpenDays from './OpenDays.jsx';
 
 const PantryPage = function({pantry}) {
   const [registered, setRegistered] = useState(false);
@@ -19,7 +18,7 @@ const PantryPage = function({pantry}) {
 
   var registerButton = function() {
     var buttons = {
-      register:   <button className='register' onClick={register}>register</button>,
+      register:   <button className='button register' onClick={register}>register</button>,
       registered: <div className='registered v'>registered</div>
     };
 
@@ -111,15 +110,15 @@ const PantryPage = function({pantry}) {
       </div>
       <div className='pantryPageRight v'>
         {pantry.info.bio && <h2 style={{marginBottom: '2vh'}}>{pantry.info.bio}</h2>}
-        {renderHours()}
         {renderOpen()}
-        <div className='pantryInfo h'>{pantry.info.appointment ? 'Appointment only.' : 'Walk-ins welcome!'}</div>
-        <div className='pantryInfo h'>{pantry.info.register ? 'Registration required.' : 'Registration is not required.'}</div>
+        {renderHours()}
+        {pantry.info.open.day && <OpenDays pantry={pantry}/>}
+        <div className='pantryInfo h'>{pantry.info.appointment === 'yes' ? 'Appointment only.' : 'Walk-ins welcome!'}</div>
+        <div className='pantryInfo h'>{pantry.info.register === 'yes' ? 'Registration required.' : 'Registration is not required.'}</div>
         <br/>
         <br/>
         <div className='pantryInfo h'><b>{pantry.info.other}</b></div>
         {user && user.customerInfo && registerButton()}
-        {user && user.customerInfo && pantry.info.appointment === 'yes' && <Appointments pantry={pantry}/>}
       </div>
     </div>
   )

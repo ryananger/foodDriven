@@ -25,7 +25,6 @@
 .pantryPage {
   width: 95%;
   height: 100%;
-  max-height: 620px;
   flex: none;
   border: 1px solid var(--dirt);
   border-style: none none solid;
@@ -45,7 +44,7 @@
   flex: auto;
   height: 100%;
   align-items: flex-start;
-  margin: 1vh;
+  padding: 1vh;
   position: relative;
 }
 
@@ -69,6 +68,34 @@
   height: 26px;
   width: 320px;
   align-items: flex-end;
+}
+
+.openDays {
+  padding: 1vh;
+  align-items: flex-start;
+  height: 360px;
+  width: 100%;
+}
+
+.pantrySchedule {
+  height: 30px;
+  width: 320px;
+  margin-left: 2vh;
+  margin-top: 0.5vh;
+  margin-bottom: 0.5vh;
+  padding: 4px;
+}
+
+.pantryHours {
+  width: 140px;
+  font-size: 14px;
+  margin-top: 1vh;
+  margin-left: 2vh;
+  justify-content: flex-start;
+}
+
+.pantryHours b {
+  margin-right: 2vh;
 }
 
 .pageBack {
@@ -152,12 +179,6 @@
   border: 1px solid var(--dirt);
   border-style: none none none solid;
   flex: 2 1 auto;
-}
-
-.pantryHours {
-  width: 160px;
-  font-size: 14px;
-  justify-content: space-between;
 }
 
 .pantryCardRight {

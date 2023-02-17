@@ -68,7 +68,7 @@ const App = function() {
             <b onClick={()=>{setView('admin')}}>{isAdmin}</b>
           </div>
         </div>
-        <button onClick={handleLogin}>{user ? 'logout' : 'login'}</button>
+        <button className='button' onClick={handleLogin}>{user ? 'logout' : 'login'}</button>
       </div>
       <div className='main v'>
         {views[view]}

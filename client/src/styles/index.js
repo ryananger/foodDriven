@@ -5,3 +5,4 @@ import './login.css';
 import './customerForm.css';
 import './pantry.css';
 import './pantryForm.css';
+import './react-calendar.css';
