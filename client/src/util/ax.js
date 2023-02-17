@@ -55,7 +55,7 @@ var ax = {
     const pantry = st.pantry;
     var sort = sort || st.sortStr;
 
-    axios.get(urlBase + 'api/pantries/email' + pantry.email + sort)
+    axios.get(urlBase + 'api/pantries/email/' + pantry.email + sort)
       .then(function(response) {
         st.setData(response.data);
 
@@ -103,6 +103,7 @@ var ax = {
       .then(function(response) {
         console.log(response);
         ax.getUser(uid);
+        ax.getPantries();
       })
   },
   editCustomer: function(regId, update, setView) {

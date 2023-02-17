@@ -5,7 +5,7 @@ import {AiFillPhone as Phone} from 'react-icons/ai';
 import st            from 'ryscott-st';
 import {ax, helpers} from 'util';
 
-const PantryCard = function({pantry, index}) {
+const PantryCard = function({pantry, index, setPantryView}) {
   const [registered, setRegistered] = useState(false);
 
   const user     = st.user;
@@ -73,14 +73,10 @@ const PantryCard = function({pantry, index}) {
     }
 
     if (rendered[0]) {
-      rendered.push(<br/>);
+      rendered.push(<br key='br'/>);
     }
 
     return rendered;
-  };
-
-  var route = function() {
-    /* route to pantry page */
   };
 
   useEffect(()=>{
@@ -94,7 +90,7 @@ const PantryCard = function({pantry, index}) {
   }, []);
 
   return (
-    <div className='pantryCard h' onClick={route}>
+    <div className='pantryCard h' onClick={()=>{setPantryView(pantry)}}>
       <div className='pantryCardLeft h'>
         <img className='pantryImage pantryThumb' src={process.env.URL + 'public/thumb.jpg'}/>
         <div className='pantryCardBody v'>

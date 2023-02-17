@@ -23,9 +23,52 @@
 }
 
 .pantryPage {
-  width: 100%;
+  width: 95%;
   height: 100%;
+  max-height: 620px;
   flex: none;
+  border: 1px solid var(--dirt);
+  border-style: none none solid;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.pantryPageLeft {
+  width: 340px;
+  height: 100%;
+  border: 1px solid var(--dirt);
+  border-style: none solid none none;
+  align-items: flex-start;
+}
+
+.pantryPageRight {
+  flex: auto;
+  height: 100%;
+  align-items: flex-start;
+  margin: 1vh;
+  position: relative;
+}
+
+.pantryPageRight .register,
+.pantryPageRight .registered {
+  position: absolute;
+  bottom: 2vh;
+  right: 0;
+}
+
+.pantryPageImage {
+  width: 320px;
+  aspect-ratio: 1;
+  margin: 1vh;
+  margin-left: 0;
+  border-radius: 8px;
+  border: 1px solid var(--dirt);
+}
+
+.pantryInfo {
+  height: 26px;
+  width: 320px;
+  align-items: flex-end;
 }
 
 .pageBack {
@@ -57,6 +100,7 @@
 
 .pantryCard:hover {
   cursor: pointer;
+  background: linear-gradient(to top, #ffffff9e, var(--trWhite));
 }
 
 .register, .registered {

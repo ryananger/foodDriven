@@ -3,36 +3,46 @@ import React, {useEffect, useState} from 'react';
 import st            from 'ryscott-st';
 import {ax, helpers} from 'util';
 
-import PantryCard from './PantryCard.jsx';
-import PantryPage from './PantryPage.jsx';
+import PantryCard   from './PantryCard.jsx';
+import PantryPage   from './PantryPage.jsx';
 
 const Home = function() {
   const [pantryView, setPantryView] = useState(null);
 
   const user     = st.user;
   const pantries = st.pantries;
+  const url      = window.location.pathname.slice(1);
 
   var renderPantries = function() {
     var rendered = [];
 
     pantries.map(function(pantry, i) {
-      if (pantry.email === pantryView.email) {
+      if (pantryView && pantry.email === pantryView.email) {
         return;
       }
 
       rendered.push(
-        <PantryCard key={i} pantry={pantry} index={i}/>
+        <PantryCard key={i} pantry={pantry} index={i} setPantryView={setPantryView}/>
       )
     })
 
     return rendered;
   };
 
-  useEffect(()=>{
+  var setScrollTop = function() {
+    if (pantryView) {
+      document.getElementById('cardContainer').scrollTop = 0;
+    }
+  };
+
+  var urlPantry = function() {
     if (window.location.pathname !== '/') {
       ax.getPantryByURL(window.location.pathname, setPantryView);
     }
-  }, [pantries]);
+  };
+
+  useEffect(setScrollTop, [pantryView]);
+  useEffect(urlPantry, []);
 
   return (
     <div className='homeContainer v'>
@@ -40,7 +50,7 @@ const Home = function() {
         <div className='topBar h'/>
         <div id='cardContainer' className='cardContainer v'>
           {pantryView && <PantryPage pantry={pantryView}/>}
-          {renderPantries()}
+          {url ? (pantryView ? renderPantries() : '') : renderPantries()}
         </div>
       </div>
     </div>
