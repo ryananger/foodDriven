@@ -87,7 +87,7 @@
 }
 
 .pantryHours {
-  width: 140px;
+  width: 160px;
   font-size: 14px;
   margin-top: 1vh;
   margin-left: 2vh;
@@ -96,6 +96,8 @@
 
 .pantryHours b {
   margin-right: 2vh;
+  width: 20px;
+  text-align: end;
 }
 
 .pageBack {

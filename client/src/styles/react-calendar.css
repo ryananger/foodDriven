@@ -4,6 +4,7 @@
   border-radius: 8px;
   box-shadow: var(--cardShadow);
   flex: none;
+  overflow: hidden;
 }
 
 .react-calendar__navigation {

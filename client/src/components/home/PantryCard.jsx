@@ -1,11 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {IoMdMail as Mail} from 'react-icons/io';
-import {AiFillPhone as Phone} from 'react-icons/ai';
 
 import st            from 'ryscott-st';
 import {ax, helpers} from 'util';
 
-const PantryCard = function({pantry, index, setPantryView}) {
+const PantryCard = function({pantry, setPantryView}) {
   const [registered, setRegistered] = useState(false);
 
   const user     = st.user;
@@ -79,7 +77,7 @@ const PantryCard = function({pantry, index, setPantryView}) {
     return rendered;
   };
 
-  useEffect(()=>{
+  var checkRegistered = function() {
     if (!user) {return};
 
     pantry.customers.map(function(uid) {
@@ -87,7 +85,9 @@ const PantryCard = function({pantry, index, setPantryView}) {
         setRegistered(true);
       }
     })
-  }, []);
+  };
+
+  useEffect(checkRegistered, []);
 
   return (
     <div className='pantryCard h' onClick={()=>{setPantryView(pantry)}}>
@@ -114,7 +114,7 @@ const PantryCard = function({pantry, index, setPantryView}) {
         {user && user.customerInfo && registerButton()}
       </div>
     </div>
-  )
+  );
 };
 
 export default PantryCard;

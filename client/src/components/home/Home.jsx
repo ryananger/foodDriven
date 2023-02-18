@@ -9,7 +9,6 @@ import PantryPage   from './PantryPage.jsx';
 const Home = function() {
   const [pantryView, setPantryView] = useState(null);
 
-  const user     = st.user;
   const pantries = st.pantries;
   const url      = window.location.pathname.slice(1);
 
@@ -22,7 +21,7 @@ const Home = function() {
       }
 
       rendered.push(
-        <PantryCard key={i} pantry={pantry} index={i} setPantryView={setPantryView}/>
+        <PantryCard key={i} pantry={pantry} setPantryView={setPantryView}/>
       )
     })
 

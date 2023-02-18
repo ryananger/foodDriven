@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {BsPlusCircleFill as Plus} from 'react-icons/bs';
 
 import st            from 'ryscott-st';
 import {ax, helpers} from 'util';
@@ -37,10 +36,16 @@ const Slots = function({pantry}) {
     var end     = hours[day].end;
     var options = [];
 
+    var parseDate = function(date) {
+      var hr  = date.m === 'p' && date.hour > 12 ? date.hour - 12 : date.hour;
+      var min = date.minute ? ':' + date.minute : ':00';
+      var m   = date.m = date.hour >= 12 ? 'p' : 'a';
+
+      return {hr, min, m};
+    };
+
     var getOption = function() {
-      var hr  = current.m === 'p' && current.hour > 12 ? current.hour - 12 : current.hour;
-      var min = current.minute ? ':' + current.minute : ':00';
-      var m   = current.m = current.hour >= 12 ? 'p' : 'a';
+      var p1 = parseDate(current);
 
       var next = current;
 
@@ -49,24 +54,25 @@ const Slots = function({pantry}) {
       } else {
         next.minute += timeframe;
         if (next.minute >= 60) {
-          next.hour === 24 ? next.hour = 1 : next.hour++;
+          next.hour = next.hour === 24 ? 1 : next.hour + 1;
           next.minute -= 60;
         }
       }
 
-      var hr2  = next.m === 'p' && next.hour > 12 ? next.hour - 12 : next.hour;
-      var min2 = next.minute ? ':' + next.minute : ':00';
-      var m2   = next.m = next.hour >= 12 ? 'p' : 'a';
+      if ((next.hour > end.hour) || (next.hour === end.hour && next.minute >= end.minute)) {
+        next = end;
+      }
 
-      var str  = hr + min + m + 'm - ' + hr2 + min2 + m2 + 'm';
+      var p2 = parseDate(next);
+
+      var str = p1.hr + p1.min + p1.m + 'm - ' + p2.hr + p2.min + p2.m + 'm';
 
       options.push(<option key={str} value={options.length}>{str}</option>);
 
-      current = next;
-
-      if (next.hour >= end.hour && next.minute >= end.minute) {
+      if (next.hour === end.hour && next.minute >= end.minute) {
         return;
       } else {
+        current = next;
         getOption();
       }
     };
@@ -75,6 +81,10 @@ const Slots = function({pantry}) {
 
     return options;
   };
+
+  useEffect(()=>{
+    setSelected(0);
+  }, [pantry]);
 
   return (
     <div className='scheduleInterface h'>

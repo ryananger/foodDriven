@@ -35,13 +35,16 @@ const CustomerForm = function() {
       num_6to17:    helpers.strToObj(form.num_6to17.value),
       num_18to64:   helpers.strToObj(form.num_18to64.value),
       num_65up:     helpers.strToObj(form.num_65up.value),
+
+      pantries:     [],
+      appointments: []
     };
 
     ax.createCustomer(customer);
   };
 
-  var renderForm = function() {
-    return (
+  return (
+    <div className='customerCreate v'>
       <form id='customerForm' className='customerForm card v' onSubmit={handleSubmit} autoComplete='off'>
         <div className='customerFormHead v'>
           <h2>Thank you for joining foodDRIVEN!</h2>
@@ -99,12 +102,6 @@ const CustomerForm = function() {
           </div>
         </div>
       </form>
-    )
-  };
-
-  return (
-    <div className='customerCreate v'>
-      {renderForm()}
     </div>
   )
 };

@@ -28,7 +28,7 @@ var ax = {
         document.cookie = `user=${uid}`;
 
         if (!alt) {
-          user.admin ? st.setView('admin') : st.setView('home');
+          st.setView('home');
         }
 
         console.log('Retrieved user from database.', user);

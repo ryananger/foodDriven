@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {BsPlusCircleFill as Plus} from 'react-icons/bs';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
@@ -45,7 +44,7 @@ const OpenDays = function({pantry}) {
       </div>
       <div className='scheduler v'>
         <b>Next service: &nbsp;{dayStr(open[0])}</b><br/>
-        <small>To schedule an appointment select a timeslot from the drop down and then click submit.</small><br/>
+        <small>To schedule an appointment for the next service, select a timeslot from the drop down and then click submit.</small><br/>
         <Slots pantry={pantry}/>
       </div>
     </div>

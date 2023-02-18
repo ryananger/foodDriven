@@ -81,7 +81,7 @@ const PantryPage = function({pantry}) {
     return (<b><div>{openStr}</div></b>);
   };
 
-  useEffect(()=>{
+  var checkRegistered = function() {
     if (!user) {return};
 
     var inPantry = false;
@@ -93,7 +93,9 @@ const PantryPage = function({pantry}) {
     })
 
     setRegistered(inPantry);
-  }, [pantry]);
+  };
+
+  useEffect(checkRegistered, [pantry]);
 
   return (
     <div className='pantryPage h'>
@@ -107,14 +109,15 @@ const PantryPage = function({pantry}) {
         <div className='pantryInfo h'><b>address: </b></div>
         <div className='pantryInfo h' style={{paddingLeft: '1vh'}}>{pantry.address}</div>
         <div className='pantryInfo h' style={{paddingLeft: '1vh'}}>{pantry.city}, {helpers.abbrState(pantry.state, 'abbr')} {pantry.zip}</div>
+        <br/>
+        <div className='pantryInfo h'><b>{pantry.info.appointment === 'yes' ? 'Appointment only.' : 'Walk-ins welcome!'}</b></div>
+        <div className='pantryInfo h'><b>{pantry.info.register === 'yes' ? 'Registration required.' : 'Registration is not required.'}</b></div>
       </div>
       <div className='pantryPageRight v'>
         {pantry.info.bio && <h2 style={{marginBottom: '2vh'}}>{pantry.info.bio}</h2>}
         {renderOpen()}
         {renderHours()}
         {pantry.info.open.day && <OpenDays pantry={pantry}/>}
-        <div className='pantryInfo h'>{pantry.info.appointment === 'yes' ? 'Appointment only.' : 'Walk-ins welcome!'}</div>
-        <div className='pantryInfo h'>{pantry.info.register === 'yes' ? 'Registration required.' : 'Registration is not required.'}</div>
         <br/>
         <br/>
         <div className='pantryInfo h'><b>{pantry.info.other}</b></div>

@@ -40,9 +40,7 @@ const App = function() {
     }
   };
 
-  useEffect(userFromCookie, []);
-  useEffect(ax.getPantries, []);
-  useEffect(function() {
+  var handleUser = function() {
     if (!user) {return;}
 
     if (!user.admin && !user.customerInfo) {
@@ -52,8 +50,11 @@ const App = function() {
     if (user.admin) {
       setIsAdmin('admin');
     }
+  };
 
-  }, [user]);
+  useEffect(userFromCookie, []);
+  useEffect(ax.getPantries, []);
+  useEffect(handleUser, [user]);
 
   return (
     <div id='app' className='app v'>

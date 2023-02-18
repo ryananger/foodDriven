@@ -46,17 +46,18 @@ const PantryCreate = function() {
       state:   form.state.value,
       zip:     form.zip.value,
 
-      info:      info,
-      admins:    [st.user.uid],
-      customers: [],
-      inventory: []
+      info:         info,
+      admins:       [st.user.uid],
+      customers:    [],
+      appointments: [],
+      inventory:    []
     };
 
     ax.createPantry(pantry);
   };
 
-  var renderForm = function() {
-    return (
+  return (
+    <div className='pantry v'>
       <form id='pantryForm' className='pantryForm v' onSubmit={handleSubmit} autoComplete='off'>
         <div className='pantryFormHead v'>
           <h2>Pantry creation info!</h2>
@@ -83,12 +84,6 @@ const PantryCreate = function() {
         <br/>
         <div className='backButton' onClick={()=>{st.setCreate(false)}}>back</div>
       </form>
-    )
-  };
-
-  return (
-    <div className='pantry v'>
-      {renderForm()}
     </div>
   )
 };
