@@ -95,24 +95,6 @@ var openDays = function(pantry) {
         count[key] = 0;
       }
 
-      if (key === 'weekend') {
-        if (day === 0 || day === 6) {
-          validate(check);
-        }
-      }
-
-      if (key === 'weekday') {
-        switch (day) {
-          case 1:
-          case 2:
-          case 3:
-          case 4:
-          case 5:
-            validate(check);
-            break;
-        }
-      }
-
       if (day === weekdays.indexOf(key)) {
         count[key]++;
 

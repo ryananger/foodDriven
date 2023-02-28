@@ -31,6 +31,8 @@ var ax = {
           st.setView('home');
         }
 
+        ax.getPantries();
+
         console.log('Retrieved user from database.', user);
       })
   },
@@ -85,7 +87,6 @@ var ax = {
       .then(function(response) {
         helpers.alert('Pantry information saved!');
         ax.getUser(st.user.uid);
-        ax.getPantries();
       })
   },
   createCustomer: function(customer) {

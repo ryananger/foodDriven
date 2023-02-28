@@ -3,6 +3,8 @@ import React, {useEffect, useState} from 'react';
 import st            from 'ryscott-st';
 import {ax, helpers} from 'util';
 
+import createAppointments from './createAppointments.js';
+
 const PantryConfig = function() {
   const pantry = st.pantry;
 
@@ -15,8 +17,10 @@ const PantryConfig = function() {
         hours: {},
         slots: {num: null, timeframe: null},
         open:  {frequency: null, frequencyDay: null}
-      },
+      }
     };
+
+    var apptUpdate = false;
 
     for (var i = 0; i < inputs.length; i++) {
       var input = inputs[i];
@@ -49,6 +53,7 @@ const PantryConfig = function() {
               num: value,
               timeframe: form.timeframe.value
             };
+            apptUpdate = true;
             break;
           case 'm':
           case 't':
@@ -58,24 +63,57 @@ const PantryConfig = function() {
           case 's':
           case 'sun':
             update.info.hours[input.name] = value;
+            apptUpdate = true;
             break;
           case 'frequency':
             update.info.open = {
-              frequency: value,
-              day: form.frequencyDay.value
+              frequency: value
             }
+            apptUpdate = true;
+            break;
+          case 'Monday':
+          case 'Tuesday':
+          case 'Wednesday':
+          case 'Thursday':
+          case 'Friday':
+          case 'Saturday':
+          case 'Sunday':
+            if (!input.checked) {break};
+
+            if (!update.info.open.day) {
+              update.info.open.day = input.name;
+            } else {
+              update.info.open.day += ', ' + input.name;
+            }
+            apptUpdate = true;
             break;
           case 'other':
             update.info.other = value;
             break;
-          case 'frequencyDay':
           case 'timeframe':
             break;
         }
       }
     }
 
+    var updated = {
+      ...pantry,
+      info: update.info
+    };
+
+    if (apptUpdate) {
+      update.appointments = createAppointments(updated);
+    }
+
     ax.editPantry(update);
+  };
+
+  var getCheckBox = function(day) {
+    var checked = pantry.info.open.day.includes(day);
+
+    return (
+      <input type='checkbox' name={day} defaultChecked={checked}/>
+    );
   };
 
   return (
@@ -189,9 +227,27 @@ const PantryConfig = function() {
               </select>
             </div>
             <div className='configLabel h'>
-              <b>day: </b>
-              <input name='frequencyDay' className='configInput' placeholder='Eg: Monday, weekend; weekday;' defaultValue={pantry.info.open.day}/>
-              <small>Day name (Monday, etc.), 'weekend', or 'weekday', separated by comma.</small>
+              <b></b>
+              <div className='checkBoxContainer v'>
+                <div className='checkBoxLabels h'>
+                  <div>m</div>
+                  <div>t</div>
+                  <div>w</div>
+                  <div>th</div>
+                  <div>f</div>
+                  <div>s</div>
+                  <div>sun</div>
+                </div>
+                <div className='checkboxes h'>
+                  {getCheckBox('Monday')}
+                  {getCheckBox('Tuesday')}
+                  {getCheckBox('Wednesday')}
+                  {getCheckBox('Thursday')}
+                  {getCheckBox('Friday')}
+                  {getCheckBox('Saturday')}
+                  {getCheckBox('Sunday')}
+                </div>
+              </div>
             </div>
             <div className='configLabel h'>
               <b>other info: </b>

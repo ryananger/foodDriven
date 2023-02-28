@@ -24,7 +24,7 @@ const PantryCreate = function() {
     },
     open: {
       frequency: null,
-      frequencyDay: null
+      day: null
     },
     other: null
   };

@@ -32,11 +32,12 @@ const pantrySchema = new mongoose.Schema({
   state:      String,
   zip:        String,
 
-  info:       Object, // contains optional info: bio and hours
-
   admins:    [String],
   customers: [String],
-  inventory: [Object]
+  inventory: [Object],
+
+  info:         Object, // contains optional info: bio and hours
+  appointments: Object
 });
 
 const customerSchema = new mongoose.Schema({

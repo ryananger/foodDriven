@@ -8,17 +8,20 @@ import {ax, helpers} from 'util';
 import Pantry from './Pantry.jsx';
 import PantryCreate from './PantryCreate.jsx';
 import PantryConfig from './PantryConfig.jsx';
+import PantryAppointments from './PantryAppointments.jsx';
 
 const Admin = function() {
   const [create, setCreate] = st.newState('create', useState(false));
   const [pantry, setPantry] = st.newState('pantry', useState(null));
-  const [config, setConfig] = st.newState('config', useState(false));
+  const [config, setConfig] = useState(false);
+  const [appt, setAppt]     = useState(false);
 
   const user = st.user;
 
   var handlePantryClick = function(pantry, index) {
     setCreate(false);
     setConfig(false);
+    setAppt(false);
     setPantry(user.pantries[index]);
   };
 
@@ -60,9 +63,14 @@ const Admin = function() {
         <div className='topBar h'>
           <h3>{create ? 'Create a new pantry!' : `${pantry ? pantry.name : ''}`}</h3>
 
-          <div className='configButton' onClick={()=>{setConfig(!config)}}>{config ? 'list' : 'config'}</div>
+          <div className='h'>
+            {!config && <div className='configButton' onClick={()=>{setAppt(!appt)}}>{appt ? 'back' : 'appointments'}</div>}
+            {!appt && <div className='configButton' onClick={()=>{setConfig(!config)}}>{config ? 'back' : 'settings'}</div>}
+          </div>
         </div>
-        {create ? <PantryCreate /> : (config ? <PantryConfig /> : <Pantry />)}
+        {create ? <PantryCreate /> :
+         config ? <PantryConfig /> :
+         appt   ? <PantryAppointments /> : <Pantry />}
       </div>
     </div>
   )
