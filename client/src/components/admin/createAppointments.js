@@ -85,7 +85,9 @@ var createAppointments = function(pantry) {
     appointments[str] = {};
 
     options.map(function(option) {
-      if (pantry.appointments[str] && pantry.appointments[str][option]) {
+      if (pantry.appointments &&
+          pantry.appointments[str] &&
+          pantry.appointments[str][option]) {
         appointments[str][option] = pantry.appointments[str][option];
       } else {
         appointments[str][option] = [];

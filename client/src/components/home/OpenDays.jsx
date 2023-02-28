@@ -10,8 +10,6 @@ import Slots from './Slots.jsx';
 const OpenDays = function({pantry}) {
   const open = openDays(pantry);
 
-  st.open = open;
-
   var calendarValid = function({date, view}) {
     var valid = '';
 
@@ -36,6 +34,10 @@ const OpenDays = function({pantry}) {
     return valid;
   };
 
+  var handleSubmit = function() {
+    // TODO: check if already scheduled, check if space available for timeslot, disable if admin
+  };
+
   return (
     <div className='openDays h'>
       <div className='v'>
@@ -45,7 +47,10 @@ const OpenDays = function({pantry}) {
       <div className='scheduler v'>
         <b>Next service: &nbsp;{dayStr(open[0])}</b><br/>
         <small>To schedule an appointment for the next service, select a timeslot from the drop down and then click submit.</small><br/>
-        <Slots pantry={pantry}/>
+        <div className='scheduleInterface h'>
+          <Slots pantry={pantry}/>
+          <button className='button scheduleButton' onClick={handleSubmit}>submit</button>
+        </div>
       </div>
     </div>
   )
