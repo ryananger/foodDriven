@@ -184,7 +184,7 @@ var openDays = function(pantry) {
 
     current = new Date(next);
 
-    if (valid.length < 20) {
+    if (valid.length < 8) {
       checkDay();
     }
   };

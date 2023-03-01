@@ -49,6 +49,7 @@ const App = function() {
 
     if (user.admin) {
       setIsAdmin('admin');
+      setView('admin');
     }
   };
 

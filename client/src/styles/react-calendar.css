@@ -52,7 +52,7 @@
   width: 100%;
 }
 
-.scheduleSelect {
+#scheduleSelect {
   flex: auto;
   width: 160px;
   height: 30px;

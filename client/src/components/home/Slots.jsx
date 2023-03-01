@@ -6,10 +6,13 @@ const Slots = function({pantry}) {
   var renderOptions = function() {
     if (!pantry.appointments) {return};
 
-    var options = [];
+    var options  = [];
+    var firstDay = pantry.appointments[Object.keys(pantry.appointments)[0]];
 
-    for (var key in pantry.appointments[Object.keys(pantry.appointments)[0]]) {
-      options.push(<option key={key} value={options.length}>{key}</option>);
+    for (var timeslot in firstDay) {
+      if (firstDay[timeslot].length < pantry.info.slots.num) {
+        options.push(<option key={timeslot} timeslot={timeslot} value={options.length}>{timeslot}</option>);
+      }
     }
 
     return options;
@@ -20,7 +23,7 @@ const Slots = function({pantry}) {
   }, [pantry]);
 
   return (
-    <select className='scheduleSelect' value={selected} onChange={(e)=>{setSelected(e.target.value)}}>
+    <select id='scheduleSelect' value={selected} onChange={(e)=>{setSelected(e.target.value)}}>
       {renderOptions()}
     </select>
   )

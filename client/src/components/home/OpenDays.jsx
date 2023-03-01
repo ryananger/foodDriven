@@ -9,6 +9,26 @@ import Slots from './Slots.jsx';
 
 const OpenDays = function({pantry}) {
   const open = openDays(pantry);
+  const scheduled = function() {
+    var appts = pantry.appointments;
+    var scheduled = false;
+
+    for (var date in appts) {
+      for (var slot in appts[date]) {
+        if (scheduled) {
+          return scheduled;
+        }
+
+        appts[date][slot].map(function(uid) {
+          if (uid === st.user.uid) {
+            scheduled = {date, slot};
+          }
+        })
+      }
+    }
+
+    return scheduled;
+  }();
 
   var calendarValid = function({date, view}) {
     var valid = '';
@@ -35,7 +55,26 @@ const OpenDays = function({pantry}) {
   };
 
   var handleSubmit = function() {
-    // TODO: check if already scheduled, check if space available for timeslot, disable if admin
+    var select = document.getElementById('scheduleSelect');
+    var value = select.value;
+    var timeslot = select[value].getAttribute('timeslot');
+
+    ax.scheduleCustomer(pantry, timeslot, dayStr(open[0]).split(', ')[1]);
+  };
+
+  var instructionText = function() {
+    if (scheduled) {
+      return (
+        <small>
+          <b>You have an appointment scheduled for {scheduled.date}, {scheduled.slot}.</b><br/><br/>
+          To change your appointment, select a timeslot from the drop down and then click submit.
+        </small>
+      );
+    } else {
+      return (
+        <small>To schedule an appointment for the next service, select a timeslot from the drop down and then click submit.</small>
+      );
+    }
   };
 
   return (
@@ -46,10 +85,10 @@ const OpenDays = function({pantry}) {
       </div>
       <div className='scheduler v'>
         <b>Next service: &nbsp;{dayStr(open[0])}</b><br/>
-        <small>To schedule an appointment for the next service, select a timeslot from the drop down and then click submit.</small><br/>
+        {instructionText()}<br/>
         <div className='scheduleInterface h'>
           <Slots pantry={pantry}/>
-          <button className='button scheduleButton' onClick={handleSubmit}>submit</button>
+          {!st.user.admin && <button className='button scheduleButton' onClick={handleSubmit}>{scheduled ? 'update' : 'submit'}</button>}
         </div>
       </div>
     </div>

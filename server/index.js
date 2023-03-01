@@ -54,6 +54,10 @@ app.put('/api/pantries/:email', function(req, res) {
   controller.editPantry(req.params.email, req.body, res);
 });
 
+app.put('/api/pantries/schedule/:email', function(req, res) {
+  controller.scheduleCustomer(req.params.email, req.body, res);
+})
+
 app.post('/api/customers', function(req, res) {
   controller.createCustomer(req, res);
 });

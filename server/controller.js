@@ -114,6 +114,38 @@ var controller = {
         res.send('Edit success.');
       })
   },
+  scheduleCustomer: function(email, update, res) {
+    Pantry.findOne({email: email})
+      .then(function(pantry) {
+        var appts = {...pantry.appointments};
+
+        for (var day in appts) {
+          for (var timeslot in appts[day]) {
+            var userIndex = appts[day][timeslot].indexOf(update.user);
+            var updated = [];
+
+            if (userIndex !== -1) {
+              appts[day][timeslot].map(function(uid, i) {
+                if (i !== userIndex) {
+                  updated.push(uid);
+                }
+              })
+
+              appts[day][timeslot] = updated;
+            }
+          }
+        }
+
+        var slot = appts[update.day][update.timeslot];
+
+        slot.push(update.user);
+
+        Pantry.findOneAndUpdate(pantry, {appointments: appts})
+          .then(function(response) {
+            res.send();
+          })
+      })
+  },
   createCustomer: function(req, res) {
     DbInfo.findOneAndUpdate()
       .then(function(info) {

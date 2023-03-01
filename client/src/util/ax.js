@@ -89,6 +89,20 @@ var ax = {
         ax.getUser(st.user.uid);
       })
   },
+  scheduleCustomer: function(pantry, timeslot, day) {
+    const email  = pantry.email;
+
+    var update = {
+      day: day,
+      timeslot: timeslot,
+      user: st.user.uid
+    };
+
+    axios.put(urlBase + 'api/pantries/schedule/' + email, update)
+      .then(function(response) {
+        helpers.alert(`Appointment scheduled for ${update.day}, ${update.timeslot}!`);
+      })
+  },
   createCustomer: function(customer) {
     axios.post(urlBase + 'api/customers/', customer)
       .then(function(response) {
