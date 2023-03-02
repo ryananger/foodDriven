@@ -40,8 +40,17 @@ const Home = function() {
     }
   };
 
+  var mountPantry = function() {
+    pantries.map(function(pantry) {
+      if (pantryView && pantry.email === pantryView.email) {
+        setPantryView(pantry);
+      }
+    })
+  };
+
   useEffect(setScrollTop, [pantryView]);
   useEffect(urlPantry, []);
+  useEffect(mountPantry, [pantries]);
 
   return (
     <div className='homeContainer v'>

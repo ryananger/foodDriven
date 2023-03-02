@@ -56,6 +56,7 @@ const App = function() {
   useEffect(userFromCookie, []);
   useEffect(ax.getPantries, []);
   useEffect(handleUser, [user]);
+  useEffect(()=>{}, [pantries]);
 
   return (
     <div id='app' className='app v'>

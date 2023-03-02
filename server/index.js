@@ -38,6 +38,10 @@ app.get('/api/pantries/email/:email/:sort', function(req, res) {
   controller.getPantry(req.params.email, req.params.sort, res);
 });
 
+app.get('/api/pantries/appts/:email', function(req, res) {
+  controller.getAppointmentsForPantry(req.params.email, res);
+})
+
 app.post('/api/pantries/customer/:uid', function(req, res) {
   controller.addCustomerToPantry(req.params.uid, req.body.email, res);
 });

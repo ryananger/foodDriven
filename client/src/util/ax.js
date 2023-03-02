@@ -66,6 +66,13 @@ var ax = {
         }
       })
   },
+  getAppointmentsForPantry: function(email, setAppointments) {
+    axios.get(urlBase + 'api/pantries/appts/' + email)
+      .then(function(response) {
+        console.log(response);
+        setAppointments(response.data);
+      })
+  },
   getPantries: function() {
     axios.get(urlBase + 'api/pantries/')
       .then(function(response) {
@@ -89,9 +96,7 @@ var ax = {
         ax.getUser(st.user.uid);
       })
   },
-  scheduleCustomer: function(pantry, timeslot, day) {
-    const email  = pantry.email;
-
+  scheduleCustomer: function(email, timeslot, day) {
     var update = {
       day: day,
       timeslot: timeslot,
@@ -101,6 +106,7 @@ var ax = {
     axios.put(urlBase + 'api/pantries/schedule/' + email, update)
       .then(function(response) {
         helpers.alert(`Appointment scheduled for ${update.day}, ${update.timeslot}!`);
+        ax.getPantries();
       })
   },
   createCustomer: function(customer) {

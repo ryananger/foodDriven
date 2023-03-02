@@ -76,14 +76,6 @@ var controller = {
         controller.getCustomersForPantry(pantry, sort, res);
       })
   },
-  getPantryByURL: function(url, res) {
-    Pantry.findOne({'info.url': url})
-      .then(function(pantry) {
-
-        res.json(pantry);
-      })
-
-  },
   getCustomersForPantry: function(pantry, sort, res) {
     Customer.find({pantries: pantry._id})
       .sort(sort)
@@ -91,6 +83,12 @@ var controller = {
         var customers = results.map((customer)=>{return transform(customer._doc)});
 
         res.json(customers);
+      })
+  },
+  getPantryByURL: function(url, res) {
+    Pantry.findOne({'info.url': url})
+      .then(function(pantry) {
+        res.json(pantry);
       })
   },
   addCustomerToPantry: function(uid, email, res) {
@@ -107,6 +105,41 @@ var controller = {
         }
       })
   },
+  getAppointmentsForPantry: function(email, res) {
+    Pantry.findOne({email: email})
+      .then(function(pantry) {
+        var promises = [];
+        var appts    = pantry.appointments;
+        var updated  = {};
+
+        for (var day in appts) {
+          updated[day] = {};
+
+          for (var timeslot in appts[day]) {
+            updated[day][timeslot] = [];
+
+            appts[day][timeslot].map(function(uid) {
+              var d = day;
+              var t = timeslot;
+
+              promises.push(new Promise(function(resolve) {
+                Customer.findOne({uid: uid})
+                  .then(function(customer) {
+                    updated[d][t].push(transform(customer._doc));
+                    console.log(updated);
+                    resolve();
+                  })
+              }))
+            })
+          }
+        }
+
+        Promise.all(promises)
+          .then(function() {
+            res.json(updated);
+          })
+      })
+  },
   editPantry: function(email, update, res) {
     Pantry.findOneAndUpdate({email: email}, update)
       .then(function(response) {
@@ -117,6 +150,7 @@ var controller = {
   scheduleCustomer: function(email, update, res) {
     Pantry.findOne({email: email})
       .then(function(pantry) {
+        console.log(email);
         var appts = {...pantry.appointments};
 
         for (var day in appts) {
@@ -140,7 +174,7 @@ var controller = {
 
         slot.push(update.user);
 
-        Pantry.findOneAndUpdate(pantry, {appointments: appts})
+        Pantry.findOneAndUpdate({email: email}, {appointments: appts})
           .then(function(response) {
             res.send();
           })

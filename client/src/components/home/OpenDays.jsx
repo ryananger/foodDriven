@@ -8,17 +8,19 @@ import {ax, helpers} from 'util';
 import Slots from './Slots.jsx';
 
 const OpenDays = function({pantry}) {
+  const [scheduled, setScheduled] = useState(false);
   const open = openDays(pantry);
-  const scheduled = function() {
+
+  var checkScheduled = function() {
     var appts = pantry.appointments;
     var scheduled = false;
 
+    if (!st.user) {
+      return false;
+    }
+
     for (var date in appts) {
       for (var slot in appts[date]) {
-        if (scheduled) {
-          return scheduled;
-        }
-
         appts[date][slot].map(function(uid) {
           if (uid === st.user.uid) {
             scheduled = {date, slot};
@@ -28,7 +30,7 @@ const OpenDays = function({pantry}) {
     }
 
     return scheduled;
-  }();
+  };
 
   var calendarValid = function({date, view}) {
     var valid = '';
@@ -59,7 +61,7 @@ const OpenDays = function({pantry}) {
     var value = select.value;
     var timeslot = select[value].getAttribute('timeslot');
 
-    ax.scheduleCustomer(pantry, timeslot, dayStr(open[0]).split(', ')[1]);
+    ax.scheduleCustomer(pantry.email, timeslot, dayStr(open[0]).split(', ')[1]);
   };
 
   var instructionText = function() {
@@ -77,6 +79,11 @@ const OpenDays = function({pantry}) {
     }
   };
 
+
+  useEffect(()=>{
+    setScheduled(checkScheduled(pantry));
+  }, [pantry]);
+
   return (
     <div className='openDays h'>
       <div className='v'>
@@ -88,7 +95,7 @@ const OpenDays = function({pantry}) {
         {instructionText()}<br/>
         <div className='scheduleInterface h'>
           <Slots pantry={pantry}/>
-          {!st.user.admin && <button className='button scheduleButton' onClick={handleSubmit}>{scheduled ? 'update' : 'submit'}</button>}
+          {st.user && !st.user.admin && <button className='button scheduleButton' onClick={handleSubmit}>{scheduled ? 'update' : 'submit'}</button>}
         </div>
       </div>
     </div>
