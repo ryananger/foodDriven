@@ -7,7 +7,7 @@ import {ax, helpers} from 'util';
 
 import Slots from './Slots.jsx';
 
-const OpenDays = function({pantry}) {
+const OpenDays = function({pantry, registered}) {
   const [scheduled, setScheduled] = useState(false);
   const open = openDays(pantry);
 
@@ -79,7 +79,6 @@ const OpenDays = function({pantry}) {
     }
   };
 
-
   useEffect(()=>{
     setScheduled(checkScheduled(pantry));
   }, [pantry]);
@@ -95,7 +94,7 @@ const OpenDays = function({pantry}) {
         {instructionText()}<br/>
         <div className='scheduleInterface h'>
           <Slots pantry={pantry}/>
-          {st.user && !st.user.admin && <button className='button scheduleButton' onClick={handleSubmit}>{scheduled ? 'update' : 'submit'}</button>}
+          {st.user && registered && <button className='button scheduleButton' onClick={handleSubmit}>{scheduled ? 'update' : 'submit'}</button>}
         </div>
       </div>
     </div>

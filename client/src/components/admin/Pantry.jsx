@@ -8,6 +8,7 @@ import CustomerEntry  from './CustomerEntry.jsx';
 import CustomerAdd    from './CustomerAdd.jsx';
 import CustomerLabels from './CustomerLabels.jsx';
 import PantryHead     from './PantryHead.jsx';
+import PantryAppointments from './PantryAppointments.jsx';
 
 const Pantry = function() {
   const [editing, setEditing] = st.newState('editing', useState(null));
@@ -69,12 +70,17 @@ const Pantry = function() {
 
   return (
     <div className='pantry v'>
-      <PantryHead setAdding={setAdding}/>
-      <div className='customerList v'>
-        <CustomerLabels />
-        <div id='customerData' className='customerData v' onScroll={handleScroll}>
-          {renderData()}
+      <div className='pantryAll h'>
+        <div className='pantryMain v'>
+          <PantryHead setAdding={setAdding}/>
+          <div className='customerList v'>
+            <CustomerLabels />
+            <div id='customerData' className='customerData v' onScroll={handleScroll}>
+              {renderData()}
+            </div>
+          </div>
         </div>
+        {pantry && <PantryAppointments />}
       </div>
     </div>
   );

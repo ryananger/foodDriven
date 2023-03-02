@@ -51,15 +51,6 @@
   background: var(--cardGrad);
 }
 
-.pantryView {
-  flex: auto;
-  height: 100%;
-  margin-left: 2vh;
-  border: 1px solid var(--dirt);
-  background: linear-gradient(to top, var(--lightBrown) 1%, rgb(251 220 200) 1%, #eddfdabd 95%);
-  box-shadow: var(--cardShadow);
-}
-
 .configButton {
   cursor: pointer;
   margin-left: 12px;
@@ -194,4 +185,48 @@ input[type='checkbox'] {
 
 .configSave:hover {
   background-color: var(--trSky);
+}
+
+.appointments {
+  right: 0;
+  min-width: 280px;
+  padding: 1vh;
+  align-items: flex-start;
+  position: absolute;
+  background: var(--lightBrown);
+  height: 100%;
+  overflow: overlay;
+  border-left: 1px solid;
+
+  transition: opacity 0.25s, visibility 0s;
+}
+
+.appointments h2 {
+  width: 100%;
+  border-bottom: 1px solid;
+  margin: 0;
+  margin-bottom: 1vh;
+}
+
+.apptTimeslot {
+  width: 100%;
+  margin-bottom: 2vh;
+  padding: 1vh;
+  background: var(--trWhite);
+  align-items: flex-end;
+}
+
+.timeText {
+  margin-bottom: 1vh;
+  border-bottom: 1px solid;
+}
+
+.apptEntries {
+  align-items: flex-end;
+  width: 100%;
+}
+
+.apptEntries * {
+  margin-bottom: 1vh;
+  margin-top: 1vh;
 }

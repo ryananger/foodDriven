@@ -9,39 +9,52 @@ const PantryAppointments = function() {
 
   var renderAppointments = function() {
     var rendered = [];
-    var appts = pantry.appointments;
+    var appts = appointments;
+
+    var noAppts = true;
 
     for (var date in appts) {
-      rendered.push(<h3 key={date + '_head'}>{date}</h3>);
-
-      var noAppts = true;
-
       for (var timeslot in appts[date]) {
         if (appts[date][timeslot].length > 0) {
-          noAppts = false;
-          rendered.push(<h3 key={timeslot}>{timeslot}</h3>);
+          if (noAppts) {
+            rendered.push(<h2 key={date + '_head'}>{date}</h2>);
+            noAppts = false;
+          }
 
-          appts[date][timeslot].map(function(customer, i) {
-            rendered.push(<div key={i}>{customer}</div>);
-          })
+          var slotText = <h3 key={timeslot} className='timeText'>{timeslot}</h3>;
+
+          rendered.push(
+            <div className='apptTimeslot v'>
+              {slotText}
+              <div className='apptEntries v'>
+                {
+                  appts[date][timeslot].map(function(customer, i) {
+                    return (<div key={timeslot + i}><b>{customer.firstName + ' ' + customer.lastName}</b> &emsp;{customer.regId}</div>);
+                  })
+                }
+              </div>
+            </div>
+          );
         }
       }
+    }
 
-      if (noAppts) {
-        rendered.push(<div key='empty'>No appointments scheduled.</div>);
-      }
+    if (noAppts) {
+      rendered.push(<b>There are no appointments for this pantry.</b>);
     }
 
     return rendered;
   };
 
   useEffect(()=>{
-    ax.getAppointmentsForPantry(pantry.email, setAppointments);
-  }, []);
+    if (pantry) {
+      ax.getAppointmentsForPantry(setAppointments);
+    }
+  }, [pantry]);
 
   return (
-    <div className='appointments v'>
-      {renderAppointments()}
+    <div className={`appointments v ${st.appt}`}>
+      {appointments && renderAppointments()}
     </div>
   )
 };

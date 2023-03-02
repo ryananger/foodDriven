@@ -1,3 +1,12 @@
+.pantryView {
+  flex: auto;
+  height: 100%;
+  width: calc(100% - 240px - 6vh);
+  margin-left: 2vh;
+  border: 1px solid var(--dirt);
+  background: linear-gradient(to top, var(--lightBrown) 1%, rgb(251 220 200) 1%, #eddfdabd 95%);
+  box-shadow: var(--cardShadow);
+}
 
 .pantryView * {
   border-radius: 0;
@@ -8,9 +17,23 @@
   height: 100%;
   justify-content: center;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 0 0 8px 8px;
 
   background: var(--cardGrad);
+}
+
+.pantryAll {
+  width: 100%;
+  height: 100%;
+  align-items: flex-start;
+  position: relative;
+}
+
+.pantryMain {
+  width: 100%;
+  height: calc(100% - 1vh);
+  flex: none;
+  overflow: auto;
 }
 
 .pantryHead {
@@ -67,19 +90,18 @@
 
 .customerLabel, .customerInfo {
   width: 10%;
-
+  min-width: 60px;
   background: linear-gradient(to right, black 90%, transparent);
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
-
   white-space: nowrap;
 }
 
 .customerData {
   width: 100%;
   height: 95%;
-  overflow: overlay;
+  overflow-y: overlay;
 }
 
 .customerEntry {

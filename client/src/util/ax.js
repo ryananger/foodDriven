@@ -66,7 +66,9 @@ var ax = {
         }
       })
   },
-  getAppointmentsForPantry: function(email, setAppointments) {
+  getAppointmentsForPantry: function(setAppointments) {
+    const email = st.pantry.email;
+
     axios.get(urlBase + 'api/pantries/appts/' + email)
       .then(function(response) {
         console.log(response);

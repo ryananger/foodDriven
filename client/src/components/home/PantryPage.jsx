@@ -84,6 +84,8 @@ const PantryPage = function({pantry}) {
   var checkRegistered = function() {
     if (!user) {return};
 
+    setRegistered(false);
+
     var inPantry = false;
 
     pantry.customers.map(function(uid) {
@@ -117,7 +119,7 @@ const PantryPage = function({pantry}) {
         {pantry.info.bio && <h2 style={{marginBottom: '2vh'}}>{pantry.info.bio}</h2>}
         {renderOpen()}
         {renderHours()}
-        {pantry.info.open.day && <OpenDays pantry={pantry}/>}
+        {pantry.info.open.day && <OpenDays pantry={pantry} registered={registered}/>}
         <br/>
         <br/>
         <div className='pantryInfo h'><b>{pantry.info.other}</b></div>
