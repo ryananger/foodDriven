@@ -15,22 +15,28 @@
 .pantry {
   width: 100%;
   height: 100%;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   overflow: hidden;
-  border-radius: 0 0 8px 8px;
-
   background: var(--cardGrad);
 }
 
 .pantryAll {
-  width: 100%;
+  width: calc(100% + 250px);
   height: 100%;
   align-items: flex-start;
   position: relative;
+  overflow-x: hidden;
+  font-size: 13px;
+  transition: width 0.5s cubic-bezier(0.19, 0.02, 0.55, 0.95);
+}
+
+.smallPantry {
+  width: 100%;
 }
 
 .pantryMain {
-  width: 100%;
+  width: calc(100% - 250px);
   height: calc(100% - 1vh);
   flex: none;
   overflow: auto;
@@ -79,6 +85,7 @@
 
 .customerLabels {
   justify-content: flex-start;
+  align-items: flex-end;
   width: 100%;
   height: 32px;
   padding: 6px;
@@ -106,6 +113,7 @@
 
 .customerEntry {
   justify-content: flex-start;
+  flex: none;
   width: 100%;
   height: 36px;
   padding: 6px;
@@ -117,10 +125,6 @@
 .customerEntry:hover {
   background-color: var(--trSky);
   cursor: text;
-}
-
-.customerInfo {
-  font-size: 15px;
 }
 
 .customerEditForm {
@@ -144,7 +148,6 @@
   padding: 4px;
   padding: 0;
   border: 0;
-  font-size: 15px;
   background: transparent;
 }
 
@@ -182,6 +185,11 @@
 
 .sCol {
   width: 5%;
+  min-width: 24px;
+}
+
+.mCol {
+  min-width: 100px;
 }
 
 .lCol {

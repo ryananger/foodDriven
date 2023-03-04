@@ -16,6 +16,7 @@ const Pantry = function() {
   const [search, setSearch]   = st.newState('search', useState(''));
   const [adding, setAdding]   = useState(false);
   const [viewLength, setViewLength] = useState(100);
+  const [mod, setMod] = useState('');
 
   const pantry = st.pantry;
 
@@ -67,11 +68,14 @@ const Pantry = function() {
   };
 
   useEffect(getCustomerData, [pantry]);
+  useEffect(()=>{
+    st.appt ? setMod('smallPantry') : setMod('');
+  }, [st.appt]);
 
   return (
     <div className='pantry v'>
-      <div className='pantryAll h'>
-        <div className='pantryMain v'>
+      <div className={'pantryAll h ' + mod}>
+        <div className='pantryMain v '>
           <PantryHead setAdding={setAdding}/>
           <div className='customerList v'>
             <CustomerLabels />

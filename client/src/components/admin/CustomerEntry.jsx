@@ -22,10 +22,10 @@ const CustomerEntry = function({i, customer}) {
   const entry = {
     div: (
       <div className={`customerEntry ${mod} h`} onClick={handleClick}>
-        <div className='customerInfo'>{customer.regId}</div>
-        <div className='customerInfo'>{name}</div>
-        <div className='customerInfo'>{helpers.renderPhone(customer.phone)}</div>
-        <div className='customerInfo lCol'><small>{customer.email}</small></div>
+        <div className='customerInfo mCol'>{customer.regId}</div>
+        <div className='customerInfo mCol'>{name}</div>
+        <div className='customerInfo mCol'>{helpers.renderPhone(customer.phone)}</div>
+        <div className='customerInfo mCol lCol'>{customer.email}</div>
         <div className='customerInfo sCol'>{customer.zip}</div>
         <div className='customerInfo sCol'>{customer.age}</div>
         <div className='customerInfo'>{customer.ethnicity}</div>

@@ -233,6 +233,14 @@ var controller = {
   }
 };
 
+var getRegId = function(num) {
+  var count = '' + (num + 1);
+  var year  = new Date().getFullYear();
+  var str   = `${year}-${count.padStart(6, '0')}`;
+
+  return str;
+};
+
 var getPantriesForUser = function(user, res) {
   var handleResponse = function(response) {
     var pantries = response.map(entry => transform(entry._doc));

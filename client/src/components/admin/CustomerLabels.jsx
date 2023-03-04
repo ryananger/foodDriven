@@ -3,10 +3,10 @@ import React, {useEffect, useState} from 'react';
 const CustomerLabels = function() {
   return (
     <div className='customerLabels h'>
-      <div className='customerLabel'>#</div>
-      <div className='customerLabel'>name</div>
-      <div className='customerLabel'>phone</div>
-      <div className='customerLabel lCol'>email</div>
+      <div className='customerLabel mCol'>#</div>
+      <div className='customerLabel mCol'>name</div>
+      <div className='customerLabel mCol'>phone</div>
+      <div className='customerLabel mCol lCol'>email</div>
       <div className='customerLabel sCol'>zip</div>
       <div className='customerLabel sCol'>age</div>
       <div className='customerLabel'>ethnicity</div>

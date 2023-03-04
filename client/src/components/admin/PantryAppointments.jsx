@@ -53,7 +53,7 @@ const PantryAppointments = function() {
   }, [pantry]);
 
   return (
-    <div className={`appointments v ${st.appt}`}>
+    <div id='appt' className='appointments v'>
       {appointments && renderAppointments()}
     </div>
   )

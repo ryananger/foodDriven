@@ -12,7 +12,7 @@ import PantryConfig from './PantryConfig.jsx';
 const Admin = function() {
   const [create, setCreate] = st.newState('create', useState(false));
   const [pantry, setPantry] = st.newState('pantry', useState(null));
-  const [appt, setAppt]     = st.newState('appt', useState('hidden'));
+  const [appt, setAppt]     = st.newState('appt', useState(false));
   const [config, setConfig] = useState(false);
 
   const user = st.user;
@@ -20,8 +20,20 @@ const Admin = function() {
   var handlePantryClick = function(pantry, index) {
     setCreate(false);
     setConfig(false);
-    setAppt('hidden');
+    setAppt(false);
     setPantry(user.pantries[index]);
+  };
+
+  var handleApptClick = function() {
+    setAppt(!appt);
+  };
+
+  var handleConfigClick = function() {
+    if (!config) {
+      setAppt(false);
+    }
+
+    setConfig(!config);
   };
 
   var renderPantryList = function() {
@@ -63,8 +75,8 @@ const Admin = function() {
           <h3>{create ? 'Create a new pantry!' : `${pantry ? pantry.name : ''}`}</h3>
 
           <div className='h'>
-            {!config && <div className='configButton' onClick={()=>{setAppt(appt === 'visible' ? 'hidden': 'visible')}}>{appt === 'visible' ? 'hide' : 'appointments'}</div>}
-            {<div className='configButton' onClick={()=>{setConfig(!config)}}>{config ? 'back' : 'settings'}</div>}
+            {!config && <div className='configButton' onClick={handleApptClick}>{appt ? 'hide' : 'appointments'}</div>}
+            {<div className='configButton' onClick={handleConfigClick}>{config ? 'back' : 'settings'}</div>}
           </div>
         </div>
         {create ? <PantryCreate /> :
