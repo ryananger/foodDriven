@@ -63,7 +63,7 @@ const Admin = function() {
           <h3>{create ? 'Create a new pantry!' : `${pantry ? pantry.name : ''}`}</h3>
 
           <div className='h'>
-            {!config && <div className='configButton' onClick={()=>{setAppt(appt === 'visible' ? 'hidden': 'visible')}}>{appt === 'visible' ? 'back' : 'appointments'}</div>}
+            {!config && <div className='configButton' onClick={()=>{setAppt(appt === 'visible' ? 'hidden': 'visible')}}>{appt === 'visible' ? 'hide' : 'appointments'}</div>}
             {<div className='configButton' onClick={()=>{setConfig(!config)}}>{config ? 'back' : 'settings'}</div>}
           </div>
         </div>

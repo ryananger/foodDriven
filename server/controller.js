@@ -2,6 +2,79 @@ const axios    = require('axios');
 const { User, Pantry, Customer, DbInfo } = require('./db.js');
 
 var controller = {
+  admin: {
+    createPantry: function(req, res) {
+      Pantry.create(req.body)
+        .then(function(response) {
+          var pantry = transform(response._doc);
+
+          res.status(201);
+          res.json(pantry);
+        })
+    },
+    getPantry: function(email, str, res) {
+      var sort = {};
+
+      if (str) {
+        var split = str.split('-');
+
+        if (split[1] === 'asc') {
+          sort[split[0]] = 1;
+        } else if (split[1] === 'des') {
+          sort[split[0]] = -1;
+        }
+      } else {
+        sort = {regId: 1};
+      }
+
+      Pantry.findOne({email: email})
+        .then(function(pantry) {
+          controller.admin.getCustomersForPantry(pantry, sort, res);
+        })
+    },
+    getCustomersForPantry: function(pantry, sort, res) {
+      Customer.find({pantries: pantry._id})
+        .sort(sort)
+        .then(function(results) {
+          var customers = results.map((customer)=>{return transform(customer._doc)});
+
+          res.json(customers);
+        })
+    },
+    editPantry: function(email, update, res) {
+      Pantry.findOneAndUpdate({email: email}, update)
+        .then(function(response) {
+          res.status(201);
+          res.send('Edit success.');
+        })
+    },
+    addCustomer: function(email, customer, res) {
+      DbInfo.findOneAndUpdate()
+        .then(function(info) {
+          var str = getRegId(info.nextId);
+
+          customer.uid = 'temp' + str;
+          customer.regId = str;
+          customer.pantries = [email];
+
+          Customer.create(customer)
+            .then(function(response) {
+              var customer = transform(response._doc);
+
+              controller.addCustomerToPantry(customer.uid, email, res);
+            })
+
+          DbInfo.findOneAndUpdate(info, {nextId: info.nextId + 1});
+        })
+    },
+    editCustomer: function(regId, update, res) {
+      Customer.findOneAndUpdate({regId: regId}, update)
+        .then(function(response) {
+          res.status(201);
+          res.send('Edit success.');
+        })
+    }
+  },
   createUser: function(req, res) {
     User.create(req.body)
       .then(function(response) {
@@ -39,50 +112,12 @@ var controller = {
         }
       })
   },
-  createPantry: function(req, res) {
-    Pantry.create(req.body)
-      .then(function(response) {
-        var pantry = transform(response._doc);
-
-        res.status(201);
-        res.json(pantry);
-      })
-  },
   getPantries: function(res) {
     Pantry.find({})
       .then(function(response) {
         var pantries = response.map(entry => transform(entry._doc));
 
         res.json(pantries);
-      })
-  },
-  getPantry: function(email, str, res) {
-    var sort = {};
-
-    if (str) {
-      var split = str.split('-');
-
-      if (split[1] === 'asc') {
-        sort[split[0]] = 1;
-      } else if (split[1] === 'des') {
-        sort[split[0]] = -1;
-      }
-    } else {
-      sort = {regId: 1};
-    }
-
-    Pantry.findOne({email: email})
-      .then(function(pantry) {
-        controller.getCustomersForPantry(pantry, sort, res);
-      })
-  },
-  getCustomersForPantry: function(pantry, sort, res) {
-    Customer.find({pantries: pantry._id})
-      .sort(sort)
-      .then(function(results) {
-        var customers = results.map((customer)=>{return transform(customer._doc)});
-
-        res.json(customers);
       })
   },
   getPantryByURL: function(url, res) {
@@ -125,8 +160,10 @@ var controller = {
               promises.push(new Promise(function(resolve) {
                 Customer.findOne({uid: uid})
                   .then(function(customer) {
-                    updated[d][t].push(transform(customer._doc));
-                    console.log(updated);
+                    if (customer) {
+                      updated[d][t].push(transform(customer._doc));
+                    }
+
                     resolve();
                   })
               }))
@@ -140,17 +177,9 @@ var controller = {
           })
       })
   },
-  editPantry: function(email, update, res) {
-    Pantry.findOneAndUpdate({email: email}, update)
-      .then(function(response) {
-        res.status(201);
-        res.send('Edit success.');
-      })
-  },
   scheduleCustomer: function(email, update, res) {
     Pantry.findOne({email: email})
       .then(function(pantry) {
-        console.log(email);
         var appts = {...pantry.appointments};
 
         for (var day in appts) {
@@ -196,86 +225,12 @@ var controller = {
             res.json(customer);
           })
 
-        DbInfo.findOneAndUpdate(info, {nextId: info.nextId + 1});
-      })
-  },
-  addCustomerAdmin: function(email, customer, res) {
-    DbInfo.findOneAndUpdate()
-      .then(function(info) {
-        var str = getRegId(info.nextId);
-
-        customer.uid = 'temp' + str;
-        customer.regId = str;
-        customer.pantries = [email];
-
-        Customer.create(customer)
+        DbInfo.updateOne({}, {nextId: info.nextId + 1})
           .then(function(response) {
-            var customer = transform(response._doc);
-
-            controller.addCustomerToPantry(customer.uid, email, res);
-          })
-
-        DbInfo.findOneAndUpdate(info, {nextId: info.nextId + 1});
-      })
-  },
-  editCustomer: function(regId, update, res) {
-    Customer.findOneAndUpdate({regId: regId}, update)
-      .then(function(response) {
-        res.status(201);
-        res.send('Edit success.');
-      })
-  },
-
-  connect: function(res) {
-    Pantry.find()
-      .then(function(pantries) {
-        pantries.map(function(pantry, i) {
-          pantry.customers.map(function(uid, j) {
-            Customer.findOne({uid: uid})
-              .then(function(customer) {
-                if (customer.pantries.indexOf(pantry.email) === -1) {
-                  Customer.updateOne({uid: uid}, {'$push': {pantries: pantry.email}})
-                    .then(function() {
-                      console.log(`Updated customer ${j} in pantry ${i}.`);
-                    })
-                } else {
-                  console.log('Already in list.');
-                }
-              })
-          })
-        })
-
-        res.send('Success!');
-      })
-  },
-  fix: function(res) {
-    Pantry.updateMany({}, {customers: []})
-      .then(function() {
-        Customer.find()
-          .then(function(customers) {
-            customers.map(function(customer) {
-              if (customer.uid.slice(0, 4) === 'fake') {
-                return;
-              }
-
-              Customer.updateOne(customer, {pantries: []})
-                .then(function() {
-                  console.log(customer.uid);
-                })
-            })
-          })
-
-        res.send('success');
+            console.log('Next ID: ', info.nextId + 1);
+          });
       })
   }
-};
-
-var getRegId = function(num) {
-  var count = '' + (num + 1);
-  var year  = new Date().getFullYear();
-  var str   = `${year}-${count.padStart(6, '0')}`;
-
-  return str;
 };
 
 var getPantriesForUser = function(user, res) {

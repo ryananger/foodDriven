@@ -189,15 +189,14 @@ input[type='checkbox'] {
 
 .appointments {
   right: 0;
-  min-width: 280px;
+  min-width: 300px;
   padding: 1vh;
   align-items: flex-start;
   position: absolute;
   background: var(--lightBrown);
   height: 100%;
-  overflow: overlay;
+  overflow: scroll;
   border-left: 1px solid;
-
   transition: opacity 0.25s, visibility 0s;
 }
 
