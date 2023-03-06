@@ -67,10 +67,10 @@ const CustomerEdit = function({i, customer, setView}) {
   return (
     <div>
       <form id={'editForm' + customer.regId} className={`customerEditForm h`}>
-        <input name='regId' className='customerEdit' value={customer.regId} readOnly/>
-        <input name='_name' className='customerEdit' defaultValue={name}/>
-        <input name='phone' className='customerEdit' defaultValue={customer.phone}/>
-        <input name='email' className='customerEdit lCol' defaultValue={customer.email}/>
+        <input name='regId' className='customerEdit mCol' value={customer.regId} readOnly/>
+        <input name='_name' className='customerEdit mCol' defaultValue={name}/>
+        <input name='phone' className='customerEdit mCol' defaultValue={customer.phone}/>
+        <input name='email' className='customerEdit mCol lCol' defaultValue={customer.email}/>
         <input name='zip'   className='customerEdit sCol' defaultValue={customer.zip}/>
         <input name='age'   className='customerEdit sCol' defaultValue={customer.age}/>
         <div className='customerEdit'>

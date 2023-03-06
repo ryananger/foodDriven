@@ -124,9 +124,7 @@ var ax = {
   addCustomerToPantry: function(uid, email) {
     axios.post(urlBase + 'api/pantries/customer/' + uid, {email: email})
       .then(function(response) {
-        console.log(response);
         ax.getUser(uid);
-        ax.getPantries();
       })
   },
   editCustomer: function(regId, update, setView) {

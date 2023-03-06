@@ -20,7 +20,6 @@ const Admin = function() {
   var handlePantryClick = function(pantry, index) {
     setCreate(false);
     setConfig(false);
-    setAppt(false);
     setPantry(user.pantries[index]);
   };
 

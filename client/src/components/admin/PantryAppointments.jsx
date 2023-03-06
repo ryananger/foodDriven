@@ -24,7 +24,7 @@ const PantryAppointments = function() {
           var slotText = <h3 key={timeslot} className='timeText'>{timeslot}</h3>;
 
           rendered.push(
-            <div className='apptTimeslot v'>
+            <div key={timeslot} className='apptTimeslot v'>
               {slotText}
               <div className='apptEntries v'>
                 {

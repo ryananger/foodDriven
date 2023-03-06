@@ -3,6 +3,8 @@ import React, {useEffect, useState} from 'react';
 import st            from 'ryscott-st';
 import {ax, auth, helpers} from 'util';
 
+import AutoAddress from './AutoAddress.jsx';
+
 const CustomerForm = function() {
   const [value, setValue] = useState('');
   const style = value === '' ? {color: 'gray'} : {};
@@ -11,26 +13,27 @@ const CustomerForm = function() {
     e.preventDefault();
 
     var form = e.target;
+    var address = st.auto.getPlace();
 
     var customer = {
       uid:          st.user.uid,
       firstName:    form.firstName.value,
       lastName:     form.lastName.value,
 
-      phone:        form.phone.value,
-      email:        form.email.value,
+      phone:        validPhone(form.phone.value),
+      email:        validEmail(form.email.value),
 
-      address:      form.address.value,
-      city:         form.city.value,
-      state:        form.state.value,
-      zip:          form.zip.value,
+      address:      address.name,
+      city:         address.vicinity,
+      state:        address.address_components[4].long_name,
+      zip:          address.address_components[6].long_name,
 
       ethnicity:    form.ethnicity.value,
-      age:          form.age.value,
+      age:          Number(form.age.value) || 0,
 
-      familySize:   form.familySize.value,
-      numberMale:   form.numberMale.value || 0,
-      numberFemale: form.numberFemale.value || 0,
+      familySize:   Number(form.familySize.value) || 0,
+      numberMale:   Number(form.numberMale.value) || 0,
+      numberFemale: Number(form.numberFemale.value) || 0,
       num_0to5:     helpers.strToObj(form.num_0to5.value),
       num_6to17:    helpers.strToObj(form.num_6to17.value),
       num_18to64:   helpers.strToObj(form.num_18to64.value),
@@ -40,7 +43,9 @@ const CustomerForm = function() {
       appointments: []
     };
 
-    ax.createCustomer(customer);
+    if (customer.phone && customer.email) {
+      ax.createCustomer(customer);
+    }
   };
 
   return (
@@ -65,15 +70,8 @@ const CustomerForm = function() {
             <input name='email'      type='text' placeholder='Email address.' defaultValue={st.user.email} required/>
             <input name='phone'      type='text' placeholder='Phone number.' required/>
             <br/>
-
-            <input name='address' type='text' placeholder='Address.' required/>
-            <div className='customerLocation h'>
-              <input name='city'  type='text' placeholder='City.' required/>
-              <input name='state' type='text' placeholder='State.' required/>
-              <input name='zip'   type='text' placeholder='Zip.' required/>
-            </div>
+            <AutoAddress />
             <br/>
-
             <div className='customerDemo h'>
               <input name='age' type='text' placeholder='Age.' required/>
               <select name='ethnicity' value={value} style={style} onChange={(e)=>{setValue(e.target.value)}}>
@@ -104,6 +102,28 @@ const CustomerForm = function() {
       </form>
     </div>
   )
+};
+
+var validPhone = function(str) {
+  var num = str.replace(/[^a-zA-Z0-9]/g,'');
+
+  if (Number(num) && num.length === 10) {
+    return num;
+  } else {
+    helpers.alert('Invalid phone.');
+    return false;
+  }
+};
+
+var validEmail = function(str) {
+  var valid = str.match(/[\w-\.]+@[\w-\.]+.[\w]/g);
+
+  if (valid) {
+    return str;
+  } else {
+    helpers.alert('Invalid email.');
+    return false;
+  }
 };
 
 export default CustomerForm;

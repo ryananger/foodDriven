@@ -60,10 +60,10 @@ const CustomerAdd = function({setAdding}) {
   return (
     <div>
       <form id='addForm' className={`customerEditForm h`}>
-        <input name='regId' className='customerEdit' value='' readOnly/>
-        <input name='_name'  className='customerEdit' placeholder='Jack Johnson'/>
-        <input name='phone' className='customerEdit' placeholder='5553451234'/>
-        <input name='email' className='customerEdit lCol' placeholder='jjeats@gmail.com'/>
+        <input name='regId' className='customerEdit mCol' value='' readOnly/>
+        <input name='_name' className='customerEdit mCol' placeholder='Jack Johnson'/>
+        <input name='phone' className='customerEdit mCol' placeholder='5553451234'/>
+        <input name='email' className='customerEdit mCol lCol' placeholder='jjeats@gmail.com'/>
         <input name='zip'   className='customerEdit sCol' placeholder='90210'/>
         <input name='age'   className='customerEdit sCol' placeholder='24'/>
         <div className='customerEdit'>
